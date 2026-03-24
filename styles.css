@@ -24,8 +24,8 @@
 :root {
   /* Color Palette */
   --ink: #1a1a2e;
-  --teal: #1a7a72;
-  --teal-light: #2aa89e;
+  --teal: #134e4a;
+  --teal-light: #34d399;
   --cream: #f8f5f0;
   --sand: #ede8e0;
   --muted: #7a7770;
@@ -129,7 +129,7 @@ h3 {
 
 em {
   font-style: italic;
-  color: var(--teal);
+  color: var(--teal-light);
 }
 
 p {
@@ -215,7 +215,7 @@ a:hover {
   position: relative;
   overflow: hidden;
   /* Sage/olive green gradient background matching screenshot */
-  background: linear-gradient(160deg, #e8ede6 0%, #dce6da 40%, #d4e0d2 100%);
+  background: linear-gradient(180deg, #f8faf9 0%, #d1fae5 100%);
 }
 
 .hero-bg {
@@ -337,7 +337,8 @@ a:hover {
 
 /* Filled dark teal button */
 .btn-primary {
-  background-color: #1a4a44;
+  background-color: var(--teal);
+   border-color: var(--teal);
   color: var(--white);
   border-color: #1a4a44;
 }
@@ -689,7 +690,7 @@ section {
    border: 1px solid var(--sand);
    border-radius: var(--radius-sm); 
    padding: .35rem .85rem;
-   transition: all var(--t);
+   transition: all var(--transition-base);
 }
 .skill-tag:hover { 
    background: rgba(58,125,111,.08); 
@@ -1018,9 +1019,7 @@ section {
    ========================================================================== */
 
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  animation: fadeUp 0.9s ease forwards;
 }
 
 .reveal.visible {
