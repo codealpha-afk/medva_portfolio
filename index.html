@@ -5,9 +5,696 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Charlyn Mae Teodoro - Medical Virtual Assistant & Healthcare Admin Specialist. 6+ years experience with EMR/EHR, prior authorizations, and patient coordination." />
     <title>Charlyn Mae Teodoro – Medical Virtual Assistant</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <style>
+/* ============================================================
+   CHARLYN TEODORO PORTFOLIO — styles.css
+   ============================================================ */
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:   #faf8f5;
+  --white:   #ffffff;
+  --ink:     #1a1814;
+  --muted:   #6b6560;
+  --accent:  #8b6f47;
+  --accent2: #c4a882;
+  --border:  #e8e3dc;
+  --card-bg: #f5f1ec;
+  --green:   #3d7a5e;
+  --shadow:  0 2px 20px rgba(26,24,20,.06);
+  --radius:  12px;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'DM Sans', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+ul  { list-style: none; }
+a   { color: inherit; text-decoration: none; }
+
+/* ── Scroll-reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Layout helpers ── */
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+section { padding: 6rem 0; }
+
+/* ── Shared typography ── */
+.section-label {
+  font-family: var(--font-sans);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .75rem;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.divider {
+  width: 40px;
+  height: 2px;
+  background: var(--accent2);
+  margin: 1.5rem 0 2rem;
+}
+
+/* ── Navigation ── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 2.5rem;
+  background: rgba(250,248,245,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-brand {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--ink);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  font-size: .82rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  color: var(--muted);
+  transition: color .2s;
+}
+
+.nav-links a:hover { color: var(--ink); }
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  min-height: 90vh;
+  padding: 6rem 5vw;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--cream) 60%, #ede8e0 100%);
+  z-index: 0;
+}
+
+.hero-left, .hero-right { position: relative; z-index: 1; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--green);
+  background: rgba(61,122,94,.08);
+  border: 1px solid rgba(61,122,94,.2);
+  border-radius: 99px;
+  padding: .35rem 1rem;
+  margin-bottom: 1.8rem;
+}
+
+.badge-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: .5; transform: scale(1.3); }
+}
+
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 300;
+  line-height: 1.18;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 em { font-style: italic; color: var(--accent); }
+
+.hero-intro {
+  font-size: .95rem;
+  color: var(--muted);
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-block;
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: .85rem 2rem;
+  border-radius: 4px;
+  transition: all .2s;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--white);
+}
+.btn-primary:hover { background: var(--accent); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--border);
+}
+.btn-secondary:hover { border-color: var(--ink); }
+
+/* ── Stats grid (hero right) ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.4rem;
+  box-shadow: var(--shadow);
+}
+
+.stat-num {
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  font-weight: 300;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: .4rem;
+}
+
+.stat-label {
+  font-size: .78rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.availability {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.4rem;
+  box-shadow: var(--shadow);
+}
+
+.avail-dot {
+  flex-shrink: 0;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 3px rgba(61,122,94,.2);
+}
+
+.avail-text { font-size: .82rem; color: var(--muted); }
+
+/* ── About ── */
+.about { background: var(--white); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  text-align: center;
+}
+
+.about-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--white);
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.about-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: .3rem;
+}
+
+.about-title { font-size: .8rem; color: var(--accent); margin-bottom: 1.25rem; }
+
+.about-meta p {
+  font-size: .8rem;
+  color: var(--muted);
+  margin-bottom: .4rem;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.tag {
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--accent);
+  background: rgba(139,111,71,.08);
+  border: 1px solid rgba(139,111,71,.2);
+  border-radius: 99px;
+  padding: .3rem .75rem;
+}
+
+.about-content p {
+  color: var(--muted);
+  margin-bottom: 1rem;
+  font-size: .92rem;
+}
+
+.highlight {
+  background: var(--card-bg);
+  border-left: 3px solid var(--accent2);
+  padding: 1rem 1.25rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--ink) !important;
+  font-size: .88rem !important;
+}
+
+/* ── Services ── */
+.services { background: var(--cream); }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: transform .2s, box-shadow .2s;
+}
+.service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(26,24,20,.1); }
+
+.service-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+.service-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.service-list li {
+  font-size: .82rem;
+  color: var(--muted);
+  padding: .45rem 0;
+  border-bottom: 1px solid var(--border);
+  padding-left: .9rem;
+  position: relative;
+}
+
+.service-list li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--accent2);
+}
+
+.service-list li:last-child { border-bottom: none; }
+
+/* ── Skills ── */
+.skills { background: var(--white); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.skill-group-title {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: .85rem;
+  margin-top: 1.75rem;
+  color: var(--ink);
+}
+
+.skill-group-title:first-child { margin-top: 0; }
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+}
+
+.skill-tag {
+  font-size: .75rem;
+  font-weight: 400;
+  color: var(--muted);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .35rem .75rem;
+}
+
+/* ── Tools ── */
+.tools { background: var(--card-bg); }
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.tool-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform .2s;
+}
+.tool-card:hover { transform: translateY(-3px); }
+
+.tool-name {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: .3rem;
+}
+
+.tool-type { font-size: .73rem; color: var(--muted); }
+
+/* ── Experience ── */
+.experience { background: var(--white); }
+
+.exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.exp-card {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.exp-company {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: .3rem;
+}
+
+.exp-role { font-size: .82rem; color: var(--accent); margin-bottom: .3rem; }
+
+.exp-dates {
+  display: block;
+  font-size: .75rem;
+  color: var(--muted);
+  margin-bottom: .75rem;
+}
+
+.exp-badge {
+  display: inline-block;
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(139,111,71,.08);
+  border: 1px solid rgba(139,111,71,.2);
+  border-radius: 99px;
+  padding: .25rem .7rem;
+}
+
+.exp-bullets li {
+  font-size: .85rem;
+  color: var(--muted);
+  padding: .4rem 0 .4rem 1rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.exp-bullets li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent2);
+  font-size: .75rem;
+}
+
+.exp-bullets li:last-child { border-bottom: none; }
+
+/* ── Samples ── */
+.samples { background: var(--cream); }
+
+.samples-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.sample-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.sample-label {
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: .6rem;
+}
+
+.sample-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.sample-steps { display: flex; flex-direction: column; gap: .75rem; }
+
+.sample-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  font-size: .82rem;
+  color: var(--muted);
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--white);
+  font-size: .65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: .1rem;
+}
+
+/* ── Why section ── */
+.why { background: var(--ink); }
+
+.why .section-label { color: var(--accent2); }
+.why .section-title { color: var(--white); }
+.why .divider { background: var(--accent); }
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.why-card {
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: border-color .2s, background .2s;
+}
+.why-card:hover { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.15); }
+
+.why-num {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.12);
+  line-height: 1;
+  margin-bottom: .75rem;
+}
+
+.why-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: .75rem;
+}
+
+.why-card p {
+  font-size: .83rem;
+  color: rgba(255,255,255,.55);
+  line-height: 1.7;
+}
+
+/* ── Contact ── */
+.contact { background: var(--white); text-align: center; }
+
+.contact-sub {
+  font-size: .9rem;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto 2.5rem;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .9rem 1.75rem;
+  transition: all .2s;
+}
+.contact-link:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+.footer-note {
+  font-size: .78rem;
+  color: var(--muted);
+  margin-top: 1rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .hero           { grid-template-columns: 1fr; min-height: auto; padding: 5rem 2rem; gap: 3rem; }
+  .about-grid     { grid-template-columns: 1fr; }
+  .services-grid  { grid-template-columns: 1fr; }
+  .tools-grid     { grid-template-columns: repeat(2, 1fr); }
+  .why-grid       { grid-template-columns: 1fr 1fr; }
+  .samples-grid   { grid-template-columns: 1fr; }
+  .exp-card       { grid-template-columns: 1fr; gap: 1.25rem; }
+}
+
+@media (max-width: 640px) {
+  .nav-links      { display: none; }
+  .stats-grid     { grid-template-columns: 1fr 1fr; }
+  .skills-grid    { grid-template-columns: 1fr; }
+  .why-grid       { grid-template-columns: 1fr; }
+  .tools-grid     { grid-template-columns: repeat(2, 1fr); }
+  section         { padding: 4rem 0; }
+}
+    </style>
   </head>
 
   <body>
@@ -31,7 +718,7 @@
           <span class="badge-dot"></span>
           Available for Remote Work
         </div>
-        <h1>Your <em>reliable</em> remote partner for healthcare admin & support</h1>
+        <h1>Your <em>reliable</em> remote partner for healthcare admin &amp; support</h1>
         <p class="hero-intro">I'm Charlyn — a Medical Virtual Assistant and Customer Support Specialist with 6+ years of experience helping US-based clinics, BPO teams, and healthcare organizations run smoothly. I handle the details so you can focus on what matters most.</p>
         <div class="hero-cta">
           <a href="#contact" class="btn btn-primary">Work With Me</a>
@@ -51,7 +738,7 @@
           </article>
           <article class="stat-card">
             <div class="stat-num">100%</div>
-            <p class="stat-label">Remote-ready & HIPAA-compliant</p>
+            <p class="stat-label">Remote-ready &amp; HIPAA-compliant</p>
           </article>
           <article class="stat-card">
             <div class="stat-num">4</div>
@@ -72,10 +759,10 @@
           <aside class="about-card">
             <div class="about-avatar" aria-label="Charlyn's initials">C</div>
             <h3 class="about-name">Charlyn Mae Teodoro</h3>
-            <p class="about-title">Medical VA & Healthcare Admin Specialist</p>
+            <p class="about-title">Medical VA &amp; Healthcare Admin Specialist</p>
             <div class="about-meta">
               <p>📍 Iloilo, Philippines</p>
-              <p>🕐 Available across US, AU & UK time zones</p>
+              <p>🕐 Available across US, AU &amp; UK time zones</p>
               <p>🎓 BS Information Technology</p>
             </div>
             <div class="about-tags" aria-label="Key expertise areas">
@@ -105,44 +792,44 @@
       <div class="container">
         <div class="reveal" style="max-width: 560px; margin-bottom: 3rem">
           <div class="section-label">What I Do</div>
-          <h2 class="section-title" id="services-title">Services built for <em>busy clinics & remote teams</em></h2>
+          <h2 class="section-title" id="services-title">Services built for <em>busy clinics &amp; remote teams</em></h2>
           <div class="divider"></div>
         </div>
         <div class="services-grid reveal">
           <article class="service-card">
             <div class="service-icon" aria-hidden="true">🏥</div>
-            <h3 class="service-title">Medical & Healthcare Support</h3>
+            <h3 class="service-title">Medical &amp; Healthcare Support</h3>
             <ul class="service-list">
               <li>Prior authorization processing (medications, procedures, diagnostics)</li>
-              <li>Insurance eligibility & benefits verification</li>
-              <li>EMR/EHR data entry, chart reviews & pre-visit prep (Tebra, Practice Fusion)</li>
-              <li>Medical billing support & claims coordination</li>
-              <li>Referral intake & fax/email queue management</li>
-              <li>HIPAA-compliant documentation & communication</li>
+              <li>Insurance eligibility &amp; benefits verification</li>
+              <li>EMR/EHR data entry, chart reviews &amp; pre-visit prep (Tebra, Practice Fusion)</li>
+              <li>Medical billing support &amp; claims coordination</li>
+              <li>Referral intake &amp; fax/email queue management</li>
+              <li>HIPAA-compliant documentation &amp; communication</li>
             </ul>
           </article>
           <article class="service-card">
             <div class="service-icon" aria-hidden="true">📅</div>
             <h3 class="service-title">Administrative Support</h3>
             <ul class="service-list">
-              <li>Patient scheduling & appointment coordination</li>
-              <li>Calendar & inbox management</li>
-              <li>Data entry, filing & record maintenance</li>
-              <li>Multi-site coordination & follow-up tracking</li>
-              <li>Document preparation & workflow organization</li>
-              <li>Same-day intake processing & urgent request escalation</li>
+              <li>Patient scheduling &amp; appointment coordination</li>
+              <li>Calendar &amp; inbox management</li>
+              <li>Data entry, filing &amp; record maintenance</li>
+              <li>Multi-site coordination &amp; follow-up tracking</li>
+              <li>Document preparation &amp; workflow organization</li>
+              <li>Same-day intake processing &amp; urgent request escalation</li>
             </ul>
           </article>
           <article class="service-card">
             <div class="service-icon" aria-hidden="true">🎧</div>
-            <h3 class="service-title">Customer & Client Support</h3>
+            <h3 class="service-title">Customer &amp; Client Support</h3>
             <ul class="service-list">
-              <li>Inbound voice, email & live chat support</li>
-              <li>Billing inquiries & account issue resolution</li>
-              <li>Patient & client communication with empathy and clarity</li>
-              <li>Escalation handling & issue tracking</li>
-              <li>CRM data updates & account management</li>
-              <li>Retention support & follow-up outreach</li>
+              <li>Inbound voice, email &amp; live chat support</li>
+              <li>Billing inquiries &amp; account issue resolution</li>
+              <li>Patient &amp; client communication with empathy and clarity</li>
+              <li>Escalation handling &amp; issue tracking</li>
+              <li>CRM data updates &amp; account management</li>
+              <li>Retention support &amp; follow-up outreach</li>
             </ul>
           </article>
         </div>
@@ -159,7 +846,7 @@
         </div>
         <div class="skills-grid reveal">
           <div>
-            <h3 class="skill-group-title">Healthcare & Clinical Admin</h3>
+            <h3 class="skill-group-title">Healthcare &amp; Clinical Admin</h3>
             <div class="skill-tags">
               <span class="skill-tag">Prior Authorizations</span>
               <span class="skill-tag">Insurance Verification</span>
@@ -178,7 +865,7 @@
               <span class="skill-tag">Live Chat</span>
               <span class="skill-tag">Escalation Handling</span>
               <span class="skill-tag">Account Management</span>
-              <span class="skill-tag">Upselling & Retention</span>
+              <span class="skill-tag">Upselling &amp; Retention</span>
             </div>
           </div>
           <div>
@@ -195,7 +882,7 @@
             </div>
             <h3 class="skill-group-title">Administrative</h3>
             <div class="skill-tags">
-              <span class="skill-tag">Data Entry & Accuracy</span>
+              <span class="skill-tag">Data Entry &amp; Accuracy</span>
               <span class="skill-tag">Workflow Management</span>
               <span class="skill-tag">Queue Management</span>
               <span class="skill-tag">Document Organization</span>
@@ -211,7 +898,7 @@
       <div class="container">
         <div class="reveal" style="max-width: 500px; margin-bottom: 3rem">
           <div class="section-label">Tech Stack</div>
-          <h2 class="section-title" id="tools-title">Tools & <em>Systems I Work In</em></h2>
+          <h2 class="section-title" id="tools-title">Tools &amp; <em>Systems I Work In</em></h2>
           <div class="divider"></div>
         </div>
         <div class="tools-grid reveal">
@@ -233,15 +920,15 @@
           </article>
           <article class="tool-card">
             <div class="tool-name">CRM Systems</div>
-            <p class="tool-type">Account & Client Mgmt</p>
+            <p class="tool-type">Account &amp; Client Mgmt</p>
           </article>
           <article class="tool-card">
-            <div class="tool-name">Fax & Email Platforms</div>
+            <div class="tool-name">Fax &amp; Email Platforms</div>
             <p class="tool-type">eFax, SRFax, email tools</p>
           </article>
           <article class="tool-card">
             <div class="tool-name">Zoom / Teams</div>
-            <p class="tool-type">Video & Communication</p>
+            <p class="tool-type">Video &amp; Communication</p>
           </article>
           <article class="tool-card">
             <div class="tool-name">Slack / Messaging</div>
@@ -336,7 +1023,7 @@
 
           <article class="sample-card">
             <div class="sample-label">Workflow Sample 02</div>
-            <h3 class="sample-title">Patient Scheduling & Follow-Up</h3>
+            <h3 class="sample-title">Patient Scheduling &amp; Follow-Up</h3>
             <ol class="sample-steps">
               <li><span class="step-num">1</span>Receive appointment request via phone, email, or online form.</li>
               <li><span class="step-num">2</span>Confirm patient's insurance, provider preference, and urgency level.</li>
@@ -349,7 +1036,7 @@
 
           <article class="sample-card">
             <div class="sample-label">Workflow Sample 03</div>
-            <h3 class="sample-title">Inbox & Task Management System</h3>
+            <h3 class="sample-title">Inbox &amp; Task Management System</h3>
             <ol class="sample-steps">
               <li><span class="step-num">1</span>Sort incoming emails and faxes into categories: Urgent, Action Required, FYI, Archive.</li>
               <li><span class="step-num">2</span>Flag and escalate time-sensitive items (auth deadlines, patient callbacks) immediately.</li>
@@ -418,11 +1105,38 @@
             <a href="tel:+639283485028" class="contact-link" aria-label="Call Charlyn">📞 +63 928 348 5028</a>
             <a href="https://www.linkedin.com/in/charlynmaeteodoro/" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Visit LinkedIn profile">🔗 LinkedIn Profile</a>
           </div>
-          <p class="footer-note">Based in Iloilo, Philippines · Available remotely · Response within 24 hours</p>
+          <p class="footer-note">Based in Iloilo, Philippines · Available US, AU &amp; UK time zones · Open to remote work worldwide</p>
         </div>
       </div>
     </section>
 
-    <script src="script.js"></script>
+    <script>
+      // Intersection Observer for scroll-reveal animations
+      document.addEventListener('DOMContentLoaded', function () {
+        const observerOptions = { threshold: 0.08, rootMargin: '0px 0px -50px 0px' };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => { entry.target.classList.add('visible'); }, index * 80);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href !== '#' && document.querySelector(href)) {
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
