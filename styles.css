@@ -661,48 +661,40 @@ section {
    11. SKILLS SECTION
    ========================================================================== */
 
-.skills {
-  background-color: var(--white);
+.skills { 
+   background: var(--white); 
 }
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+.skills-grid { 
+   display: grid; 
+   grid-template-columns: 1fr 1fr; gap: 3rem; 
 }
-
 .skill-group-title {
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 1.2rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 1px solid var(--sand);
+   font-family: var(--font-serif); 
+   font-size: 1.05rem; font-weight: 600;
+   margin-bottom: 1rem; margin-top: 1.6rem;
+   padding-bottom: .5rem; 
+   border-bottom: 1px solid var(--sand);
 }
-
-.skill-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: 1.8rem;
+.skill-group-title:first-child { 
+   margin-top: 0; 
 }
-
+.skill-tags { 
+   display: flex; flex-wrap: wrap; 
+   gap: .5rem; 
+}
 .skill-tag {
-  background-color: var(--cream);
-  color: var(--ink);
-  border: 1px solid var(--sand);
-  padding: 0.4rem 1rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.82rem;
-  transition: all var(--transition-fast);
+  font-size: .75rem; 
+   color: var(--muted);
+   background: var(--cream); 
+   border: 1px solid var(--sand);
+   border-radius: var(--radius-sm); 
+   padding: .35rem .85rem;
+   transition: all var(--t);
 }
-
-.skill-tag:hover {
-  background-color: rgba(26, 122, 114, 0.08);
-  border-color: rgba(26, 122, 114, 0.25);
-  color: var(--teal);
-  transform: translateY(-1px);
+.skill-tag:hover { 
+   background: rgba(58,125,111,.08); 
+   border-color: rgba(58,125,111,.25); 
+   color: var(--teal); 
 }
 
 /* ============================================================================
