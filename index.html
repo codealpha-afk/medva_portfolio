@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Charlyn Mae Teodoro – Medical Virtual Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --teal: #1a7a72;
+    --teal-light: #2aa89e;
+    --cream: #f8f5f0;
+    --sand: #ede8e0;
+    --muted: #7a7770;
+    --white: #ffffff;
+    --accent: #c9956a;
+  }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+font-family: ‘DM Sans’, sans-serif;
+background: var(–cream);
+color: var(–ink);
+line-height: 1.7;
+overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+display: flex; justify-content: space-between; align-items: center;
+padding: 1.2rem 3rem;
+background: rgba(248, 245, 240, 0.92);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid rgba(26,122,114,0.12);
+animation: slideDown 0.6s ease forwards;
+}
+@keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.nav-name {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.2rem;
+font-weight: 600;
+color: var(–teal);
+letter-spacing: 0.04em;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em;
+text-transform: uppercase; color: var(–muted); text-decoration: none;
+transition: color 0.2s;
+}
+.nav-links a:hover { color: var(–teal); }
+
+/* HERO */
+.hero {
+min-height: 100vh;
+display: grid;
+grid-template-columns: 1fr 1fr;
+padding-top: 80px;
+position: relative;
+overflow: hidden;
+}
+.hero-bg {
+position: absolute; inset: 0;
+background:
+radial-gradient(ellipse 60% 70% at 80% 50%, rgba(26,122,114,0.07) 0%, transparent 70%),
+radial-gradient(ellipse 40% 40% at 10% 80%, rgba(201,149,106,0.08) 0%, transparent 60%);
+}
+.hero-left {
+display: flex; flex-direction: column; justify-content: center;
+padding: 6rem 4rem 6rem 6rem;
+position: relative; z-index: 2;
+animation: fadeUp 0.9s 0.2s ease both;
+}
+@keyframes fadeUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.hero-badge {
+display: inline-flex; align-items: center; gap: 0.5rem;
+background: rgba(26,122,114,0.1); border: 1px solid rgba(26,122,114,0.2);
+color: var(–teal); padding: 0.35rem 1rem; border-radius: 100px;
+font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+text-transform: uppercase; margin-bottom: 1.8rem;
+width: fit-content;
+}
+.hero-badge::before { content: ‘●’; font-size: 0.5rem; color: var(–teal-light); }
+.hero h1 {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(2.8rem, 5vw, 4.2rem);
+font-weight: 300;
+line-height: 1.15;
+color: var(–ink);
+margin-bottom: 1.4rem;
+}
+.hero h1 em { font-style: italic; color: var(–teal); }
+.hero-intro {
+font-size: 1.05rem; font-weight: 300; color: var(–muted);
+max-width: 480px; margin-bottom: 2.5rem; line-height: 1.8;
+}
+.hero-cta {
+display: flex; gap: 1rem; flex-wrap: wrap;
+}
+.btn-primary {
+background: var(–teal); color: white;
+padding: 0.85rem 2rem; border-radius: 4px;
+font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+text-decoration: none; transition: all 0.25s;
+border: 2px solid var(–teal);
+}
+.btn-primary:hover { background: transparent; color: var(–teal); }
+.btn-secondary {
+color: var(–teal); padding: 0.85rem 2rem; border-radius: 4px;
+font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+text-decoration: none; border: 2px solid rgba(26,122,114,0.35);
+transition: all 0.25s;
+}
+.btn-secondary:hover { border-color: var(–teal); }
+
+.hero-right {
+display: flex; flex-direction: column; justify-content: center;
+padding: 6rem 5rem 6rem 2rem;
+position: relative; z-index: 2;
+animation: fadeUp 0.9s 0.4s ease both;
+}
+.stats-grid {
+display: grid; grid-template-columns: 1fr 1fr;
+gap: 1.2rem; margin-bottom: 2rem;
+}
+.stat-card {
+background: white;
+border-radius: 12px;
+padding: 1.6rem;
+border: 1px solid rgba(0,0,0,0.06);
+box-shadow: 0 2px 20px rgba(26,122,114,0.06);
+transition: transform 0.25s, box-shadow 0.25s;
+}
+.stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(26,122,114,0.12); }
+.stat-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2.6rem; font-weight: 600; color: var(–teal);
+line-height: 1; margin-bottom: 0.4rem;
+}
+.stat-label { font-size: 0.78rem; color: var(–muted); font-weight: 400; line-height: 1.4; }
+.availability {
+background: rgba(26,122,114,0.06); border: 1px solid rgba(26,122,114,0.15);
+border-radius: 10px; padding: 1.2rem 1.5rem;
+display: flex; align-items: center; gap: 1rem;
+}
+.avail-dot {
+width: 10px; height: 10px; border-radius: 50%;
+background: #22c55e; flex-shrink: 0;
+box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{ box-shadow: 0 0 0 3px rgba(34,197,94,0.2); } 50% { box-shadow: 0 0 0 6px rgba(34,197,94,0.1); } }
+.avail-text { font-size: 0.85rem; color: var(–ink); font-weight: 400; }
+.avail-text strong { color: var(–teal); }
+
+/* SECTIONS */
+section { padding: 6rem 0; }
+.container { max-width: 1120px; margin: 0 auto; padding: 0 3rem; }
+.section-label {
+font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+color: var(–accent); font-weight: 500; margin-bottom: 0.8rem;
+}
+.section-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300;
+line-height: 1.2; color: var(–ink); margin-bottom: 1rem;
+}
+.section-title em { font-style: italic; color: var(–teal); }
+.divider {
+width: 48px; height: 2px;
+background: var(–teal); margin-bottom: 2.5rem;
+}
+
+/* ABOUT */
+.about { background: white; }
+.about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: start; }
+.about-card {
+background: var(–cream);
+border-radius: 16px;
+padding: 2.5rem;
+border: 1px solid var(–sand);
+position: sticky; top: 100px;
+}
+.about-avatar {
+width: 80px; height: 80px; border-radius: 50%;
+background: linear-gradient(135deg, var(–teal), var(–teal-light));
+display: flex; align-items: center; justify-content: center;
+font-family: ‘Cormorant Garamond’, serif; font-size: 2rem;
+color: white; font-weight: 600; margin-bottom: 1.2rem;
+}
+.about-name { font-family: ‘Cormorant Garamond’, serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 0.3rem; }
+.about-title { font-size: 0.82rem; color: var(–teal); font-weight: 500; margin-bottom: 1.5rem; }
+.about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.tag {
+background: rgba(26,122,114,0.08); color: var(–teal);
+padding: 0.3rem 0.8rem; border-radius: 100px;
+font-size: 0.72rem; font-weight: 500;
+}
+.about-text { font-size: 1rem; color: #444; line-height: 1.85; margin-bottom: 1.2rem; }
+
+/* SERVICES */
+.services { background: var(–cream); }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.service-card {
+background: white; border-radius: 14px;
+padding: 2.2rem; border: 1px solid rgba(0,0,0,0.06);
+transition: transform 0.25s, box-shadow 0.25s;
+position: relative; overflow: hidden;
+}
+.service-card::before {
+content: ‘’; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+background: var(–teal); transform: scaleX(0); transform-origin: left;
+transition: transform 0.3s;
+}
+.service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(26,122,114,0.1); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-icon {
+font-size: 1.8rem; margin-bottom: 1.2rem;
+width: 52px; height: 52px;
+background: rgba(26,122,114,0.08); border-radius: 12px;
+display: flex; align-items: center; justify-content: center;
+}
+.service-title { font-family: ‘Cormorant Garamond’, serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.8rem; }
+.service-list { list-style: none; }
+.service-list li {
+font-size: 0.85rem; color: var(–muted); padding: 0.35rem 0;
+border-bottom: 1px solid rgba(0,0,0,0.05);
+display: flex; align-items: baseline; gap: 0.5rem;
+}
+.service-list li:last-child { border-bottom: none; }
+.service-list li::before { content: ‘—’; color: var(–teal); font-size: 0.7rem; flex-shrink: 0; }
+
+/* SKILLS */
+.skills { background: white; }
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.skill-group-title {
+font-family: ‘Cormorant Garamond’, serif; font-size: 1.2rem;
+font-weight: 600; color: var(–ink); margin-bottom: 1.2rem;
+padding-bottom: 0.6rem;
+border-bottom: 1px solid var(–sand);
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.8rem; }
+.skill-tag {
+background: var(–cream); color: var(–ink);
+border: 1px solid var(–sand); padding: 0.4rem 1rem;
+border-radius: 6px; font-size: 0.82rem;
+transition: all 0.2s;
+}
+.skill-tag:hover { background: rgba(26,122,114,0.08); border-color: rgba(26,122,114,0.25); color: var(–teal); }
+
+/* TOOLS */
+.tools { background: var(–ink); color: white; }
+.tools .section-title { color: white; }
+.tools .section-label { color: rgba(201,149,106,0.8); }
+.tools .divider { background: var(–accent); }
+.tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.tool-card {
+background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+border-radius: 10px; padding: 1.4rem; text-align: center;
+transition: all 0.25s;
+}
+.tool-card:hover { background: rgba(26,122,114,0.2); border-color: rgba(26,168,158,0.4); }
+.tool-name { font-size: 0.9rem; font-weight: 500; color: white; margin-bottom: 0.2rem; }
+.tool-type { font-size: 0.72rem; color: rgba(255,255,255,0.45); }
+
+/* EXPERIENCE */
+.experience { background: var(–cream); }
+.exp-list { display: flex; flex-direction: column; gap: 2rem; }
+.exp-card {
+background: white; border-radius: 14px; padding: 2.2rem;
+border: 1px solid rgba(0,0,0,0.06);
+display: grid; grid-template-columns: 220px 1fr; gap: 2rem;
+}
+.exp-meta { border-right: 1px solid var(–sand); padding-right: 2rem; }
+.exp-company { font-family: ‘Cormorant Garamond’, serif; font-size: 1.2rem; font-weight: 600; color: var(–teal); margin-bottom: 0.3rem; }
+.exp-role { font-size: 0.85rem; font-weight: 500; color: var(–ink); margin-bottom: 0.5rem; }
+.exp-dates { font-size: 0.78rem; color: var(–muted); margin-bottom: 0.8rem; }
+.exp-badge {
+display: inline-block; background: rgba(26,122,114,0.08); color: var(–teal);
+padding: 0.25rem 0.7rem; border-radius: 100px; font-size: 0.7rem;
+}
+.exp-bullets { list-style: none; }
+.exp-bullets li {
+font-size: 0.9rem; color: #444; padding: 0.45rem 0;
+border-bottom: 1px solid rgba(0,0,0,0.04);
+display: flex; gap: 0.8rem; align-items: baseline;
+line-height: 1.6;
+}
+.exp-bullets li:last-child { border-bottom: none; }
+.exp-bullets li::before { content: ‘▸’; color: var(–teal); font-size: 0.65rem; flex-shrink: 0; margin-top: 0.2rem; }
+
+/* SAMPLES */
+.samples { background: white; }
+.samples-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.sample-card {
+background: var(–cream); border-radius: 14px; padding: 2rem;
+border: 1px solid var(–sand);
+}
+.sample-label {
+font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+color: var(–accent); font-weight: 500; margin-bottom: 0.5rem;
+}
+.sample-title { font-family: ‘Cormorant Garamond’, serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; }
+.sample-step {
+display: flex; gap: 0.8rem; align-items: flex-start;
+margin-bottom: 0.7rem; font-size: 0.83rem; color: #555; line-height: 1.5;
+}
+.step-num {
+background: var(–teal); color: white;
+width: 22px; height: 22px; border-radius: 50%;
+font-size: 0.65rem; font-weight: 600;
+display: flex; align-items: center; justify-content: center;
+flex-shrink: 0; margin-top: 1px;
+}
+
+/* WHY HIRE */
+.why { background: var(–teal); color: white; }
+.why .section-label { color: rgba(255,255,255,0.6); }
+.why .section-title { color: white; }
+.why .divider { background: rgba(255,255,255,0.4); }
+.why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.why-card {
+background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+border-radius: 14px; padding: 2rem;
+transition: background 0.25s;
+}
+.why-card:hover { background: rgba(255,255,255,0.14); }
+.why-num {
+font-family: ‘Cormorant Garamond’, serif; font-size: 3rem;
+font-weight: 300; color: rgba(255,255,255,0.25); line-height: 1; margin-bottom: 0.8rem;
+}
+.why-title { font-family: ‘Cormorant Garamond’, serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 0.6rem; }
+.why-text { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.7; }
+
+/* CONTACT */
+.contact { background: var(–ink); color: white; text-align: center; }
+.contact .section-label { color: rgba(201,149,106,0.8); }
+.contact .section-title { color: white; margin-bottom: 0.5rem; }
+.contact-sub { font-size: 1rem; color: rgba(255,255,255,0.55); margin-bottom: 2.5rem; }
+.contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.contact-link {
+display: flex; align-items: center; gap: 0.5rem;
+background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+color: white; padding: 0.85rem 1.6rem; border-radius: 8px;
+text-decoration: none; font-size: 0.85rem;
+transition: all 0.25s;
+}
+.contact-link:hover { background: rgba(26,122,114,0.25); border-color: var(–teal-light); }
+.footer-note { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+/* SCROLL ANIMATIONS */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+nav { padding: 1rem 1.5rem; }
+.nav-links { display: none; }
+.hero { grid-template-columns: 1fr; }
+.hero-left { padding: 8rem 2rem 3rem; }
+.hero-right { padding: 0 2rem 4rem; }
+.container { padding: 0 1.5rem; }
+.about-grid, .services-grid, .tools-grid, .why-grid, .samples-grid { grid-template-columns: 1fr; }
+.exp-card { grid-template-columns: 1fr; }
+.exp-meta { border-right: none; border-bottom: 1px solid var(–sand); padding-right: 0; padding-bottom: 1rem; }
+.skills-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <div class="nav-name">Charlyn Mae Teodoro</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#samples">Samples</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <div class="hero-badge">Available for Remote Work</div>
+    <h1>Your <em>reliable</em> remote partner for healthcare admin & support</h1>
+    <p class="hero-intro">I'm Charlyn — a Medical Virtual Assistant and Customer Support Specialist with 6+ years of experience helping US-based clinics, BPO teams, and healthcare organizations run smoothly. I handle the details so you can focus on what matters most.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Work With Me</a>
+      <a href="#services" class="btn-secondary">See My Services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Years of professional experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Industries: Healthcare, BPO, Telecom</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Remote-ready & HIPAA-compliant</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Healthcare certifications earned</div>
+      </div>
+    </div>
+    <div class="availability">
+      <div class="avail-dot"></div>
+      <div class="avail-text"><strong>Open to new clients</strong> — Full-time or part-time remote roles welcome</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid reveal">
+      <div class="about-card">
+        <div class="about-avatar">C</div>
+        <div class="about-name">Charlyn Mae Teodoro</div>
+        <div class="about-title">Medical VA & Healthcare Admin Specialist</div>
+        <p style="font-size:0.82rem; color:var(--muted); line-height:1.6; margin-bottom:0.8rem;">📍 Iloilo, Philippines<br>🕐 Available across US, AU & UK time zones<br>🎓 BS Information Technology</p>
+        <div class="about-tags">
+          <span class="tag">Prior Authorizations</span>
+          <span class="tag">EMR/EHR</span>
+          <span class="tag">HIPAA</span>
+          <span class="tag">Patient Coordination</span>
+          <span class="tag">Insurance Verification</span>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Organized, dependable, and <em>detail-obsessed</em></h2>
+        <div class="divider"></div>
+        <p class="about-text">I started my career in healthcare operations at Accenture, where I spent over 3 years processing prior authorizations for Medicare Part D — navigating complex insurance policies, coordinating between providers and pharmacies, and ensuring patients received the coverage they needed without unnecessary delays.</p>
+        <p class="about-text">After building a strong foundation in the BPO industry — handling high-volume voice, email, and chat support for major telecommunications clients at TTEC and Transcom — I transitioned into freelance medical VA work, supporting multi-site healthcare clients with scheduling, EMR management, and insurance coordination.</p>
+        <p class="about-text">What sets me apart is my combination of healthcare knowledge and call center discipline. I'm used to fast-paced, high-accountability environments where accuracy isn't optional. I bring that same standard to every task — whether it's processing an authorization, updating a patient chart, or managing an overflowing inbox.</p>
+        <p class="about-text" style="color:var(--teal); font-weight:500;">I'm based in the Philippines and available to work during US, AU, or UK business hours. I'm HIPAA-aware, self-directed, and ready to become a dependable part of your team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="reveal" style="max-width:560px; margin-bottom:3rem;">
+      <div class="section-label">What I Do</div>
+      <h2 class="section-title">Services built for <em>busy clinics & remote teams</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-icon">🏥</div>
+        <div class="service-title">Medical & Healthcare Support</div>
+        <ul class="service-list">
+          <li>Prior authorization processing (medications, procedures, diagnostics)</li>
+          <li>Insurance eligibility & benefits verification</li>
+          <li>EMR/EHR data entry, chart reviews & pre-visit prep (Tebra, Practice Fusion)</li>
+          <li>Medical billing support & claims coordination</li>
+          <li>Referral intake & fax/email queue management</li>
+          <li>HIPAA-compliant documentation & communication</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📅</div>
+        <div class="service-title">Administrative Support</div>
+        <ul class="service-list">
+          <li>Patient scheduling & appointment coordination</li>
+          <li>Calendar & inbox management</li>
+          <li>Data entry, filing & record maintenance</li>
+          <li>Multi-site coordination & follow-up tracking</li>
+          <li>Document preparation & workflow organization</li>
+          <li>Same-day intake processing & urgent request escalation</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎧</div>
+        <div class="service-title">Customer & Client Support</div>
+        <ul class="service-list">
+          <li>Inbound voice, email & live chat support</li>
+          <li>Billing inquiries & account issue resolution</li>
+          <li>Patient & client communication with empathy and clarity</li>
+          <li>Escalation handling & issue tracking</li>
+          <li>CRM data updates & account management</li>
+          <li>Retention support & follow-up outreach</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+
+<section class="skills" id="skills">
+  <div class="container">
+    <div class="reveal" style="max-width:500px; margin-bottom:3rem;">
+      <div class="section-label">Capabilities</div>
+      <h2 class="section-title">Skills that get <em>the job done right</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="skills-grid reveal">
+      <div>
+        <div class="skill-group-title">Healthcare & Clinical Admin</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Prior Authorizations</span>
+          <span class="skill-tag">Insurance Verification</span>
+          <span class="skill-tag">Benefits Summaries</span>
+          <span class="skill-tag">Claims Coordination</span>
+          <span class="skill-tag">Patient Scheduling</span>
+          <span class="skill-tag">Chart Reviews</span>
+          <span class="skill-tag">Medical Billing Support</span>
+          <span class="skill-tag">HIPAA Compliance</span>
+          <span class="skill-tag">Referral Management</span>
+        </div>
+        <div class="skill-group-title">Customer Support</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Voice / Phone Support</span>
+          <span class="skill-tag">Email Management</span>
+          <span class="skill-tag">Live Chat</span>
+          <span class="skill-tag">Escalation Handling</span>
+          <span class="skill-tag">Account Management</span>
+          <span class="skill-tag">Upselling & Retention</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Soft Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Empathetic Communication</span>
+          <span class="skill-tag">Attention to Detail</span>
+          <span class="skill-tag">Time Management</span>
+          <span class="skill-tag">Multi-Tasking</span>
+          <span class="skill-tag">Problem Solving</span>
+          <span class="skill-tag">Self-Directed / Remote-Ready</span>
+          <span class="skill-tag">Deadline-Oriented</span>
+          <span class="skill-tag">Professional Written Comm.</span>
+        </div>
+        <div class="skill-group-title">Administrative</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Data Entry & Accuracy</span>
+          <span class="skill-tag">Workflow Management</span>
+          <span class="skill-tag">Queue Management</span>
+          <span class="skill-tag">Document Organization</span>
+          <span class="skill-tag">Multi-System Navigation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+
+<section class="tools">
+  <div class="container">
+    <div class="reveal" style="max-width:500px; margin-bottom:3rem;">
+      <div class="section-label">Tech Stack</div>
+      <h2 class="section-title">Tools & <em>Systems I Work In</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="tools-grid reveal">
+      <div class="tool-card"><div class="tool-name">Tebra</div><div class="tool-type">EMR / Practice Mgmt</div></div>
+      <div class="tool-card"><div class="tool-name">Practice Fusion</div><div class="tool-type">EMR / EHR</div></div>
+      <div class="tool-card"><div class="tool-name">Google Workspace</div><div class="tool-type">Docs, Sheets, Gmail, Drive</div></div>
+      <div class="tool-card"><div class="tool-name">Microsoft Office</div><div class="tool-type">Word, Excel, Outlook</div></div>
+      <div class="tool-card"><div class="tool-name">CRM Systems</div><div class="tool-type">Account & Client Mgmt</div></div>
+      <div class="tool-card"><div class="tool-name">Fax & Email Platforms</div><div class="tool-type">eFax, SRFax, email tools</div></div>
+      <div class="tool-card"><div class="tool-name">Zoom / Teams</div><div class="tool-type">Video & Communication</div></div>
+      <div class="tool-card"><div class="tool-name">Slack / Messaging</div><div class="tool-type">Team Collaboration</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+
+<section class="experience" id="experience">
+  <div class="container">
+    <div class="reveal" style="max-width:500px; margin-bottom:3rem;">
+      <div class="section-label">Work History</div>
+      <h2 class="section-title">Experience that <em>speaks for itself</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="exp-list reveal">
+      <div class="exp-card">
+        <div class="exp-meta">
+          <div class="exp-company">Freelance</div>
+          <div class="exp-role">Medical Virtual Assistant</div>
+          <div class="exp-dates">Mar 2025 – Jul 2025 · Remote</div>
+          <span class="exp-badge">Healthcare VA</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Coordinated patient appointments, procedures, and follow-ups across multiple clinic sites with zero scheduling gaps.</li>
+          <li>Processed insurance eligibility, benefits checks, and prior authorizations — consistently meeting same-day turnaround.</li>
+          <li>Managed fax and email intake queues for referrals, insurance documents, and patient requests with same-day processing.</li>
+          <li>Maintained accurate, up-to-date EMR/EHR records in Tebra and Practice Fusion, including clinical notes and pre-visit prep.</li>
+          <li>Resolved billing and claims concerns by coordinating between patients, payers, and administrative staff.</li>
+          <li>Delivered empathetic patient communication via phone, email, and messaging — maintaining full HIPAA compliance throughout.</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-meta">
+          <div class="exp-company">TTEC</div>
+          <div class="exp-role">Technical Customer Support Rep</div>
+          <div class="exp-dates">Jun 2022 – Sep 2024 · Philippines</div>
+          <span class="exp-badge">BPO / Telecom</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Handled high-volume inbound calls for a major US telecommunications client — resolving billing, account, and technical issues.</li>
+          <li>Simplified complex technical issues into clear, step-by-step guidance, reducing repeat contacts.</li>
+          <li>Processed account adjustments and payments accurately while managing multiple tasks simultaneously.</li>
+          <li>Supported customer retention and upsell initiatives, contributing to team sales targets.</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-meta">
+          <div class="exp-company">Accenture</div>
+          <div class="exp-role">Business Process Associate — Prior Authorizations</div>
+          <div class="exp-dates">Aug 2018 – Dec 2021 · Manila</div>
+          <span class="exp-badge">Healthcare BPO</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Processed high-volume Part D prior authorizations in compliance with Medicare and payer-specific guidelines.</li>
+          <li>Verified eligibility and prescription coverage; coordinated with providers, pharmacies, and members for timely approvals.</li>
+          <li>Prepared medical, dental, and vision benefit summaries per client elections and state mandates.</li>
+          <li>Managed health insurance accounts — creating and updating member information, resolving billing and claims inquiries.</li>
+          <li>Maintained strict HIPAA compliance while handling sensitive patient and insurance data across interconnected systems.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE WORK -->
+
+<section class="samples" id="samples">
+  <div class="container">
+    <div class="reveal" style="max-width:560px; margin-bottom:3rem;">
+      <div class="section-label">Sample Work</div>
+      <h2 class="section-title">How I <em>approach real tasks</em></h2>
+      <div class="divider"></div>
+      <p style="color:var(--muted); font-size:0.9rem;">These examples demonstrate my typical workflows — the same systems and processes I apply when working with actual clients.</p>
+    </div>
+    <div class="samples-grid reveal">
+      <div class="sample-card">
+        <div class="sample-label">Workflow Sample 01</div>
+        <div class="sample-title">Prior Authorization Request</div>
+        <div class="sample-step"><div class="step-num">1</div><div>Receive request via fax/email from provider office or pharmacy.</div></div>
+        <div class="sample-step"><div class="step-num">2</div><div>Verify patient eligibility and prescription/procedure coverage in the EHR system.</div></div>
+        <div class="sample-step"><div class="step-num">3</div><div>Review payer-specific guidelines and gather required clinical documentation.</div></div>
+        <div class="sample-step"><div class="step-num">4</div><div>Submit auth request through payer portal or assigned system; log in EMR.</div></div>
+        <div class="sample-step"><div class="step-num">5</div><div>Follow up with payer on pending or denied requests; notify provider of outcome.</div></div>
+        <div class="sample-step"><div class="step-num">6</div><div>Update patient record with approval details, dates, and authorization number.</div></div>
+      </div>
+      <div class="sample-card">
+        <div class="sample-label">Workflow Sample 02</div>
+        <div class="sample-title">Patient Scheduling & Follow-Up</div>
+        <div class="sample-step"><div class="step-num">1</div><div>Receive appointment request via phone, email, or online form.</div></div>
+        <div class="sample-step"><div class="step-num">2</div><div>Confirm patient's insurance, provider preference, and urgency level.</div></div>
+        <div class="sample-step"><div class="step-num">3</div><div>Check provider availability in the scheduling system and book the appointment.</div></div>
+        <div class="sample-step"><div class="step-num">4</div><div>Send confirmation with date, time, location, and preparation instructions.</div></div>
+        <div class="sample-step"><div class="step-num">5</div><div>Trigger reminder 48 hours prior via phone or automated messaging platform.</div></div>
+        <div class="sample-step"><div class="step-num">6</div><div>Document all interactions and update status in the EMR system accordingly.</div></div>
+      </div>
+      <div class="sample-card">
+        <div class="sample-label">Workflow Sample 03</div>
+        <div class="sample-title">Inbox & Task Management System</div>
+        <div class="sample-step"><div class="step-num">1</div><div>Sort incoming emails and faxes into categories: Urgent, Action Required, FYI, Archive.</div></div>
+        <div class="sample-step"><div class="step-num">2</div><div>Flag and escalate time-sensitive items (auth deadlines, patient callbacks) immediately.</div></div>
+        <div class="sample-step"><div class="step-num">3</div><div>Process routine requests (eligibility checks, record updates) in batches for efficiency.</div></div>
+        <div class="sample-step"><div class="step-num">4</div><div>Log all completed tasks in the shared task tracker with status and timestamps.</div></div>
+        <div class="sample-step"><div class="step-num">5</div><div>Send end-of-day summary to supervisor: tasks completed, pending items, blockers.</div></div>
+        <div class="sample-step"><div class="step-num">6</div><div>Maintain zero-inbox standard — all items resolved or escalated before close of day.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY HIRE ME -->
+
+<section class="why">
+  <div class="container">
+    <div class="reveal" style="max-width:500px; margin-bottom:3rem;">
+      <div class="section-label">Why Work With Me</div>
+      <h2 class="section-title">What you get when you <em>hire Charlyn</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <div class="why-title">Healthcare-Specific Experience</div>
+        <div class="why-text">I'm not a generalist VA who learned about prior auths from a course. I spent years doing it at scale in a major healthcare BPO — I understand payer guidelines, Medicare compliance, and the urgency that comes with patient care timelines.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <div class="why-title">Zero Tolerance for Errors</div>
+        <div class="why-text">Healthcare admin doesn't allow for sloppy work. I bring a BPO-trained standard of accuracy to every task — data entry, chart updates, insurance claims — because I know the downstream impact of getting it wrong.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <div class="why-title">Dependable, Professional Communication</div>
+        <div class="why-text">Whether it's a confused patient on the phone or a provider office chasing an auth status, I communicate with clarity and empathy. Your clients will feel well taken care of, every single time.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <div class="why-title">Fully Remote-Ready</div>
+        <div class="why-text">I have a dedicated workspace, stable internet, and the discipline to operate independently. I'm used to asynchronous environments and will proactively flag issues rather than wait to be asked.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">05</div>
+        <div class="why-title">Fast Ramp-Up, Long-Term Reliability</div>
+        <div class="why-text">I pick up new systems quickly — I've navigated multiple EMR platforms, CRMs, and BPO tools. Give me a clear brief and I'll be contributing from day one, not week four.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">06</div>
+        <div class="why-title">HIPAA-Aware at Every Step</div>
+        <div class="why-text">Compliance isn't something I revisit when it's convenient — it's baked into how I handle every email, every chart update, and every patient interaction. Your data and your patients are safe in my hands.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Let's work <em>together</em></h2>
+      <p class="contact-sub">I'm currently open to remote roles — full-time, part-time, or project-based. US, AU, and UK clients welcome.</p>
+      <div class="contact-links">
+        <a href="mailto:charlynmaeteodoro@gmail.com" class="contact-link">📧 charlynmaeteodoro@gmail.com</a>
+        <a href="tel:+639283485028" class="contact-link">📞 +63 928 348 5028</a>
+        <a href="https://www.linkedin.com/in/charlynmaeteodoro" target="_blank" class="contact-link">🔗 LinkedIn Profile</a>
+      </div>
+      <p class="footer-note">Based in Iloilo, Philippines · Available remotely · Response within 24 hours</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
