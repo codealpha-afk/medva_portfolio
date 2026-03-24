@@ -242,30 +242,43 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--spacing-3xl) var(--spacing-2xl) var(--spacing-3xl) var(--spacing-3xl);
+  padding: 4rem 2.5rem 4rem 4rem;
   position: relative;
   z-index: 2;
-  animation: fadeUp 0.9s 0.2s ease forwards;  ✅ Shows content after animation
+  opacity: 1;
+  visibility: visible;
+  animation: fadeUp 0.9s 0.2s ease forwards;
 }
 
 .hero-right {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--spacing-3xl) var(--spacing-2xl) var(--spacing-3xl) var(--spacing-md);
+  padding: 4rem 3rem 4rem 2rem;
   position: relative;
   z-index: 2;
-  animation: fadeUp 0.9s 0.2s ease forwards;  ✅ Shows content after animation
+  opacity: 1;
+  visibility: visible;
+  animation: fadeUp 0.9s 0.4s ease forwards;
+}
+
+/* Ensure content is always visible */
+.hero-left,
+.hero-right {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 @keyframes fadeUp {
-  from {
-    transform: translateY(30px);
+  0% {
     opacity: 0;
+    transform: translateY(30px);
+    visibility: visible;
   }
-  to {
-    transform: translateY(0);
+  100% {
     opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
   }
 }
 
