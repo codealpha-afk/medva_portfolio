@@ -72,11 +72,16 @@ section { padding: 6rem 0; }
    ============================================================ */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.1rem 3rem;
+  padding: 1.1rem 0; /* Horizontal padding is now handled by .container */
   background: rgba(244, 241, 236, 0.94);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+      .nav-container {
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  width: 100%;
 }
 .nav-brand {
   font-family: var(--font-serif); font-size: 1.15rem;
@@ -461,15 +466,17 @@ section { padding: 6rem 0; }
 
     <!-- Navigation -->
     <nav class="nav">
-      <div class="nav-brand">Charlyn Mae Teodoro</div>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#samples">Samples</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <div class="container nav-container">
+    <div class="nav-brand">Charlyn Mae Teodoro</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#samples">Samples</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
     <!-- Hero -->
     <section class="hero" aria-label="Hero introduction">
