@@ -187,11 +187,18 @@ section { padding: 6rem 0; }
   font-weight: 300; line-height: 1.15;
   color: var(--ink); margin-bottom: 1.4rem;
 }
-.hero h1 em { font-style: italic; color: var(--gold); }
+.hero h1 em {
+  font-style: italic;
+  color: #3a7d6f;
+}
 
 .hero-intro {
-  font-size: .98rem; color: rgba(28,28,28,.7);
-  max-width: 540px; margin-bottom: 2.4rem; line-height: 1.8;
+  font-size: .98rem;
+  color: rgba(28, 28, 28, 0.7);
+  max-width: 520px; /* Keeps the text from stretching too far */
+  margin-bottom: 2.4rem;
+  line-height: 1.8;
+  text-align: left; /* Ensures it stays aligned to the left */
 }
 
 .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
