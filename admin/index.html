@@ -97,47 +97,43 @@ section { padding: 6rem 0; }
 /* ============================================================
    HERO — full-width sage green, single-column stacked layout
    ============================================================ */
+/* --- REPLACE YOUR OLD HERO CSS WITH THIS --- */
 .hero {
   min-height: 100vh;
   padding-top: 72px;
   background: linear-gradient(175deg, #b0c4a8 0%, #bccdb4 25%, #c5d4bc 50%, #cddac4 72%, #d6e1ce 100%);
   display: flex;
-  flex-direction: column;
+  align-items: center; /* This vertically centers the content */
   position: relative;
   overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 65% 55% at 90% 35%, rgba(255,255,255,0.22) 0%, transparent 65%),
-    radial-gradient(ellipse 45% 45% at 5% 88%, rgba(0,50,30,0.07) 0%, transparent 55%);
-  pointer-events: none;
 }
 
 .hero-flex-container {
   display: flex;
   align-items: center;
-  justify-content: space-between; 
-  gap: 2rem;                
-  padding: 8rem 0;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 4rem 0;
   width: 100%;
-  margin: 0 auto;
 }
 
 .hero-content {
   position: relative; 
   z-index: 2;
-  flex: 0 1 580px;            
-  padding: 0;               
+  flex: 1.2;
+  max-width: 600px;
+  padding: 0;
 }
 
 .hero-stats {
   position: relative; 
   z-index: 2;
-  flex: 0 1 420px;                  
-  padding: 0;                
+  flex: 1;
+  max-width: 480px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
       
 .hero-badge {
