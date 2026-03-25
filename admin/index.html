@@ -99,12 +99,13 @@ section { padding: 6rem 0; }
    ============================================================ */
 
 /* ── Hero Section ── */
+/* Locate this rule in your <style> tag */
 .hero {
   min-height: 100vh;
   padding-top: 72px;
-  background: linear-gradient(175deg, #b0c4a8 0%, #bccdb4 25%, #c5d4bc 50%, #cddac4 72%, #d6e1ce 100%);
+  background: #f8f6f2;   
   display: flex;
-  align-items: center; 
+  align-items: center;
   position: relative;
   overflow: hidden;
 }
@@ -182,9 +183,15 @@ section { padding: 6rem 0; }
   transition: all var(--t); cursor: pointer; border: 2px solid transparent;
 }
 .btn-primary {
-  background: var(--ink); color: var(--white); border-color: var(--ink);
+  background: #1c8e83;       
+  border-color: #1c8e83;    
+  
+  color: var(--white);
 }
-.btn-primary:hover { background: var(--teal-dark); border-color: var(--teal-dark); }
+.btn-primary:hover { 
+  background: var(--teal-dark); 
+  border-color: var(--teal-dark); 
+}
 
 .btn-secondary {
   background: transparent; color: var(--ink);
