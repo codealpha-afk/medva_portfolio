@@ -555,6 +555,188 @@ section { padding: 6rem 0; }
 }
 
 /* ============================================================
+   EXPERTISE MATRIX
+   ============================================================ */
+.expertise { background: var(--cream); }
+.expertise-intro {
+  max-width: 540px;
+  margin-bottom: 3rem;
+}
+.expertise-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+.expertise-pillar {
+  background: var(--white);
+  border: 2px solid var(--sand);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem;
+  transition: all var(--t);
+}
+.expertise-pillar:hover {
+  border-color: var(--teal-light);
+  box-shadow: 0 8px 24px rgba(58, 125, 111, 0.12);
+  transform: translateY(-4px);
+}
+.expertise-pillar.healthcare {
+  border-top: 4px solid #e74c3c;
+}
+.expertise-pillar.tech {
+  border-top: 4px solid #3498db;
+}
+.pillar-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+.pillar-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+  line-height: 1.2;
+}
+.pillar-subtitle {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.expertise-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.expertise-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.expertise-check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(58, 125, 111, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--teal);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* Intersection visualization */
+.expertise-intersection {
+  background: linear-gradient(135deg, rgba(231, 76, 60, 0.05) 0%, rgba(52, 152, 219, 0.05) 100%);
+  border: 2px solid var(--sand);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem;
+  text-align: center;
+}
+.intersection-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.intersection-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+.intersection-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.intersection-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+}
+.intersection-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--white);
+  border: 1px solid var(--teal);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--teal);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   WORKFLOW OPTIMIZER
+   ============================================================ */
+.optimizer { background: var(--cream); }
+.optimizer-widget input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--sand);
+  outline: none;
+}
+.optimizer-widget input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #1c8e83;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(28, 142, 131, 0.3);
+  transition: all var(--t);
+}
+.optimizer-widget input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(28, 142, 131, 0.4);
+}
+.optimizer-widget input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #1c8e83;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(28, 142, 131, 0.3);
+  transition: all var(--t);
+}
+.optimizer-widget input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(28, 142, 131, 0.4);
+}
+.optimizer-widget input[type="number"] {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--sand);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  color: var(--ink);
+}
+.optimizer-widget select {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--sand);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--white);
+}
+
+/* ============================================================
    EXPERIENCE
    ============================================================ */
 .experience { background: var(--cream); }
@@ -629,19 +811,128 @@ section { padding: 6rem 0; }
 /* ============================================================
    CONTACT
    ============================================================ */
-.contact { background: var(--ink); text-align: center; }
+.contact { background: var(--ink); }
 .contact .section-label { color: rgba(184,137,90,.8); }
-.contact .section-title { color: var(--white); }
-.contact-sub { font-size: .92rem; color: rgba(255,255,255,.52); max-width: 460px; margin: 0 auto 2.5rem; }
-.contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: .9rem; margin-bottom: 2.5rem; }
-.contact-link {
-  display: inline-flex; align-items: center; gap: .5rem;
-  font-size: .83rem; color: var(--white);
-  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
-  border-radius: var(--radius-sm); padding: .8rem 1.5rem; transition: all var(--t);
+.contact .section-title { color: var(--white); text-align: left; }
+.contact-sub { font-size: .92rem; color: rgba(255,255,255,.52); margin-bottom: 2.5rem; text-align: left; }
+
+.contact-form-wrapper {
+  max-width: 600px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
 }
-.contact-link:hover { background: rgba(58,125,111,.28); border-color: var(--teal); color: var(--white); transform: translateY(-2px); }
-.footer-note { font-size: .73rem; color: rgba(255,255,255,.22); }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form select,
+.contact-form textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--sand);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--white);
+  transition: all var(--t);
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form input[type="tel"]:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #1c8e83;
+  box-shadow: 0 0 0 3px rgba(28, 142, 131, 0.1);
+}
+
+.contact-form select {
+  cursor: pointer;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.form-checkbox {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.form-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: #1c8e83;
+}
+
+.form-checkbox label {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.9rem;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.contact-links { 
+  display: flex; 
+  gap: 1rem; 
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: inline-flex; 
+  align-items: center; 
+  gap: 0.5rem;
+  font-size: 0.85rem; 
+  color: #1c8e83;
+  background: rgba(28, 142, 131, 0.05); 
+  border: 1px solid #1c8e83;
+  border-radius: var(--radius-sm); 
+  padding: 0.7rem 1.2rem; 
+  transition: all var(--t);
+  text-decoration: none;
+}
+
+.contact-link:hover { 
+  background: #1c8e83;
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.contact-alternatives {
+  text-align: left;
+}
 
 /* ============================================================
    RESPONSIVE
@@ -672,8 +963,10 @@ section { padding: 6rem 0; }
   .about-grid { grid-template-columns: 1fr; }
   .about-card { position: static; }
   .services-grid, .samples-grid, .why-grid { grid-template-columns: 1fr; }
+  .expertise-grid { grid-template-columns: 1fr; }
   .portfolio-grid { grid-template-columns: 1fr; }
   .tools-grid { grid-template-columns: repeat(2,1fr); }
+  .optimizer-widget > div > div:nth-child(2) { grid-template-columns: 1fr; }
   .exp-card { grid-template-columns: 1fr; }
   .exp-meta { border-right: none; border-bottom: 1px solid var(--sand); padding-right: 0; padding-bottom: 1rem; margin-bottom: 1rem; }
   .skills-grid { grid-template-columns: 1fr; }
@@ -690,6 +983,8 @@ section { padding: 6rem 0; }
   .container { padding: 0 1.2rem; }
   .tools-grid { grid-template-columns: 1fr 1fr; }
   .why-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .contact-form-wrapper { padding: 1.5rem; }
   section { padding: 3rem 0; }
 }
 
@@ -806,8 +1101,9 @@ section { padding: 6rem 0; }
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#expertise">Expertise</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#experience">Experience</a></li>
+      <li><a href="#optimizer">Savings Calculator</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -1017,6 +1313,101 @@ section { padding: 6rem 0; }
           <article class="tool-card"><div class="tool-name">Fax &amp; Email Platforms</div><p class="tool-type">eFax, SRFax, email tools</p></article>
           <article class="tool-card"><div class="tool-name">Zoom / Teams</div><p class="tool-type">Video &amp; Communication</p></article>
           <article class="tool-card"><div class="tool-name">Slack / Messaging</div><p class="tool-type">Team Collaboration</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Expertise Matrix -->
+    <section class="expertise" id="expertise">
+      <div class="container">
+        <div class="reveal expertise-intro">
+          <div class="section-label">My Strengths</div>
+          <h2 class="section-title">Where <em>healthcare &amp; technology</em> meet</h2>
+          <div class="divider"></div>
+          <p style="font-size:.88rem;color:var(--muted)">I'm not a generalist VA or a developer trying to understand healthcare. I combine deep healthcare operations knowledge with legitimate web development and automation skills.</p>
+        </div>
+
+        <div class="expertise-grid reveal">
+          <!-- Healthcare Pillar -->
+          <article class="expertise-pillar healthcare">
+            <span class="pillar-icon">🏥</span>
+            <h3 class="pillar-title">Healthcare Operations</h3>
+            <p class="pillar-subtitle">6+ Years Clinical & Admin</p>
+            <ul class="expertise-list">
+              <li class="expertise-item">
+                <span class="expertise-check">✓</span>
+                <span><strong>Prior Authorization Workflows:</strong> Medicare Part D, payer guidelines, compliance</span>
+              </li>
+              <li class="expertise-item">
+                <span class="expertise-check">✓</span>
+                <span><strong>EMR/EHR Systems:</strong> Tebra, Practice Fusion, chart management, patient data integrity</span>
+              </li>
+              <li class="expertise-item">
+                <span class="expertise-check">✓</span>
+                <span><strong>Insurance Operations:</strong> Eligibility verification, benefits summaries, claims coordination</span>
+              </li>
+              <li class="expertise-item">
+                <span class="expertise-check">✓</span>
+                <span><strong>HIPAA Compliance:</strong> Data handling, security, patient privacy best practices</span>
+              </li>
+              <li class="expertise-item">
+                <span class="expertise-check">✓</span>
+                <span><strong>Patient Coordination:</strong> Scheduling, follow-up, communication with empathy</span>
+              </li>
+              <li class="expertise-item">
+                <span class="expertise-check">✓</span>
+                <span><strong>BPO Excellence:</strong> High-volume processing, accuracy standards, quality control</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Technology Pillar -->
+          <article class="expertise-pillar tech">
+            <span class="pillar-icon">💻</span>
+            <h3 class="pillar-title">Web Development &amp; Automation</h3>
+            <p class="pillar-subtitle">Hands-On Builder, Not Theoretical</p>
+            <ul class="expertise-list">
+              <li class="expertise-item">
+                <span class="expertise-check">✓</span>
+                <span><strong>Frontend Development:</strong> HTML/CSS/JavaScript, responsive design, accessibility</span>
+              </li>
+              <li class="expertise-item">
+                <span class="expertise-check">✓</span>
+                <span><strong>CMS & Static Sites:</strong> Pages CMS, Decap CMS, Markdown-based content management</span>
+              </li>
+              <li class="expertise-item">
+                <span class="expertise-check">✓</span>
+                <span><strong>Deployment & Infrastructure:</strong> Cloudflare Pages, GitHub, version control, CI/CD</span>
+              </li>
+              <li class="expertise-item">
+                <span class="expertise-check">✓</span>
+                <span><strong>Forms & Data Capture:</strong> Formspree, custom form handling, email integration</span>
+              </li>
+              <li class="expertise-item">
+                <span class="expertise-check">✓</span>
+                <span><strong>Workflow Automation:</strong> AI tools, scripting, productivity optimization</span>
+              </li>
+              <li class="expertise-item">
+                <span class="expertise-check">✓</span>
+                <span><strong>Performance & SEO:</strong> Site optimization, accessibility standards, user experience</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- Intersection / Unique Value -->
+        <div class="reveal">
+          <article class="expertise-intersection">
+            <span class="intersection-icon">🎯</span>
+            <h3 class="intersection-title">Your Competitive Edge</h3>
+            <p class="intersection-desc">When you hire me, you're not choosing between a VA who codes or a developer who understands healthcare. You're getting someone who deeply understands healthcare operations <em>and</em> can build systems to optimize them.</p>
+            <div class="intersection-skills">
+              <span class="intersection-badge">End-to-End Healthcare Solutions</span>
+              <span class="intersection-badge">Automation-First Mindset</span>
+              <span class="intersection-badge">Systems Thinking + Healthcare Compliance</span>
+              <span class="intersection-badge">Proven Execution</span>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1245,19 +1636,188 @@ section { padding: 6rem 0; }
       </div>
     </section>
 
+    <!-- Workflow Optimizer -->
+    <section class="optimizer" id="optimizer">
+      <div class="container">
+        <div class="reveal" style="max-width:540px;margin-bottom:2.5rem">
+          <div class="section-label">See Your Savings</div>
+          <h2 class="section-title">Calculate your <em>workflow optimization potential</em></h2>
+          <div class="divider"></div>
+          <p style="font-size:.88rem;color:var(--muted)">Adjust the inputs below to see exactly how much time and money you could save by delegating admin work to a remote healthcare specialist.</p>
+        </div>
+
+        <div class="reveal optimizer-widget">
+          <div style="background: var(--white); border: 1px solid var(--sand); border-radius: var(--radius-lg); padding: 2.2rem;">
+            <h3 style="font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400; color: var(--ink); margin: 0 0 1.5rem;">Your current workflow</h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+              <div>
+                <label style="display: block; font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Patient volume (per week)</label>
+                <input type="range" min="20" max="500" value="150" id="patientVolume" style="width: 100%; margin-bottom: 0.5rem;" />
+                <span style="font-size: 0.9rem; color: var(--ink); display: block; font-weight: 500;"><span id="patientDisplay">150</span> patients</span>
+              </div>
+              
+              <div>
+                <label style="display: block; font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Insurance types managed</label>
+                <select id="insuranceTypes" style="width: 100%;">
+                  <option value="3">3-5 payers</option>
+                  <option value="6">6-10 payers</option>
+                  <option value="11">11+ payers</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+              <div>
+                <label style="display: block; font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Prior auth requests (weekly)</label>
+                <input type="range" min="5" max="100" value="40" id="priorAuths" style="width: 100%; margin-bottom: 0.5rem;" />
+                <span style="font-size: 0.9rem; color: var(--ink); display: block; font-weight: 500;"><span id="priorAuthsDisplay">40</span> requests/week</span>
+              </div>
+              
+              <div>
+                <label style="display: block; font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Manual admin hours (weekly)</label>
+                <input type="range" min="5" max="100" value="40" id="adminHours" style="width: 100%; margin-bottom: 0.5rem;" />
+                <span style="font-size: 0.9rem; color: var(--ink); display: block; font-weight: 500;"><span id="adminHoursDisplay">40</span> hours/week</span>
+              </div>
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Average staff hourly rate</label>
+              <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2rem;">
+                <span style="font-size: 1rem; color: var(--ink); font-weight: 500;">$</span>
+                <input type="number" min="20" max="100" value="35" id="hourlyRate" style="flex: 1; max-width: 140px;" />
+                <span style="font-size: 0.9rem; color: var(--muted);">/hour</span>
+              </div>
+            </div>
+
+            <div style="border-top: 1px solid var(--sand); padding-top: 2rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem;">
+              <div style="background: rgba(58, 125, 111, 0.05); border-radius: var(--radius-md); padding: 1.5rem; text-align: center;">
+                <p style="font-size: 0.75rem; color: var(--muted); margin: 0 0 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Hours freed/week</p>
+                <p style="font-size: 1.8rem; font-weight: 600; margin: 0; color: #1c8e83;"><span id="hoursSaved">20</span>h</p>
+              </div>
+              <div style="background: rgba(58, 125, 111, 0.05); border-radius: var(--radius-md); padding: 1.5rem; text-align: center;">
+                <p style="font-size: 0.75rem; color: var(--muted); margin: 0 0 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Monthly savings</p>
+                <p style="font-size: 1.8rem; font-weight: 600; margin: 0; color: #3d9970;">$<span id="monthlySavings">3,500</span></p>
+              </div>
+              <div style="background: rgba(58, 125, 111, 0.05); border-radius: var(--radius-md); padding: 1.5rem; text-align: center;">
+                <p style="font-size: 0.75rem; color: var(--muted); margin: 0 0 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">Annual savings</p>
+                <p style="font-size: 1.8rem; font-weight: 600; margin: 0; color: #3d9970;">$<span id="annualSavings">42,000</span></p>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem; background: rgba(58, 125, 111, 0.08); border-left: 3px solid #1c8e83; border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 1.5rem;">
+              <p style="font-size: 0.85rem; color: var(--muted); margin: 0 0 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">What this means</p>
+              <ul style="margin: 0; padding-left: 1.5rem; font-size: 0.9rem; color: var(--ink); line-height: 1.7;">
+                <li style="margin-bottom: 0.6rem;">You could <strong>eliminate manual admin bottlenecks</strong></li>
+                <li style="margin-bottom: 0.6rem;">Free up <strong><span id="fteDisplay">0.5</span> FTE</strong> for clinical work</li>
+                <li style="margin-bottom: 0.6rem;"><strong>Faster prior auth turnaround</strong> = better patient outcomes</li>
+                <li>More time for your team to focus on <strong>revenue-generating activities</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" style="text-align: center; margin-top: 2.5rem;">
+          <a href="#contact" class="btn btn-primary">Let's optimize your workflow</a>
+        </div>
+      </div>
+    </section>
+
     <!-- Contact -->
     <section class="contact" id="contact">
       <div class="container">
-        <div class="reveal">
+        <div class="reveal" style="max-width:540px;margin-bottom:2.5rem">
           <div class="section-label">Get In Touch</div>
           <h2 class="section-title">Let's work <em>together</em></h2>
-          <p class="contact-sub">I'm currently open to remote roles — full-time, part-time, or project-based. US, AU, and UK clients welcome.</p>
-          <div class="contact-links">
-            <a href="/cdn-cgi/l/email-protection#f0939891829c899e9d919584959f949f829fb0979d91999cde939f9d" class="contact-link">📧 <span class="__cf_email__" data-cfemail="30535851425c495e5d515544555f545f425f70575d51595c1e535f5d">[email&#160;protected]</span></a>
-            <a href="tel:+639283485028" class="contact-link">📞 +63 928 348 5028</a>
-            <a href="https://www.linkedin.com/in/charlynmaeteodoro/" target="_blank" rel="noopener noreferrer" class="contact-link">🔗 LinkedIn Profile</a>
+          <p class="contact-sub">I'm currently open to remote roles — full-time, part-time, or project-based. Fill out the form below and I'll get back to you within 24 hours.</p>
+        </div>
+
+        <div class="reveal contact-form-wrapper">
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Work Email *</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="organization">Organization / Clinic Name</label>
+              <input type="text" id="organization" name="organization" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="businessType">Business Type *</label>
+                <select id="businessType" name="businessType" required>
+                  <option value="">Select one...</option>
+                  <option value="clinic">Medical Clinic / Practice</option>
+                  <option value="bpo">BPO / Call Center</option>
+                  <option value="hospital">Hospital / Health System</option>
+                  <option value="healthcare-org">Healthcare Organization</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="needsHelp">What do you need help with? *</label>
+                <select id="needsHelp" name="needsHelp" required>
+                  <option value="">Select one...</option>
+                  <option value="prior-auth">Prior Authorization Processing</option>
+                  <option value="admin-support">General Admin Support</option>
+                  <option value="patient-coordination">Patient Scheduling & Coordination</option>
+                  <option value="web-development">Web Development / Website Help</option>
+                  <option value="automation">Workflow Automation</option>
+                  <option value="multiple">Multiple Services</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="challenge">What's your biggest challenge right now? *</label>
+              <textarea id="challenge" name="challenge" rows="4" required placeholder="E.g., Prior auth backlog, too much manual admin work, need help scaling..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="timeline">How soon do you need help?</label>
+              <select id="timeline" name="timeline">
+                <option value="">Select one...</option>
+                <option value="urgent">ASAP (within 1-2 weeks)</option>
+                <option value="soon">Soon (within 1 month)</option>
+                <option value="exploring">Just exploring options</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Anything else you'd like me to know?</label>
+              <textarea id="message" name="message" rows="3" placeholder="Optional: Additional context, questions, etc."></textarea>
+            </div>
+
+            <div class="form-group form-checkbox">
+              <input type="checkbox" id="contact-consent" name="consent" required />
+              <label for="contact-consent">I'm open to a consultation call to discuss my needs</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Send My Inquiry</button>
+
+            <p style="font-size: 0.75rem; color: var(--muted); margin-top: 1rem; text-align: center;">
+              I'll review your submission and reach out within 24 hours.<br/>
+              Based in Iloilo, Philippines · Available US, AU &amp; UK time zones
+            </p>
+          </form>
+
+          <div class="contact-alternatives" style="margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--sand);">
+            <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Prefer to reach out directly?</p>
+            <div class="contact-links">
+              <a href="mailto:charlyn@charlynmaeteodoro.com" class="contact-link">📧 Email</a>
+              <a href="tel:+639283485028" class="contact-link">📞 Phone</a>
+              <a href="https://www.linkedin.com/in/charlynmaeteodoro/" target="_blank" rel="noopener noreferrer" class="contact-link">🔗 LinkedIn</a>
+            </div>
           </div>
-          <p class="footer-note">Based in Iloilo, Philippines · Available US, AU &amp; UK time zones · Open to remote work worldwide</p>
         </div>
       </div>
     </section>
@@ -1329,6 +1889,40 @@ section { padding: 6rem 0; }
           }
         });
       }
+
+      // Workflow Optimizer Calculator
+      function updateOptimizerCalculations() {
+        const patients = parseInt(document.getElementById('patientVolume').value) || 150;
+        const priorAuths = parseInt(document.getElementById('priorAuths').value) || 40;
+        const adminHours = parseInt(document.getElementById('adminHours').value) || 40;
+        const hourlyRate = parseInt(document.getElementById('hourlyRate').value) || 35;
+        const insuranceTypes = parseInt(document.getElementById('insuranceTypes').value) || 3;
+
+        document.getElementById('patientDisplay').textContent = patients;
+        document.getElementById('priorAuthsDisplay').textContent = priorAuths;
+        document.getElementById('adminHoursDisplay').textContent = adminHours;
+
+        const timeSavingPercentage = 0.5 + (insuranceTypes / 100);
+        const hoursSaved = Math.round(adminHours * timeSavingPercentage);
+        
+        const weeklySavings = hoursSaved * hourlyRate;
+        const monthlySavings = Math.round(weeklySavings * 4.33);
+        const annualSavings = Math.round(weeklySavings * 52);
+        const fte = parseFloat((hoursSaved / 40).toFixed(1));
+
+        document.getElementById('hoursSaved').textContent = hoursSaved;
+        document.getElementById('monthlySavings').textContent = monthlySavings.toLocaleString();
+        document.getElementById('annualSavings').textContent = annualSavings.toLocaleString();
+        document.getElementById('fteDisplay').textContent = fte;
+      }
+
+      const optimizerInputs = document.querySelectorAll('#patientVolume, #priorAuths, #adminHours, #hourlyRate, #insuranceTypes');
+      optimizerInputs.forEach(input => {
+        input.addEventListener('input', updateOptimizerCalculations);
+        input.addEventListener('change', updateOptimizerCalculations);
+      });
+
+      updateOptimizerCalculations();
     </script>
     
     <a href="#contact" class="sticky-cta" id="stickyCta" aria-label="Get in touch">
