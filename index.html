@@ -1116,6 +1116,53 @@ section { padding: 6rem 0; }
   gap: 1.5rem;
   flex-wrap: wrap;
 }
+/* Fix for the contact form overlap and centering */
+
+#contact .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+#contact .reveal:first-child {
+  width: 100%;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.contact-form-wrapper {
+  width: 100%;
+  max-width: 540px; 
+  margin: 0 auto;
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* This is the specific fix for your screenshot overlap */
+.form-row .form-group {
+  flex: 1;
+  min-width: 0; 
+}
+
+/* Ensure the dropdowns/inputs don't grow past their container */
+.form-group select, 
+.form-group input {
+  width: 100%;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
     </style>
   </head>
 
