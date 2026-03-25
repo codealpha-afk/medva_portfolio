@@ -194,10 +194,15 @@ section { padding: 6rem 0; }
 }
 
 .btn-secondary {
-  background: transparent; color: var(--ink);
-  border-color: rgba(28,28,28,0.38);
+ background: transparent;
+  color: #1c8e83;
+  border: 1.5px solid #1c8e83;
 }
-.btn-secondary:hover { border-color: var(--ink); background: rgba(28,28,28,.05); }
+.btn-secondary:hover { 
+  background: rgba(28, 142, 131, 0.05); 
+  border-color: #14665e; 
+  color: #14665e;
+}
 
 /* ── Stat Cards & Grid ── */
 .stats-row {
@@ -205,20 +210,21 @@ section { padding: 6rem 0; }
 }
 
 .stat-card {
-  background: rgba(185, 215, 182, 0.50);
-  border: 1px solid rgba(255,255,255,0.52);
+  background: #ffffff; 
+  border: 1px solid #e8e3da; 
   border-radius: var(--radius-lg);
   padding: 1.9rem 2rem;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03); /* Soft shadow for depth */
   transition: transform var(--t), box-shadow var(--t);
 }
 .stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 
 .stat-num {
   font-family: var(--font-serif);
-  font-size: 2.8rem; font-weight: 300;
-  color: var(--teal-dark); line-height: 1;
+  font-size: 2.8rem; 
+  font-weight: 300;
+  color: #1c8e83; /* Numbers turn green */
+  line-height: 1;
   margin-bottom: .4rem;
 }
 .stat-label {
