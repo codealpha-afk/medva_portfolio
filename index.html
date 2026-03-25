@@ -2048,19 +2048,16 @@ section { padding: 6rem 0; }
 <footer class="footer">
   <div class="container">
     <div class="footer-content">
-      <p>&copy; 2026 Charlyn Mae Teodoro. All rights reserved.</p>
+      <p class="site-footer__copy" style="font-size: 13px; font-weight: 300; margin: 0;">
+        © <span id="footer-year"></span> Charlyn Mae Teodoro · All rights reserved.
+      </p>
       <div class="footer-bottom-links">
-        <a href="#home">Back to Top ↑</a>
+        <a href="#home" style="font-size: 13px; text-decoration: none;">Back to Top ↑</a>
       </div>
     </div>
   </div>
 </footer>
 
-<p class="site-footer__copy" style="font-size: 13px; font-weight: 300;">
-  © <span id="footer-year"></span> Charlyn Mae Teorodoro · All rights reserved.
-</p>
-       <a href="#home">Back to Top ↑</a>
-</footer>
 <script>
   document.getElementById('footer-year').textContent = new Date().getFullYear();
 </script>
