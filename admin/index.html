@@ -84,15 +84,36 @@ section { padding: 6rem 0; }
   width: 100%;
 }
 .nav-brand {
-  font-family: var(--font-serif); font-size: 1.15rem;
-  font-weight: 600; color: var(--ink); letter-spacing: .02em;
+  font-family: var(--font-serif); 
+  font-size: 1.15rem;
+  font-weight: 600; 
+  color: #1c8e83; /* Theme Green */
+  letter-spacing: .02em;
+  transition: color var(--t);
 }
-.nav-links { display: flex; gap: 2.2rem; }
+
+.nav-brand:hover {
+  color: #14665e; /* Darker Green on hover */
+}
+
+.nav-links { 
+  display: flex; 
+  gap: 2.2rem; 
+}
+
 .nav-links a {
-  font-size: .78rem; font-weight: 400; letter-spacing: .09em;
-  text-transform: uppercase; color: var(--muted); transition: color var(--t);
+  font-size: .78rem; 
+  font-weight: 400; 
+  letter-spacing: .09em;
+  text-transform: uppercase; 
+  color: var(--muted); 
+  transition: color var(--t);
 }
-.nav-links a:hover { color: var(--teal); }
+
+/* Update this to match your new green theme */
+.nav-links a:hover { 
+  color: #1c8e83; 
+}
 
 /* ============================================================
    HERO — full-width sage green, single-column stacked layout
