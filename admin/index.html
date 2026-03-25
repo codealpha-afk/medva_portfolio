@@ -472,6 +472,89 @@ section { padding: 6rem 0; }
 .tool-type { font-size: .7rem; color: rgba(255,255,255,.42); }
 
 /* ============================================================
+   PORTFOLIO
+   ============================================================ */
+.portfolio { background: var(--cream); }
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; }
+.portfolio-card {
+  background: var(--white);
+  border: 1px solid var(--sand);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: all var(--t);
+  display: flex;
+  flex-direction: column;
+}
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--teal-light);
+}
+.portfolio-header {
+  margin-bottom: 1.2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 2px solid var(--sand);
+}
+.portfolio-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+.portfolio-url {
+  font-size: 0.75rem;
+  color: var(--teal);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.portfolio-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+.portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+.portfolio-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(58, 125, 111, 0.08);
+  color: var(--teal-dark);
+  border-radius: 100px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.portfolio-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.portfolio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--teal);
+  text-decoration: none;
+  transition: all var(--t);
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--teal);
+  border-radius: var(--radius-sm);
+}
+.portfolio-link:hover {
+  background: var(--teal);
+  color: var(--white);
+}
+
+/* ============================================================
    EXPERIENCE
    ============================================================ */
 .experience { background: var(--cream); }
@@ -589,6 +672,7 @@ section { padding: 6rem 0; }
   .about-grid { grid-template-columns: 1fr; }
   .about-card { position: static; }
   .services-grid, .samples-grid, .why-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
   .tools-grid { grid-template-columns: repeat(2,1fr); }
   .exp-card { grid-template-columns: 1fr; }
   .exp-meta { border-right: none; border-bottom: 1px solid var(--sand); padding-right: 0; padding-bottom: 1rem; margin-bottom: 1rem; }
@@ -722,8 +806,8 @@ section { padding: 6rem 0; }
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#samples">Samples</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -933,6 +1017,79 @@ section { padding: 6rem 0; }
           <article class="tool-card"><div class="tool-name">Fax &amp; Email Platforms</div><p class="tool-type">eFax, SRFax, email tools</p></article>
           <article class="tool-card"><div class="tool-name">Zoom / Teams</div><p class="tool-type">Video &amp; Communication</p></article>
           <article class="tool-card"><div class="tool-name">Slack / Messaging</div><p class="tool-type">Team Collaboration</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="portfolio" id="portfolio">
+      <div class="container">
+        <div class="reveal" style="max-width:540px;margin-bottom:2.5rem">
+          <div class="section-label">My Work</div>
+          <h2 class="section-title">Projects that <em>demonstrate my skills</em></h2>
+          <div class="divider"></div>
+          <p style="font-size:.88rem;color:var(--muted)">I don't just talk about web development — I ship real projects. Here's what I've built using modern tools and best practices.</p>
+        </div>
+        <div class="portfolio-grid reveal">
+          <!-- AMOPH Project -->
+          <article class="portfolio-card">
+            <div class="portfolio-header">
+              <h3 class="portfolio-title">Ancient Martinist Order Philippines</h3>
+              <div class="portfolio-url">amoph.org</div>
+            </div>
+            <p class="portfolio-desc">Modern, responsive website for a nonprofit organization. Built with static site generation, content management system integration, and form handling. Features SEO optimization, mobile-first design, and automated deployment.</p>
+            <div class="portfolio-tags">
+              <span class="portfolio-tag">Pages CMS</span>
+              <span class="portfolio-tag">HTML/CSS/JS</span>
+              <span class="portfolio-tag">Cloudflare Pages</span>
+              <span class="portfolio-tag">GitHub</span>
+              <span class="portfolio-tag">Formspree</span>
+              <span class="portfolio-tag">Responsive Design</span>
+            </div>
+            <div class="portfolio-links">
+              <a href="https://amoph.org" target="_blank" rel="noopener noreferrer" class="portfolio-link">🌐 View Live</a>
+              <a href="https://github.com/codealpha-afk/amoph" target="_blank" rel="noopener noreferrer" class="portfolio-link">💻 GitHub Repo</a>
+            </div>
+          </article>
+
+          <!-- AMOPH Blog Project -->
+          <article class="portfolio-card">
+            <div class="portfolio-header">
+              <h3 class="portfolio-title">AMOPH Community Blog</h3>
+              <div class="portfolio-url">blog.amoph.org</div>
+            </div>
+            <p class="portfolio-desc">Dedicated blogging platform for nonprofit community engagement. Custom-styled Blogger theme with color-coded branding, optimized for mobile viewing, and configured for ease-of-use by non-technical content creators.</p>
+            <div class="portfolio-tags">
+              <span class="portfolio-tag">Blogger</span>
+              <span class="portfolio-tag">Custom CSS</span>
+              <span class="portfolio-tag">Brand Design</span>
+              <span class="portfolio-tag">Content Strategy</span>
+              <span class="portfolio-tag">Mobile Optimized</span>
+            </div>
+            <div class="portfolio-links">
+              <a href="https://blog.amoph.org" target="_blank" rel="noopener noreferrer" class="portfolio-link">📝 View Blog</a>
+              <a href="https://github.com/codealpha-afk/blog.amoph" target="_blank" rel="noopener noreferrer" class="portfolio-link">💻 GitHub Repo</a>
+            </div>
+          </article>
+
+          <!-- This Portfolio Site -->
+          <article class="portfolio-card">
+            <div class="portfolio-header">
+              <h3 class="portfolio-title">Professional Portfolio</h3>
+              <div class="portfolio-url">This Website</div>
+            </div>
+            <p class="portfolio-desc">Custom-built portfolio showcasing healthcare & IT expertise. Features smooth animations, mobile-responsive design, interactive elements, sticky CTA button, and optimized for lead generation and search visibility.</p>
+            <div class="portfolio-tags">
+              <span class="portfolio-tag">HTML/CSS/JS</span>
+              <span class="portfolio-tag">Responsive</span>
+              <span class="portfolio-tag">UX Optimized</span>
+              <span class="portfolio-tag">Accessibility</span>
+              <span class="portfolio-tag">Performance</span>
+            </div>
+            <div class="portfolio-links">
+              <a href="#home" class="portfolio-link">🏠 View Site</a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
