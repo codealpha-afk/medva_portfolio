@@ -1083,6 +1083,37 @@ section { padding: 6rem 0; }
   color: #ffffff;
   transform: translateY(-3px);
 }
+
+      /* Center the entire contact section */
+      #contact .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      /* Keep the form itself legible but centered */
+      .contact-form-wrapper {
+        width: 100%;
+        max-width: 540px; 
+        margin: 0 auto;
+        text-align: left; 
+      }
+
+      /* Center the footer links */
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      /* Fix for the specific div in your HTML */
+      .reveal[style*="max-width:540px"] {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
     </style>
   </head>
 
@@ -1822,7 +1853,6 @@ section { padding: 6rem 0; }
               <a href="tel:+639283485028" class="contact-link">📞 Phone</a>
               <a href="https://www.linkedin.com/in/charlynmaeteodoro/" target="_blank" rel="noopener noreferrer" class="contact-link">🔗 LinkedIn</a>
             </div>
-            <p class="footer-note">Based in Iloilo, Philippines · Available US, AU &amp; UK time zones · Open to remote work worldwide</p>
           </div>
         </div>
       </div>
