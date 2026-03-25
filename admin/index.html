@@ -56,6 +56,11 @@ body {
 .container { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
 section { padding: 6rem 0; }
 
+@media (max-width: 768px) {
+  .container { padding: 0 1.5rem; }
+  section { padding: 4rem 0; }
+}
+
 .section-label {
   font-size: .7rem; font-weight: 500; letter-spacing: .18em;
   text-transform: uppercase; color: var(--gold); margin-bottom: .6rem;
@@ -138,6 +143,7 @@ section { padding: 6rem 0; }
   justify-content: space-between;
   gap: 4rem;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .hero-content {
@@ -146,6 +152,7 @@ section { padding: 6rem 0; }
   flex: 1.2;
   max-width: 600px;
   padding: 0;
+  min-width: 280px;
 }
 
 .hero-stats {
@@ -156,6 +163,30 @@ section { padding: 6rem 0; }
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-width: 280px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .hero-flex-container {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  
+  .hero-content {
+    flex: 1;
+    max-width: 100%;
+  }
+  
+  .hero-stats {
+    flex: 1;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .hero-stat-card {
+    width: 100% !important;
+  }
 }
 
 /* ── Elements ── */
@@ -240,6 +271,12 @@ section { padding: 6rem 0; }
 /* ── Stat Cards & Grid ── */
 .stats-row {
   display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .stat-card {
@@ -514,17 +551,6 @@ section { padding: 6rem 0; }
   .tools-grid { grid-template-columns: 1fr 1fr; }
   .why-grid { grid-template-columns: 1fr; }
   section { padding: 3rem 0; }
-.hero h1 {
-    font-size: 2rem;       /* Smaller font for mobile */
-    max-width: 100%;       /* Allow text to use full width */
-    line-height: 1.3;      /* Better spacing between lines */
-    text-align: left;
-  }
-
-  .hero-intro {
-    font-size: 0.9rem;
-    max-width: 100%;
-  }
 }
 
 /* ============================================================
@@ -947,7 +973,7 @@ section { padding: 6rem 0; }
           <h2 class="section-title">Let's work <em>together</em></h2>
           <p class="contact-sub">I'm currently open to remote roles — full-time, part-time, or project-based. US, AU, and UK clients welcome.</p>
           <div class="contact-links">
-            <a href="mailto:charlynmaeteodoro@gmail.com" class="contact-link">📧 charlynmaeteodoro@gmail.com</a>
+            <a href="/cdn-cgi/l/email-protection#f0939891829c899e9d919584959f949f829fb0979d91999cde939f9d" class="contact-link">📧 <span class="__cf_email__" data-cfemail="30535851425c495e5d515544555f545f425f70575d51595c1e535f5d">[email&#160;protected]</span></a>
             <a href="tel:+639283485028" class="contact-link">📞 +63 928 348 5028</a>
             <a href="https://www.linkedin.com/in/charlynmaeteodoro/" target="_blank" rel="noopener noreferrer" class="contact-link">🔗 LinkedIn Profile</a>
           </div>
@@ -956,7 +982,7 @@ section { padding: 6rem 0; }
       </div>
     </section>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
       document.addEventListener('DOMContentLoaded', function () {
         const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry, i) => {
@@ -975,29 +1001,24 @@ section { padding: 6rem 0; }
           if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
         });
       });
+
+      // Scroll-to-top button — safe null check
       const scrollTopBtn = document.getElementById("scrollToTopBtn");
+      if (scrollTopBtn) {
+        window.addEventListener("scroll", () => {
+          if (window.pageYOffset > 400) {
+            scrollTopBtn.classList.add("show");
+          } else {
+            scrollTopBtn.classList.remove("show");
+          }
+        });
 
-  window.addEventListener("scroll", () => {
-    // Show button after scrolling down 400px
-    if (window.pageYOffset > 400) {
-      scrollTopBtn.classList.add("show");
-    } else {
-      scrollTopBtn.classList.remove("show");
-    }
-  });
-
-  scrollTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-</script>
-   <button id="scrollToTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="m18 15-6-6-6 6"/>
-      </svg>
-    </button>
-
+        scrollTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+    </script>
+    
+    <button id="scrollToTopBtn" class="scroll-top-btn" aria-label="Scroll to top">↑</button>
   </body>
 </html>
