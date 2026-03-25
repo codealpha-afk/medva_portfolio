@@ -12,7 +12,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
       <div class="nav-brand">Charlyn Mae Teodoro</div>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
@@ -423,33 +423,6 @@
       </div>
     </section>
 
-    <script>
-      // Intersection Observer for scroll-reveal animations
-      document.addEventListener('DOMContentLoaded', function () {
-        const observerOptions = { threshold: 0.08, rootMargin: '0px 0px -50px 0px' };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-              setTimeout(() => { entry.target.classList.add('visible'); }, index * 80);
-              observer.unobserve(entry.target);
-            }
-          });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-      });
-
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener('click', function (e) {
-          const href = this.getAttribute('href');
-          if (href !== '#' && document.querySelector(href)) {
-            e.preventDefault();
-            document.querySelector(href).scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-      });
-    </script>
+    <script src="scripts.js" defer></script>
   </body>
 </html>
