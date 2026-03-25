@@ -1163,6 +1163,46 @@ section { padding: 6rem 0; }
     gap: 0;
   }
 }
+      /* Footer Styling */
+.footer {
+  padding: 4rem 0 2rem; /* Adds space above and below */
+  background-color: transparent; 
+  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle line */
+  margin-top: 2rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.footer-content p {
+  color: #888; /* Muted gray text */
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.footer-bottom-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+  opacity: 1;
+}
+
+/* Ensure the sticky CTA doesn't cover the footer text on mobile */
+@media (max-width: 768px) {
+  .footer {
+    padding-bottom: 5rem; /* Extra space so the sticky button doesn't hide your name */
+  }
+}
     </style>
   </head>
 
@@ -2011,6 +2051,7 @@ section { padding: 6rem 0; }
     </script>
     
     <a href="#contact" class="sticky-cta" id="stickyCta" aria-label="Scroll to top">↑</button>
+      
 <footer class="footer">
   <div class="container">
     <div class="footer-content">
