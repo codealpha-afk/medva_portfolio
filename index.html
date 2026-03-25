@@ -1202,7 +1202,8 @@ section { padding: 6rem 0; }
 
 #footer-year {
   color: #ffffff !important; /* Bright white for the year */
-  font-weight: 500;
+  display: inline;
+  margin-right: 4px;
 }
     </style>
   </head>
@@ -2067,10 +2068,16 @@ section { padding: 6rem 0; }
 </footer>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const yearSpan = document.getElementById('footer-year');
-    if (yearSpan) {
-      yearSpan.textContent = new Date().getFullYear();
+  // This waits for the entire page to load before trying to find the ID
+  window.addEventListener('load', function() {
+    const yearElement = document.getElementById('footer-year');
+    
+    if (yearElement) {
+      const currentYear = new Date().getFullYear();
+      yearElement.textContent = currentYear;
+      console.log("Footer year updated to: " + currentYear);
+    } else {
+      console.error("Could not find the element with ID 'footer-year'");
     }
   });
 </script>
