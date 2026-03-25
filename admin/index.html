@@ -964,7 +964,24 @@ section { padding: 6rem 0; }
           if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
         });
       });
-    </script>
+      const scrollTopBtn = document.getElementById("scrollToTopBtn");
+
+  window.addEventListener("scroll", () => {
+    // Show button after scrolling down 400px
+    if (window.pageYOffset > 400) {
+      scrollTopBtn.classList.add("show");
+    } else {
+      scrollTopBtn.classList.remove("show");
+    }
+  });
+
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
     <button id="scrollToTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
     <path d="m18 15-6-6-6 6"/>
