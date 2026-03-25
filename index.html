@@ -1084,36 +1084,38 @@ section { padding: 6rem 0; }
   transform: translateY(-3px);
 }
 
-      /* Center the entire contact section */
-      #contact .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center; 
-        text-align: center;
-        margin: 0 auto;
-      }
+/* 1. Center the entire section on the page */
+#contact .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* This centers the "boxes" themselves */
+  justify-content: center;
+}
 
-      /* Keep the form itself legible but centered */
-      .contact-form-wrapper {
-        width: 100%;
-        max-width: 540px; 
-        margin: 0 auto;
-        text-align: left; 
-      }
+/* 2. Fix the header alignment to the left */
+#contact .reveal:first-child {
+  width: 100%;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left; /* Forces the text to stay left */
+}
 
-      /* Center the footer links */
-      .contact-links {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-      }
+/* 3. Ensure the form also stays centered but labels are left-aligned */
+.contact-form-wrapper {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  text-align: left;
+}
 
-      /* Fix for the specific div in your HTML */
-      .reveal[style*="max-width:540px"] {
-        margin-left: auto !important;
-        margin-right: auto !important;
-      }
+/* 4. Center the footer links (Email, Phone, LinkedIn) */
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
     </style>
   </head>
 
