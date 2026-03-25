@@ -1083,6 +1083,24 @@ section { padding: 6rem 0; }
   color: #ffffff;
   transform: translateY(-3px);
 }
+
+ #form-success {
+  display: none;      /* Keep hidden until JS triggers it */
+  text-align: center; /* Centers text/icons inside */
+  margin: 2rem auto;  /* Centers the div box itself */
+  max-width: 550px;   /* Prevents stretching on desktop */
+  padding: 2.5rem;
+  background: rgba(61, 153, 112, 0.05); /* Very light success green */
+  border: 1px solid var(--success);
+  border-radius: var(--radius-lg);
+}
+
+/* Ensure the checkmark icon is also centered */
+#form-success .success-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
     </style>
   </head>
 
@@ -2059,6 +2077,93 @@ section { padding: 6rem 0; }
           successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
       }
+      <body>
+    <div id="form-success">
+      <div class="success-icon">✓</div>
+      <h3 style="font-family: var(--font-serif); color: var(--teal-dark); margin-bottom: 0.5rem;">Inquiry Received!</h3>
+      <p style="color: var(--muted); font-size: 0.9rem;">Thank you for reaching out. I have received your message and will get back to you within 24–48 hours.</p>
+    </div>
+
+    <a href="#contact" class="sticky-cta" id="stickyCta" aria-label="Scroll to contact">Contact Me</a>
+    
+    <button id="scrollToTopBtn" class="scroll-top-btn" aria-label="Scroll to top">↑</button>
+
+    <script>
+      // 1. Initialize Calculator on load
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof updateOptimizerCalculations === 'function') {
+          updateOptimizerCalculations();
+        }
+      });
+
+      // 2. Form Submission Logic
+      const contactForm = document.querySelector('.contact-form');
+      const successMessage = document.getElementById('form-success');
+
+      if (contactForm && successMessage) {
+        contactForm.addEventListener('submit', function(e) {
+          // If you want the success message to stay without page refresh, 
+          // you must use AJAX/Fetch. For a standard form:
+          
+          contactForm.style.display = 'none';
+          successMessage.style.display = 'block';
+          
+          // Smoothly scroll the success message into the center of the screen
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      }
+
+      // 3. Scroll Logic (Sticky CTA & Scroll-to-Top)
+      const stickyCta = document.getElementById("stickyCta");
+      const scrollTopBtn = document.getElementById("scrollToTopBtn");
+
+      window.addEventListener("scroll", () => {
+        const scrollY = window.pageYOffset;
+
+        // Show Sticky CTA after 500px
+        if (stickyCta) {
+          if (scrollY > 500) {
+            stickyCta.classList.add("show");
+          } else {
+            stickyCta.classList.remove("show");
+          }
+        }
+
+        // Show Scroll-to-Top after 400px
+        if (scrollTopBtn) {
+          if (scrollY > 400) {
+            scrollTopBtn.classList.add("show");
+          } else {
+            scrollTopBtn.classList.remove("show");
+          }
+        }
+      }, { passive: true });
+
+      // 4. Scroll-to-top Click Handler
+      if (scrollTopBtn) {
+        scrollTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      // 5. Workflow Optimizer Function (Ensure this matches your input IDs)
+      function updateOptimizerCalculations() {
+        const adminHours = parseFloat(document.getElementById('adminHours')?.value) || 0;
+        const hourlyRate = parseFloat(document.getElementById('hourlyRate')?.value) || 0;
+        
+        // Example math logic
+        const hoursSaved = Math.round(adminHours * 0.4); 
+        const monthlySavings = Math.round(hoursSaved * hourlyRate * 4.33);
+
+        if(document.getElementById('hoursSaved')) document.getElementById('hoursSaved').textContent = hoursSaved;
+        if(document.getElementById('monthlySavings')) document.getElementById('monthlySavings').textContent = monthlySavings.toLocaleString();
+      }
+
+      // Attach calculator listeners
+      document.querySelectorAll('input[type="range"], input[type="number"]').forEach(input => {
+        input.addEventListener('input', updateOptimizerCalculations);
+      });
     </script>
   </body>
 </html>
+    
