@@ -2057,30 +2057,16 @@ section { padding: 6rem 0; }
 <footer class="footer">
   <div class="container">
     <div class="footer-content">
-      <p class="site-footer__copy" style="font-size: 13px; font-weight: 300; margin: 0;">
-        © <span id="footer-year"></span> Charlyn Mae Teodoro · All rights reserved.
+      <p class="site-footer__copy" style="font-size: 13px; font-weight: 300; margin: 0; color: #ffffff;">
+        © 2026 Charlyn Mae Teodoro · All rights reserved.
       </p>
+      
       <div class="footer-bottom-links">
-        <a href="#home" style="font-size: 13px; text-decoration: none;">Back to Top ↑</a>
+        <a href="#home" style="font-size: 13px; text-decoration: none; color: #ffffff;">Back to Top ↑</a>
       </div>
     </div>
   </div>
 </footer>
-
-<script>
-  // This waits for the entire page to load before trying to find the ID
-  window.addEventListener('load', function() {
-    const yearElement = document.getElementById('footer-year');
-    
-    if (yearElement) {
-      const currentYear = new Date().getFullYear();
-      yearElement.textContent = currentYear;
-      console.log("Footer year updated to: " + currentYear);
-    } else {
-      console.error("Could not find the element with ID 'footer-year'");
-    }
-  });
-</script>
-      
+            
   </body>
 </html>
