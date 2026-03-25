@@ -1936,29 +1936,129 @@ section { padding: 6rem 0; }
       updateOptimizerCalculations();
 <a href="#contact" class="sticky-cta" id="stickyCta" aria-label="Scroll to contact">Contact Me</a>
 
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    
     <script>
-      // LOGIC FOR THE RECEIPT NOTICE
+      document.addEventListener('DOMContentLoaded', function () {
+        // Intersection Observer for reveal animations
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => entry.target.classList.add('visible'), i * 80);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        
+        // Initialize the calculator immediately on load
+        updateOptimizerCalculations();
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) { 
+            e.preventDefault(); 
+            target.scrollIntoView({ behavior: 'smooth' }); 
+          }
+        });
+      });
+
+      // Scroll-to-top button logic
+      const scrollTopBtn = document.getElementById("scrollToTopBtn");
+      if (scrollTopBtn) {
+        window.addEventListener("scroll", () => {
+          if (window.pageYOffset > 400) {
+            scrollTopBtn.classList.add("show");
+          } else {
+            scrollTopBtn.classList.remove("show");
+          }
+        }, { passive: true });
+
+        scrollTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      // Hamburger menu toggle
+      const navToggle = document.getElementById("navToggle");
+      const navLinks = document.getElementById("navLinks");
+      if (navToggle && navLinks) {
+        navToggle.addEventListener("click", () => {
+          navToggle.classList.toggle("active");
+          navLinks.classList.toggle("mobile-active");
+        });
+
+        navLinks.querySelectorAll("a").forEach(link => {
+          link.addEventListener("click", () => {
+            navToggle.classList.remove("active");
+            navLinks.classList.remove("mobile-active");
+          });
+        });
+      }
+
+      // Sticky CTA Visibility (Matches your CSS .show class)
+      const stickyCta = document.getElementById("stickyCta");
+      window.addEventListener("scroll", () => {
+        if (stickyCta) {
+          // Shows button after scrolling 500px
+          if (window.pageYOffset > 500) {
+            stickyCta.classList.add("show");
+          } else {
+            stickyCta.classList.remove("show");
+          }
+        }
+      }, { passive: true });
+
+      // Workflow Optimizer Calculator Logic
+      function updateOptimizerCalculations() {
+        const patients = parseInt(document.getElementById('patientVolume').value) || 0;
+        const priorAuths = parseInt(document.getElementById('priorAuths').value) || 0;
+        const adminHours = parseInt(document.getElementById('adminHours').value) || 0;
+        const hourlyRate = parseInt(document.getElementById('hourlyRate').value) || 0;
+        const insuranceTypes = parseInt(document.getElementById('insuranceTypes').value) || 0;
+
+        document.getElementById('patientDisplay').textContent = patients;
+        document.getElementById('priorAuthsDisplay').textContent = priorAuths;
+        document.getElementById('adminHoursDisplay').textContent = adminHours;
+
+        const timeSavingPercentage = 0.5 + (insuranceTypes / 100);
+        const hoursSaved = Math.round(adminHours * timeSavingPercentage);
+        
+        const weeklySavings = hoursSaved * hourlyRate;
+        const monthlySavings = Math.round(weeklySavings * 4.33);
+        const annualSavings = Math.round(weeklySavings * 52);
+        const fte = parseFloat((hoursSaved / 40).toFixed(1));
+
+        // Update results in the UI
+        document.getElementById('hoursSaved').textContent = hoursSaved;
+        document.getElementById('monthlySavings').textContent = monthlySavings.toLocaleString();
+        document.getElementById('annualSavings').textContent = annualSavings.toLocaleString();
+        document.getElementById('fteDisplay').textContent = fte;
+      }
+
+      // Attach listeners to calculator inputs
+      const optimizerInputs = document.querySelectorAll('#patientVolume, #priorAuths, #adminHours, #hourlyRate, #insuranceTypes');
+      optimizerInputs.forEach(input => {
+        input.addEventListener('input', updateOptimizerCalculations);
+      });
+
+      // Contact Form Success Message Logic
       const contactForm = document.querySelector('.contact-form');
       const successMessage = document.getElementById('form-success');
 
-      if (contactForm) {
+      if (contactForm && successMessage) {
         contactForm.addEventListener('submit', function(e) {
-          // If you use a service like Formspree, don't use e.preventDefault()
+          // Note: If using Formspree, do not use e.preventDefault()
+          // But we can hide the form and show the message
           contactForm.style.display = 'none';
           successMessage.style.display = 'block';
           successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
       }
-
-      // STICKY CTA VISIBILITY LOGIC
-      window.addEventListener('scroll', () => {
-        const cta = document.getElementById('stickyCta');
-        if (window.scrollY > 500) {
-          cta.classList.add('visible');
-        } else {
-          cta.classList.remove('visible');
-        }
-      });
     </script>
   </body>
 </html>
