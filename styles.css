@@ -759,18 +759,20 @@ section {
 }
 
 .exp-card {
-  background-color: var(--white);
+  background-color: rgba(236, 253, 245, 0.7);
   border-radius: var(--radius-lg);
   padding: 2.2rem;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(19, 78, 74, 0.1);
   display: grid;
   grid-template-columns: 220px 1fr;
   gap: 2rem;
-  transition: box-shadow var(--transition-base);
+  transition: all var(--transition-base);
 }
 
 .exp-card:hover {
-  box-shadow: var(--shadow-md);
+  transform: translateY(-4px); 
+  background-color: rgba(236, 253, 245, 0.9); 
+  box-shadow: 0 10px 25px -5px rgba(19, 78, 74, 0.1); 
 }
 
 .exp-meta {
