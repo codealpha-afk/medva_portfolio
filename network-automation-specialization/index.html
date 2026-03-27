@@ -1,1 +1,1118 @@
-enter file here.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 1 — The Automation Mindset & Linux Basics | NetDevOps</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0a0d12;
+    --surface:   #0f1420;
+    --card:      #141924;
+    --border:    #1e2840;
+    --accent:    #00e5b0;
+    --accent2:   #2d9cff;
+    --accent3:   #f7c948;
+    --danger:    #ff5f6d;
+    --text:      #d4dbe8;
+    --muted:     #6b7a99;
+    --code-bg:   #080b10;
+    --mono:      'JetBrains Mono', monospace;
+    --sans:      'Syne', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── SCANLINE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.06) 2px,
+      rgba(0,0,0,0.06) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .logo {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .logo-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: blink 1.4s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+  .week-badge {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 4px;
+  }
+
+  /* ── NAV TABS ── */
+  nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex; overflow-x: auto;
+    padding: 0 2rem;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    padding: 14px 20px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    background: none; border-top: none; border-left: none; border-right: none;
+    text-transform: uppercase;
+  }
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ── MAIN LAYOUT ── */
+  main { max-width: 980px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+  /* ── SECTIONS ── */
+  .section { display: none; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+
+  /* ── HERO ── */
+  .hero {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 3rem;
+    margin-bottom: 2.5rem;
+    background: linear-gradient(135deg, var(--card) 0%, #0f1a2e 100%);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(0,229,176,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff 30%, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p { color: var(--muted); max-width: 580px; line-height: 1.8; }
+  .meta-row {
+    display: flex; flex-wrap: wrap; gap: 1.5rem;
+    margin-top: 1.8rem;
+    font-family: var(--mono); font-size: 0.72rem; color: var(--muted);
+  }
+  .meta-item { display: flex; align-items: center; gap: 6px; }
+  .meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  /* ── SECTION TITLES ── */
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  h2 .tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.1em;
+  }
+  h3 { font-size: 1.05rem; font-weight: 600; margin: 1.8rem 0 0.7rem; color: #e2e8f0; }
+
+  p { margin-bottom: 1rem; color: var(--text); }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .card-accent { border-left: 3px solid var(--accent); }
+  .card-blue   { border-left: 3px solid var(--accent2); }
+  .card-yellow { border-left: 3px solid var(--accent3); }
+  .card-red    { border-left: 3px solid var(--danger); }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin: 1.5rem 0;
+  }
+  .compare-col { border-radius: 8px; overflow: hidden; }
+  .compare-col.old { border: 1px solid #2a1e2e; background: #12101a; }
+  .compare-col.new { border: 1px solid #0d2a20; background: #0a1a14; }
+  .compare-head {
+    padding: 10px 16px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .compare-col.old .compare-head { background: rgba(255,95,109,0.12); color: var(--danger); }
+  .compare-col.new .compare-head { background: rgba(0,229,176,0.1); color: var(--accent); }
+  .compare-body { padding: 14px 16px; }
+  .compare-body li {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    list-style: none;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .compare-body li:last-child { border-bottom: none; }
+  .compare-col.old .compare-body li::before { content: '✗'; color: var(--danger); }
+  .compare-col.new .compare-body li::before { content: '✓'; color: var(--accent); }
+
+  /* ── PIPELINE DIAGRAM ── */
+  .pipeline {
+    display: flex; align-items: center; flex-wrap: wrap;
+    gap: 0; margin: 1.5rem 0;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .pipe-step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+    text-align: center;
+    flex: 1; min-width: 110px;
+  }
+  .pipe-step .icon { font-size: 1.4rem; display: block; margin-bottom: 4px; }
+  .pipe-step .label { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .pipe-step .sublabel { font-size: 0.75rem; color: var(--text); font-weight: 600; margin-top: 2px; }
+  .pipe-arrow {
+    color: var(--accent);
+    font-size: 1.1rem;
+    padding: 0 6px;
+    flex-shrink: 0;
+  }
+
+  /* ── CODE BLOCKS ── */
+  .terminal {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 1.2rem 0;
+    font-family: var(--mono);
+  }
+  .terminal-bar {
+    background: #12151e;
+    padding: 9px 14px;
+    display: flex; align-items: center; gap: 7px;
+    border-bottom: 1px solid var(--border);
+  }
+  .t-dot { width: 11px; height: 11px; border-radius: 50%; }
+  .t-dot.r { background: #ff5f57; }
+  .t-dot.y { background: #febc2e; }
+  .t-dot.g { background: #28c840; }
+  .t-title { font-size: 0.7rem; color: var(--muted); margin-left: 8px; letter-spacing: 0.05em; }
+  .terminal-body { padding: 1.2rem 1.4rem; font-size: 0.82rem; line-height: 1.9; overflow-x: auto; }
+  .t-prompt { color: var(--accent); }
+  .t-cmd    { color: #e2e8f0; }
+  .t-out    { color: var(--muted); }
+  .t-comment{ color: #3a5080; font-style: italic; }
+  .t-todo   { color: var(--accent3); font-weight: 600; }
+  .t-string { color: #a8e6cf; }
+  .t-keyword{ color: #7db9e8; }
+  .t-path   { color: var(--accent2); }
+  .t-error  { color: var(--danger); }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .info-box.tip   { background: rgba(0,229,176,0.06); border: 1px solid rgba(0,229,176,0.2); }
+  .info-box.warn  { background: rgba(247,201,72,0.06); border: 1px solid rgba(247,201,72,0.2); }
+  .info-box.note  { background: rgba(45,156,255,0.06); border: 1px solid rgba(45,156,255,0.2); }
+  .info-box .icon { font-size: 1.1rem; padding-top: 2px; flex-shrink: 0; }
+  .info-box p { margin: 0; font-size: 0.88rem; color: var(--text); }
+  .info-box strong { color: #fff; }
+
+  /* ── FILE TREE ── */
+  .file-tree {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    line-height: 2;
+  }
+  .ft-dir   { color: var(--accent2); font-weight: 600; }
+  .ft-file  { color: var(--muted); }
+  .ft-note  { color: #3a5080; font-style: italic; }
+
+  /* ── QUIZ ── */
+  .quiz-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.8rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .quiz-num {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .quiz-q { font-size: 1rem; font-weight: 600; margin-bottom: 1.2rem; color: #e8edf5; }
+  .quiz-options { display: flex; flex-direction: column; gap: 0.6rem; }
+  .quiz-opt {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    font-size: 0.88rem;
+  }
+  .quiz-opt:hover { border-color: var(--accent); background: rgba(0,229,176,0.04); }
+  .quiz-opt.correct { border-color: var(--accent); background: rgba(0,229,176,0.08); }
+  .quiz-opt.wrong   { border-color: var(--danger); background: rgba(255,95,109,0.06); }
+  .opt-letter {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    width: 22px; height: 22px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .quiz-opt.correct .opt-letter { border-color: var(--accent); color: var(--accent); }
+  .quiz-opt.wrong   .opt-letter { border-color: var(--danger); color: var(--danger); }
+  .quiz-explanation {
+    display: none;
+    margin-top: 1rem;
+    padding: 0.8rem 1rem;
+    background: rgba(0,229,176,0.06);
+    border: 1px solid rgba(0,229,176,0.15);
+    border-radius: 6px;
+    font-size: 0.84rem; color: var(--text);
+  }
+  .quiz-explanation.visible { display: block; }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-box {
+    width: 18px; height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0; margin-top: 2px;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem;
+  }
+  .checklist li.done .check-box { background: var(--accent); border-color: var(--accent); color: #000; }
+  .checklist li.done { color: var(--muted); text-decoration: line-through; }
+
+  /* ── PORTFOLIO ── */
+  .portfolio-card {
+    background: linear-gradient(135deg, #0a1a14, #0d2030);
+    border: 1px solid rgba(0,229,176,0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .portfolio-card::before {
+    content: '';
+    position: absolute; bottom: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(0,229,176,0.08) 0%, transparent 70%);
+  }
+  .portfolio-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .portfolio-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #c8d8e8;
+    font-style: italic;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+  }
+  .copy-btn {
+    margin-top: 1.2rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    background: rgba(0,229,176,0.08);
+    border: 1px solid rgba(0,229,176,0.3);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { background: rgba(0,229,176,0.15); }
+
+  /* ── LAB STEPS ── */
+  .lab-step {
+    display: flex; gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 32px; height: 32px;
+    background: rgba(0,229,176,0.1);
+    border: 1px solid rgba(0,229,176,0.3);
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+    font-weight: 700;
+  }
+  .step-content h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; color: #e8edf5; }
+  .step-content p  { font-size: 0.87rem; margin-bottom: 0.5rem; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.7rem; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .pipeline { flex-direction: column; }
+    .pipe-arrow { transform: rotate(90deg); }
+    main { padding: 2rem 1rem 4rem; }
+  }
+
+  /* ── PROGRESS BAR ── */
+  .week-progress {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.4rem;
+    margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .week-progress span { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); white-space: nowrap; }
+  .prog-bar { flex: 1; height: 4px; background: var(--border); border-radius: 2px; }
+  .prog-fill { height: 100%; width: 8.33%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    NETDEVOPS ENGINEERING FUNDAMENTALS
+  </div>
+  <div class="week-badge">WEEK 01 / 12</div>
+</header>
+
+<nav>
+  <button class="nav-tab active" onclick="showSection('overview')">01_overview.md</button>
+  <button class="nav-tab" onclick="showSection('concepts')">02_cli_to_api.md</button>
+  <button class="nav-tab" onclick="showSection('linux')">03_linux_deep_dive.md</button>
+  <button class="nav-tab" onclick="showSection('lab')">04_hands_on_lab.sh</button>
+  <button class="nav-tab" onclick="showSection('quiz')">05_assessment.md</button>
+  <button class="nav-tab" onclick="showSection('portfolio')">06_portfolio.md</button>
+</nav>
+
+<main>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- SECTION: OVERVIEW                                  -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="section active" id="section-overview">
+
+    <div class="week-progress">
+      <span>COURSE PROGRESS</span>
+      <div class="prog-bar"><div class="prog-fill"></div></div>
+      <span>Week 1 of 12 — 8%</span>
+    </div>
+
+    <div class="hero">
+      <div class="hero-tag">// Phase 1 · Foundations &amp; Pythonic Networking</div>
+      <h1>The Automation Mindset &amp; Linux Basics</h1>
+      <p>You have spent years mastering the CLI — typing commands device-by-device. This week you make a permanent mental shift: away from human-paced interfaces and toward programmable, repeatable, API-driven infrastructure.</p>
+      <div class="meta-row">
+        <div class="meta-item"><div class="meta-dot"></div>Estimated time: 5 hours</div>
+        <div class="meta-item"><div class="meta-dot" style="background:var(--accent2)"></div>Difficulty: Foundational</div>
+        <div class="meta-item"><div class="meta-dot" style="background:var(--accent3)"></div>Lab: DevNet Always-On Sandbox</div>
+      </div>
+    </div>
+
+    <div class="card card-accent">
+      <h3>🎯 This Week's Learning Objectives</h3>
+      <ul class="checklist" id="objectives">
+        <li onclick="toggleCheck(this)"><div class="check-box">✓</div>Articulate why CLI-only management doesn't scale beyond a small network</li>
+        <li onclick="toggleCheck(this)"><div class="check-box">✓</div>Explain what an API is and how it differs from an SSH session</li>
+        <li onclick="toggleCheck(this)"><div class="check-box">✓</div>Identify the key differences between the Linux filesystem and a Cisco IOS/NXOS environment</li>
+        <li onclick="toggleCheck(this)"><div class="check-box">✓</div>Navigate a Linux terminal using at least 10 essential commands with confidence</li>
+        <li onclick="toggleCheck(this)"><div class="check-box">✓</div>Create directories, files, and scripts from within the terminal</li>
+        <li onclick="toggleCheck(this)"><div class="check-box">✓</div>Access the Cisco DevNet Always-On Sandbox environment</li>
+      </ul>
+      <p style="font-size:0.78rem;color:var(--muted);margin-top:0.8rem;margin-bottom:0;">Click each objective to mark it complete as you progress.</p>
+    </div>
+
+    <div class="card card-blue">
+      <h3>📌 How This Week Fits the Big Picture</h3>
+      <p>Think of this week as laying the <strong>cognitive and environmental foundation</strong> for everything that follows. You cannot automate what you cannot programmatically reach, and you cannot program reliably on an operating system you don't understand. Linux is the universal substrate of modern network automation — Ansible runs on it, Python lives on it, Git is native to it, and Docker containers are built from it.</p>
+      <p style="margin-bottom:0">By the end of this week, your workstation (or sandbox) will feel like home, not a foreign console.</p>
+    </div>
+
+    <div class="pipeline">
+      <div class="pipe-step"><span class="icon">🧠</span><div class="label">mindset</div><div class="sublabel">CLI → API</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step"><span class="icon">🐧</span><div class="label">environment</div><div class="sublabel">Linux Shell</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step"><span class="icon">📂</span><div class="label">navigation</div><div class="sublabel">Filesystem</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step"><span class="icon">🔬</span><div class="label">lab</div><div class="sublabel">Sandbox</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step"><span class="icon">✅</span><div class="label">verify</div><div class="sublabel">Assessment</div></div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- SECTION: CLI TO API                                -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="section" id="section-concepts">
+
+    <h2>The Automation Mindset <span class="tag">CORE CONCEPTS</span></h2>
+
+    <p>Every network engineer eventually hits the same wall. You are managing 80 switches, a configuration change is required on all of them, and you find yourself opening 80 separate PuTTY sessions. This is not a workflow problem — it is a <strong>paradigm problem</strong>. The CLI was designed for a human operator, not a computer. The automation mindset begins with a single, uncomfortable truth: <em>if a human has to be in the loop for a change to occur, it will never scale.</em></p>
+
+    <h3>Why the CLI Was Never Meant to Scale</h3>
+
+    <div class="compare-grid">
+      <div class="compare-col old">
+        <div class="compare-head">⛔ The Manual CLI Approach</div>
+        <ul class="compare-body">
+          <li>1 engineer × N devices = N<sup>2</sup> effort</li>
+          <li>No diff / change tracking</li>
+          <li>Human typo risk on every session</li>
+          <li>Unstructured text output ("show run")</li>
+          <li>Hours-long maintenance windows</li>
+          <li>State is invisible until you SSH in</li>
+        </ul>
+      </div>
+      <div class="compare-col new">
+        <div class="compare-head">✅ The API-Driven Approach</div>
+        <ul class="compare-body">
+          <li>1 script × N devices = constant effort</li>
+          <li>Full change history in Git</li>
+          <li>Idempotent — safe to run repeatedly</li>
+          <li>Structured JSON/XML responses</li>
+          <li>Changes deployed in seconds</li>
+          <li>Operational state queryable programmatically</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>What Exactly Is an API? (The Network-Centric Definition)</h3>
+    <p>An <strong>API (Application Programming Interface)</strong> is a formally defined contract between a software consumer and a software provider. When applied to a network device, it means: instead of you typing <code style="font-family:var(--mono);color:var(--accent);background:var(--code-bg);padding:1px 5px;border-radius:3px">show ip interface brief</code> and reading green text on a black screen, <em>your Python script sends a structured request</em> and receives a structured, machine-readable response.</p>
+
+    <div class="card card-accent">
+      <h3>🔬 The Analogy That Makes It Click</h3>
+      <p>Think of a traditional restaurant with a rude, slow waiter (the CLI). You must speak in a specific dialect, wait for the waiter to be available, read handwritten scrawl back, and re-interpret it yourself. Now imagine a restaurant with a touchscreen kiosk (the API). You send a formally structured order (HTTP request), the kitchen processes it, and you receive a perfectly formatted receipt (JSON response) — no ambiguity, no interpretation, fully automatable.</p>
+      <p style="margin-bottom:0">The CLI is the waiter. The API is the kiosk. Both get food to the table — but only one can serve an infinite number of customers simultaneously.</p>
+    </div>
+
+    <h3>The Three Generations of Network Management</h3>
+
+    <div class="terminal">
+      <div class="terminal-bar"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div><div class="t-title">evolution_of_netmgmt.txt</div></div>
+      <div class="terminal-body">
+<span class="t-comment"># ── GENERATION 1: Manual CLI (1990s–2010s) ─────────────────────</span><br>
+<span class="t-out">  Tool    : Telnet / SSH (PuTTY, SecureCRT)</span><br>
+<span class="t-out">  Protocol: No protocol — raw terminal stream</span><br>
+<span class="t-out">  Output  : Unstructured text (requires human parsing)</span><br>
+<span class="t-out">  Scale   : 1–50 devices (human limit)</span><br>
+<br>
+<span class="t-comment"># ── GENERATION 2: SNMP & Screen-Scraping (2000s–2015s) ─────────</span><br>
+<span class="t-out">  Tool    : Expect scripts, Netmiko, SNMP managers</span><br>
+<span class="t-out">  Protocol: SNMP (UDP) for polling, SSH for config</span><br>
+<span class="t-out">  Output  : OID trees (SNMP) / scraped text (SSH)</span><br>
+<span class="t-out">  Scale   : 50–200 devices (fragile, brittle)</span><br>
+<br>
+<span class="t-comment"># ── GENERATION 3: API-Driven / Model-Driven (2015–Present) ──────</span><br>
+<span class="t-out">  Tool    : REST APIs, NETCONF, RESTCONF, gRPC</span><br>
+<span class="t-out">  Protocol: HTTP/HTTPS (REST), SSH (NETCONF)</span><br>
+<span class="t-out">  Output  : Structured JSON / XML / YANG-validated data</span><br>
+<span class="t-string">  Scale   : Unlimited (idempotent, version-controlled)</span><br>
+<br>
+<span class="t-comment"># ──  YOU ARE HERE ── entering Generation 3 ──────────────────────</span>
+      </div>
+    </div>
+
+    <h3>REST APIs: The Language of Modern Network Automation</h3>
+    <p>A <strong>REST API (Representational State Transfer)</strong> communicates via standard HTTP verbs. As a networker, you already understand the concept — you just use different vocabulary:</p>
+
+    <div class="card">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.82rem;">
+        <thead>
+          <tr>
+            <th style="text-align:left;padding:8px 12px;color:var(--accent);border-bottom:1px solid var(--border)">HTTP Verb</th>
+            <th style="text-align:left;padding:8px 12px;color:var(--accent);border-bottom:1px solid var(--border)">Network Equivalent</th>
+            <th style="text-align:left;padding:8px 12px;color:var(--accent);border-bottom:1px solid var(--border)">What It Does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:8px 12px;color:var(--accent2);border-bottom:1px solid var(--border)">GET</td><td style="padding:8px 12px;color:var(--muted);border-bottom:1px solid var(--border)">show running-config</td><td style="padding:8px 12px;color:var(--text);border-bottom:1px solid var(--border)">Read / retrieve current state</td></tr>
+          <tr><td style="padding:8px 12px;color:var(--accent);border-bottom:1px solid var(--border)">POST</td><td style="padding:8px 12px;color:var(--muted);border-bottom:1px solid var(--border)">configure terminal + new item</td><td style="padding:8px 12px;color:var(--text);border-bottom:1px solid var(--border)">Create a new resource</td></tr>
+          <tr><td style="padding:8px 12px;color:var(--accent3);border-bottom:1px solid var(--border)">PUT / PATCH</td><td style="padding:8px 12px;color:var(--muted);border-bottom:1px solid var(--border)">interface config modification</td><td style="padding:8px 12px;color:var(--text);border-bottom:1px solid var(--border)">Update an existing resource</td></tr>
+          <tr><td style="padding:8px 12px;color:var(--danger)">DELETE</td><td style="padding:8px 12px;color:var(--muted)">no interface / no ip route</td><td style="padding:8px 12px;color:var(--text)">Remove a resource</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box tip">
+      <div class="icon">💡</div>
+      <p><strong>Key Insight:</strong> Every time a Python script or Ansible playbook "talks to" a Cisco, Juniper, or Arista device in a modern environment, it is almost certainly using one of these four HTTP verbs over an API. The device's operating system has been extended with an HTTP listener — a small web server — specifically to receive these requests. This is what makes automation possible at scale.</p>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- SECTION: LINUX DEEP DIVE                           -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="section" id="section-linux">
+
+    <h2>Linux: The Home of Automation <span class="tag">TECHNICAL DEEP DIVE</span></h2>
+
+    <p>When people say "network automation," they almost invariably mean "running code on a Linux host." This is not a coincidence — it is an architectural truth. Python, Ansible, Git, Docker, Terraform, and virtually every automation tool in the NetDevOps stack was either <em>written for</em> Linux, <em>runs best on</em> Linux, or <em>is embedded within</em> Linux. Understanding why requires a brief look at the OS's design philosophy.</p>
+
+    <h3>The Unix Philosophy: Small Tools That Compose</h3>
+
+    <div class="card card-accent">
+      <p>"<em>Write programs that do one thing and do it well. Write programs that work together. Write programs that handle text streams, because that is a universal interface.</em>"</p>
+      <p style="font-family:var(--mono);font-size:0.78rem;color:var(--muted);margin-bottom:0">— Doug McIlroy, Bell Labs, 1978 · The principle behind every automation pipeline you will ever build.</p>
+    </div>
+
+    <p>This philosophy means that in Linux, you routinely chain commands together using the <code style="font-family:var(--mono);color:var(--accent);background:var(--code-bg);padding:1px 5px;border-radius:3px">|</code> (pipe) operator. Each small tool transforms data and passes it to the next — exactly how an automation pipeline works:</p>
+
+    <div class="terminal">
+      <div class="terminal-bar"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div><div class="t-title">linux_pipeline_example.sh</div></div>
+      <div class="terminal-body">
+<span class="t-comment"># Real-world example: Parse only BGP neighbor IPs from a config backup</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">cat router_config.txt</span> <span class="t-keyword">|</span> <span class="t-cmd">grep "neighbor"</span> <span class="t-keyword">|</span> <span class="t-cmd">awk '{print $2}'</span> <span class="t-keyword">|</span> <span class="t-cmd">sort -u</span><br>
+<span class="t-out">10.0.0.1</span><br>
+<span class="t-out">10.0.0.2</span><br>
+<span class="t-out">192.168.1.254</span><br>
+<br>
+<span class="t-comment"># Decomposed: cat (read) → grep (filter) → awk (transform) → sort (deduplicate)</span><br>
+<span class="t-comment"># Each tool is <10KB. Together they replace a 200-line Excel macro.</span>
+      </div>
+    </div>
+
+    <h3>Linux Filesystem vs. Cisco IOS: A Structural Comparison</h3>
+    <p>If you have worked on Cisco devices, you understand a filesystem rooted in <code style="font-family:var(--mono);color:var(--accent);background:var(--code-bg);padding:1px 5px;border-radius:3px">flash:</code> or <code style="font-family:var(--mono);color:var(--accent);background:var(--code-bg);padding:1px 5px;border-radius:3px">bootflash:</code>. Linux uses a radically different, unified hierarchy. Everything — including hardware devices — is represented as a file.</p>
+
+    <div class="compare-grid">
+      <div class="compare-col old">
+        <div class="compare-head">Cisco IOS Filesystem</div>
+        <ul class="compare-body">
+          <li>flash:/running-config</li>
+          <li>flash:/startup-config</li>
+          <li>flash:/c2900-universalk9.bin</li>
+          <li>nvram:/startup-config</li>
+          <li>No user home directory</li>
+          <li>No package manager</li>
+        </ul>
+      </div>
+      <div class="compare-col new">
+        <div class="compare-head">Linux Filesystem (FHS)</div>
+        <ul class="compare-body">
+          <li>/etc/ — System configuration files</li>
+          <li>/home/ — Per-user workspaces</li>
+          <li>/usr/bin/ — Installed programs</li>
+          <li>/var/log/ — Log files</li>
+          <li>/tmp/ — Temporary files</li>
+          <li>/dev/ — Hardware as files</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>The Linux Filesystem Hierarchy Standard (FHS)</h3>
+    <p>Every Linux distribution follows a standard layout. As a NetDevOps engineer, these are the directories you will interact with most:</p>
+
+    <div class="file-tree">
+      <span class="ft-dir">/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># Root of the entire system — like "C:\" on Windows</span><br>
+      ├── <span class="ft-dir">etc/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># System-wide configs (SSH, network, Ansible)</span><br>
+      │&nbsp;&nbsp; ├── <span class="ft-file">hosts</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># Static DNS resolution (/etc/hosts)</span><br>
+      │&nbsp;&nbsp; └── <span class="ft-file">ansible/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># Global Ansible configuration (Week 6)</span><br>
+      ├── <span class="ft-dir">home/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># All user home directories live here</span><br>
+      │&nbsp;&nbsp; └── <span class="ft-dir">netdevops/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># YOUR workspace — scripts, playbooks, etc.</span><br>
+      ├── <span class="ft-dir">usr/</span><br>
+      │&nbsp;&nbsp; ├── <span class="ft-dir">bin/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># User-level executables (python3, ansible, git)</span><br>
+      │&nbsp;&nbsp; └── <span class="ft-dir">local/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># Locally compiled/installed software</span><br>
+      ├── <span class="ft-dir">var/</span><br>
+      │&nbsp;&nbsp; └── <span class="ft-dir">log/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># System and application logs — critical for debugging</span><br>
+      ├── <span class="ft-dir">tmp/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># Temporary files — wiped on reboot</span><br>
+      └── <span class="ft-dir">dev/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># Hardware devices represented as files</span>
+    </div>
+
+    <div class="info-box warn">
+      <div class="icon">⚠️</div>
+      <p><strong>The Networker's "Aha" Moment:</strong> In IOS, configuration is <em>stateful and immediate</em> — you type it and it's live. In Linux, configuration lives in <em>text files</em> inside <code style="font-family:var(--mono);background:rgba(247,201,72,0.1);padding:1px 5px;border-radius:3px">/etc/</code>. This is why infrastructure automation is so powerful — you <em>edit files programmatically</em> (with Ansible, Python, or Jinja2 templates) and then apply them. The entire configuration of a device can be stored, versioned, and deployed from Git.</p>
+    </div>
+
+    <h3>Essential Linux Commands for the Network Automator</h3>
+    <p>Master these 15 commands first. They will appear in every lab, every script, and every Ansible task you write from Week 2 onward.</p>
+
+    <div class="terminal">
+      <div class="terminal-bar"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div><div class="t-title">essential_commands.sh</div></div>
+      <div class="terminal-body">
+<span class="t-comment"># ── NAVIGATION ──────────────────────────────────────────────────</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">pwd</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Print Working Directory — "where am I right now?"</span><br>
+<span class="t-out">/home/netdevops</span><br><br>
+<span class="t-prompt">$ </span><span class="t-cmd">ls -la</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># List ALL files (including hidden) with permissions</span><br>
+<span class="t-out">drwxr-xr-x  netdevops  scripts/</span><br>
+<span class="t-out">-rw-r--r--  netdevops  inventory.yaml</span><br><br>
+<span class="t-prompt">$ </span><span class="t-cmd">cd /home/netdevops/scripts</span> &nbsp;<span class="t-comment"># Change Directory (absolute path)</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">cd ..</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Go up one directory level</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">cd ~</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Return to your home directory (shortcut)</span><br>
+<br>
+<span class="t-comment"># ── FILE OPERATIONS ─────────────────────────────────────────────</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">mkdir -p projects/week1</span> &nbsp;&nbsp;<span class="t-comment"># Make directory + parent dirs if needed</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">touch notes.txt</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Create an empty file</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">cp notes.txt backup.txt</span> &nbsp;&nbsp;<span class="t-comment"># Copy a file</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">mv backup.txt archive/</span> &nbsp;&nbsp;&nbsp;<span class="t-comment"># Move / rename a file</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">rm -rf old_configs/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># DANGER: Remove dir recursively — no recycle bin!</span><br>
+<br>
+<span class="t-comment"># ── READING FILES ───────────────────────────────────────────────</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">cat router_config.txt</span> &nbsp;&nbsp;&nbsp;<span class="t-comment"># Print entire file to screen</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">less router_config.txt</span> &nbsp;&nbsp;&nbsp;<span class="t-comment"># Page through a file (q to quit)</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">grep "interface" config.txt</span><span class="t-comment"># Search for pattern in a file</span><br>
+<br>
+<span class="t-comment"># ── PERMISSIONS (critical for scripts!) ─────────────────────────</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">chmod +x my_script.sh</span> &nbsp;&nbsp;&nbsp;<span class="t-comment"># Make a script executable</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">./my_script.sh</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Execute the script from current directory</span><br>
+<br>
+<span class="t-comment"># ── NETWORKING UTILS (familiar territory!) ──────────────────────</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">ping -c 4 8.8.8.8</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Send exactly 4 ICMP packets</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">ip addr show</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Show interface IPs (modern replacement for ifconfig)</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">curl -s https://api.ipify.org</span> <span class="t-comment"># Make an HTTP GET request — your first API call!</span>
+      </div>
+    </div>
+
+    <div class="info-box note">
+      <div class="icon">📘</div>
+      <p><strong>Pro Tip — The man Pages:</strong> Every command has built-in documentation. Type <code style="font-family:var(--mono);background:rgba(45,156,255,0.1);padding:1px 5px;border-radius:3px">man ls</code>, <code style="font-family:var(--mono);background:rgba(45,156,255,0.1);padding:1px 5px;border-radius:3px">man grep</code>, or <code style="font-family:var(--mono);background:rgba(45,156,255,0.1);padding:1px 5px;border-radius:3px">man curl</code> to read the manual for any command. Think of it as <code style="font-family:var(--mono)">?</code> in Cisco IOS — but comprehensive. Press <strong>q</strong> to exit.</p>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- SECTION: HANDS-ON LAB                              -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="section" id="section-lab">
+
+    <h2>Hands-On Lab <span class="tag">LAB GUIDE</span></h2>
+
+    <div class="card card-yellow">
+      <h3>🌐 Step 0 — Accessing Your Lab Environment (DevNet Sandbox)</h3>
+      <p>You will use the <strong>Cisco DevNet "IOS XE on CSR Latest Code" Always-On Sandbox</strong>. This is a free, no-reservation-required sandbox that provides a Linux-accessible environment.</p>
+
+      <div class="lab-step" style="margin-top:1rem">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Create Your Free DevNet Account</h4>
+          <p>Navigate to <strong>developer.cisco.com</strong> and create a free Cisco DevNet account. This is your permanent access to all Cisco sandboxes, documentation, and learning labs.</p>
+        </div>
+      </div>
+
+      <div class="lab-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Navigate to Sandbox Catalog</h4>
+          <p>Go to <strong>devnetsandbox.cisco.com</strong> → Click <em>"Explore"</em> → Search for <strong>"IOS XE Always On"</strong>. You should see the always-on sandbox with no reservation timer.</p>
+        </div>
+      </div>
+
+      <div class="lab-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Alternative: Use Your Own Linux Environment</h4>
+          <p>If you prefer, install <strong>Ubuntu 22.04 LTS</strong> via WSL2 on Windows (<code style="font-family:var(--mono);color:var(--accent3)">wsl --install -d Ubuntu</code> in PowerShell as Admin), or use an Ubuntu VM via VirtualBox. This is the recommended long-term setup.</p>
+        </div>
+      </div>
+
+      <div class="info-box note" style="margin-top:0.5rem">
+        <div class="icon">📘</div>
+        <p><strong>Recommended for this week:</strong> WSL2 (Windows Subsystem for Linux) with Ubuntu is the fastest setup for Windows users and will serve you throughout all 12 weeks. macOS users already have a Unix-based terminal available natively via Terminal.app.</p>
+      </div>
+    </div>
+
+    <h3>Lab Objectives</h3>
+    <ul style="margin-left:1.2rem;margin-bottom:1.5rem;color:var(--text)">
+      <li style="padding:5px 0">Build a structured project directory for your 12-week course</li>
+      <li style="padding:5px 0">Practice the 15 essential navigation and file commands</li>
+      <li style="padding:5px 0">Write and execute your first shell script</li>
+      <li style="padding:5px 0">Use <code style="font-family:var(--mono);color:var(--accent);background:var(--code-bg);padding:1px 5px;border-radius:3px">curl</code> to make your very first API call from the terminal</li>
+    </ul>
+
+    <h3>📋 Starter Script — Complete the TODOs</h3>
+    <p>Copy the script below into a file called <code style="font-family:var(--mono);color:var(--accent);background:var(--code-bg);padding:1px 5px;border-radius:3px">week1_lab.sh</code> on your Linux system. Fill in each <code style="font-family:var(--mono);color:var(--accent3);background:var(--code-bg);padding:1px 5px;border-radius:3px"># TODO</code> section with the correct command. The expected output is shown as a comment after each block.</p>
+
+    <div class="terminal">
+      <div class="terminal-bar"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div><div class="t-title">week1_lab.sh — STARTER SCRIPT (fill in the TODOs)</div></div>
+      <div class="terminal-body">
+<span class="t-string">#!/bin/bash</span><br>
+<span class="t-comment">##############################################################</span><br>
+<span class="t-comment"># NetDevOps Fundamentals — Week 1 Lab Script</span><br>
+<span class="t-comment"># Author   : [YOUR NAME]</span><br>
+<span class="t-comment"># Purpose  : Practice Linux navigation and file operations</span><br>
+<span class="t-comment">##############################################################</span><br>
+<br>
+<span class="t-keyword">echo</span> <span class="t-string">"======================================================"</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"  NetDevOps Week 1 — Linux Fundamentals Lab"</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"======================================================"</span><br>
+<br>
+<span class="t-comment"># ── SECTION 1: ENVIRONMENT CHECK ──────────────────────────────</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">""</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"[1] Checking your environment..."</span><br>
+<br>
+<span class="t-comment"># TODO: Print the current username using the 'whoami' command</span><br>
+<span class="t-todo"># TODO: whoami</span><br>
+<br>
+<span class="t-comment"># TODO: Print the current working directory</span><br>
+<span class="t-todo"># TODO: _________</span><br>
+<br>
+<span class="t-comment"># TODO: Print the Linux kernel version (hint: try 'uname -r')</span><br>
+<span class="t-todo"># TODO: _________</span><br>
+<br>
+<br>
+<span class="t-comment"># ── SECTION 2: BUILD PROJECT STRUCTURE ────────────────────────</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">""</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"[2] Creating course project directories..."</span><br>
+<br>
+<span class="t-comment"># TODO: Create the full directory tree below in ONE command</span><br>
+<span class="t-comment">#       ~/netdevops-course/week01/scripts</span><br>
+<span class="t-comment">#       ~/netdevops-course/week01/notes</span><br>
+<span class="t-comment">#       ~/netdevops-course/week01/configs</span><br>
+<span class="t-comment"># Hint  : mkdir -p can create multiple directories at once</span><br>
+<span class="t-todo"># TODO: mkdir -p ~/netdevops-course/week01/{______,______,______}</span><br>
+<br>
+<span class="t-keyword">echo</span> <span class="t-string">"  Directory tree created!"</span><br>
+<br>
+<br>
+<span class="t-comment"># ── SECTION 3: CREATE YOUR FIRST FILES ────────────────────────</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">""</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"[3] Generating lab files..."</span><br>
+<br>
+<span class="t-comment"># TODO: Change into the week01 directory</span><br>
+<span class="t-todo"># TODO: cd ~/netdevops-course/______</span><br>
+<br>
+<span class="t-comment"># This command writes text into a file using redirection (&gt;)</span><br>
+<span class="t-comment"># Study this — you will use this pattern constantly.</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"Week 1: Automation Mindset + Linux Basics"</span> &gt; notes/week1_notes.txt<br>
+<span class="t-keyword">echo</span> <span class="t-string">"Key commands: pwd, ls, cd, mkdir, touch, cat, grep, chmod"</span> &gt;&gt; notes/week1_notes.txt<br>
+<br>
+<span class="t-comment"># TODO: Display the contents of week1_notes.txt using 'cat'</span><br>
+<span class="t-todo"># TODO: ________ notes/week1_notes.txt</span><br>
+<br>
+<br>
+<span class="t-comment"># ── SECTION 4: SIMULATE A DEVICE INVENTORY FILE ───────────────</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">""</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"[4] Creating a mock device inventory..."</span><br>
+<br>
+<span class="t-comment"># Create a CSV inventory file (exactly like you'll use in Week 3)</span><br>
+cat &gt; configs/device_inventory.csv &lt;&lt; <span class="t-string">EOF</span><br>
+hostname,ip_address,role,vendor<br>
+core-sw-01,10.0.1.1,core,cisco<br>
+core-sw-02,10.0.1.2,core,cisco<br>
+dist-sw-01,10.0.2.1,distribution,cisco<br>
+access-sw-01,10.0.3.1,access,cisco<br>
+access-sw-02,10.0.3.2,access,arista<br>
+<span class="t-string">EOF</span><br>
+<br>
+<span class="t-comment"># TODO: Use 'grep' to find only the CISCO devices in the inventory</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"  Cisco devices in inventory:"</span><br>
+<span class="t-todo"># TODO: grep "______" configs/device_inventory.csv</span><br>
+<br>
+<span class="t-comment"># TODO: Count how many total devices are in the inventory</span><br>
+<span class="t-comment"># Hint: pipe 'cat' into 'wc -l' (word count — lines)</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"  Total device count:"</span><br>
+<span class="t-todo"># TODO: cat configs/device_inventory.csv | ________ -l</span><br>
+<br>
+<br>
+<span class="t-comment"># ── SECTION 5: YOUR FIRST API CALL ────────────────────────────</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">""</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"[5] Making your first API call with curl..."</span><br>
+<br>
+<span class="t-comment"># This is a real HTTP GET request to a public REST API</span><br>
+<span class="t-comment"># It returns your public IP address as a JSON response</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"  Your public IP (via REST API):"</span><br>
+curl -s https://api.ipify.org?format=json<br>
+<span class="t-keyword">echo</span> <span class="t-string">""</span><br>
+<br>
+<span class="t-comment"># TODO: Repeat the call above but pipe the output through</span><br>
+<span class="t-comment">#       'python3 -m json.tool' to pretty-print the JSON</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"  Pretty-printed JSON response:"</span><br>
+<span class="t-todo"># TODO: curl -s https://api.ipify.org?format=json | ________________</span><br>
+<br>
+<br>
+<span class="t-comment"># ── SECTION 6: VERIFY YOUR WORK ───────────────────────────────</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">""</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"[6] Verifying directory structure..."</span><br>
+<br>
+<span class="t-comment"># TODO: Use 'find' to list all files under ~/netdevops-course</span><br>
+<span class="t-comment"># Hint: find ~/netdevops-course -type f</span><br>
+<span class="t-todo"># TODO: ________ ~/netdevops-course -type f</span><br>
+<br>
+<span class="t-keyword">echo</span> <span class="t-string">""</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"======================================================"</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"  Week 1 Lab Complete! Review your outputs above."</span><br>
+<span class="t-keyword">echo</span> <span class="t-string">"======================================================"</span>
+      </div>
+    </div>
+
+    <h3>Running Your Script</h3>
+
+    <div class="terminal">
+      <div class="terminal-bar"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div><div class="t-title">bash — running the lab</div></div>
+      <div class="terminal-body">
+<span class="t-comment"># 1. Create the file</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">nano week1_lab.sh</span> &nbsp;&nbsp;&nbsp;<span class="t-comment"># Paste the script, fill in TODOs, Ctrl+X to save</span><br>
+<br>
+<span class="t-comment"># 2. Make it executable (CRITICAL STEP — scripts need execute permission)</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">chmod +x week1_lab.sh</span><br>
+<br>
+<span class="t-comment"># 3. Run it</span><br>
+<span class="t-prompt">$ </span><span class="t-cmd">./week1_lab.sh</span><br>
+<span class="t-out">======================================================</span><br>
+<span class="t-out">  NetDevOps Week 1 — Linux Fundamentals Lab</span><br>
+<span class="t-out">======================================================</span><br>
+<span class="t-out">[1] Checking your environment...</span><br>
+<span class="t-out">netdevops</span><br>
+<span class="t-out">/home/netdevops</span><br>
+<span class="t-out">5.15.0-91-generic</span><br>
+<span class="t-out">...</span><br>
+<br>
+<span class="t-comment"># If you see a 'Permission denied' error, you forgot step 2.</span><br>
+<span class="t-comment"># If you see 'command not found', check your TODO answer for typos.</span>
+      </div>
+    </div>
+
+    <div class="info-box tip">
+      <div class="icon">💡</div>
+      <p><strong>Stretch Goal:</strong> After completing the script, add a 7th section that uses <code style="font-family:var(--mono);background:rgba(0,229,176,0.08);padding:1px 5px;border-radius:3px">ping -c 3</code> to check reachability of three IP addresses from your inventory file (10.0.1.1, 10.0.1.2, 10.0.2.1) and writes "REACHABLE" or "UNREACHABLE" to a log file. This is the direct predecessor to the Week 3 project.</p>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- SECTION: QUIZ                                      -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="section" id="section-quiz">
+
+    <h2>Check for Understanding <span class="tag">ASSESSMENT</span></h2>
+    <p>The following questions are written to mirror a professional <strong>NetDevOps Associate certification</strong> environment. Each question has one correct answer. Click an option to reveal the explanation after selecting.</p>
+
+    <!-- Question 1 -->
+    <div class="quiz-item">
+      <div class="quiz-num">// Question 01 of 03 · Conceptual</div>
+      <div class="quiz-q">A network engineer needs to retrieve the operational state of all BGP neighbors on 200 routers simultaneously and store the results in a structured format for automated analysis. Which approach is MOST appropriate for this use case?</div>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="answerQ(this, false, 1)"><span class="opt-letter">A</span>SSH into each router sequentially using a Python loop with Paramiko and parse the output of <code style="font-family:var(--mono)">show bgp summary</code> using regular expressions.</div>
+        <div class="quiz-opt" onclick="answerQ(this, true, 1)"><span class="opt-letter">B</span>Use a RESTCONF API call with an HTTP GET request to query the BGP operational state YANG model on all devices simultaneously, receiving structured JSON responses.</div>
+        <div class="quiz-opt" onclick="answerQ(this, false, 1)"><span class="opt-letter">C</span>Configure SNMP v2c polling on all devices and use a MIB browser to collect BGP neighbor status OIDs.</div>
+        <div class="quiz-opt" onclick="answerQ(this, false, 1)"><span class="opt-letter">D</span>Write an Expect script to automate SSH connections and extract neighbor state from CLI output using string matching.</div>
+      </div>
+      <div class="quiz-explanation" id="exp-1">
+        ✅ <strong>B is correct.</strong> RESTCONF with a YANG-modeled data source provides structured JSON output natively — no parsing required. Options A and D are "Generation 2" screen-scraping approaches: functional but fragile, as any output format change breaks the parser. Option C (SNMP v2c) lacks the depth and writability of modern APIs, and MIB-based data is not JSON-structured. The key indicator in the question was "structured format for automated analysis" — this points directly to an API-based solution.
+      </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="quiz-item">
+      <div class="quiz-num">// Question 02 of 03 · Linux Practical</div>
+      <div class="quiz-q">A NetDevOps engineer creates a Python automation script called <code style="font-family:var(--mono)">deploy_vlans.py</code> on a Linux host. When attempting to run it with <code style="font-family:var(--mono)">./deploy_vlans.py</code>, the system returns: <code style="font-family:var(--mono);color:var(--danger)">-bash: ./deploy_vlans.py: Permission denied</code>. What is the MOST LIKELY cause and the correct remediation?</div>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="answerQ(this, false, 2)"><span class="opt-letter">A</span>The Python interpreter is not installed. Run <code style="font-family:var(--mono)">sudo apt install python3</code> to install it.</div>
+        <div class="quiz-opt" onclick="answerQ(this, false, 2)"><span class="opt-letter">B</span>The file is in the wrong directory. Move it to <code style="font-family:var(--mono)">/usr/bin/</code> using <code style="font-family:var(--mono)">sudo mv deploy_vlans.py /usr/bin/</code>.</div>
+        <div class="quiz-opt" onclick="answerQ(this, true, 2)"><span class="opt-letter">C</span>The file is missing the execute permission bit. Run <code style="font-family:var(--mono)">chmod +x deploy_vlans.py</code> to grant execute permission, then re-run.</div>
+        <div class="quiz-opt" onclick="answerQ(this, false, 2)"><span class="opt-letter">D</span>The script must be run as root. Prefix the command with <code style="font-family:var(--mono)">sudo</code>.</div>
+      </div>
+      <div class="quiz-explanation" id="exp-2">
+        ✅ <strong>C is correct.</strong> In Linux, newly created files do not have the execute bit set by default — this is a security feature. The <code style="font-family:var(--mono)">chmod +x</code> command adds the execute permission. You can verify the change by running <code style="font-family:var(--mono)">ls -la deploy_vlans.py</code> — the permissions should change from <code style="font-family:var(--mono)">-rw-r--r--</code> to <code style="font-family:var(--mono)">-rwxr-xr-x</code>. Option D (sudo) would only be needed if the script requires root-level access to system resources — unrelated to this error. Understanding file permissions is fundamental; they control every executable, every Ansible playbook, and every SSH key on your system.
+      </div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="quiz-item">
+      <div class="quiz-num">// Question 03 of 03 · Architecture</div>
+      <div class="quiz-q">Which Linux directory is the CORRECT location to store system-wide configuration files for an automation tool like Ansible that should apply to all users on the host? (Referencing the Filesystem Hierarchy Standard)</div>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="answerQ(this, false, 3)"><span class="opt-letter">A</span><code style="font-family:var(--mono)">/tmp/</code> — Temporary files used by running processes</div>
+        <div class="quiz-opt" onclick="answerQ(this, false, 3)"><span class="opt-letter">B</span><code style="font-family:var(--mono)">/home/user/.config/</code> — User-specific application configuration</div>
+        <div class="quiz-opt" onclick="answerQ(this, true, 3)"><span class="opt-letter">C</span><code style="font-family:var(--mono)">/etc/</code> — System-wide editable configuration files for all users</div>
+        <div class="quiz-opt" onclick="answerQ(this, false, 3)"><span class="opt-letter">D</span><code style="font-family:var(--mono)">/usr/bin/</code> — User-accessible system executable binaries</div>
+      </div>
+      <div class="quiz-explanation" id="exp-3">
+        ✅ <strong>C is correct.</strong> Per the Filesystem Hierarchy Standard (FHS), <code style="font-family:var(--mono)">/etc/</code> is the designated location for host-specific system configuration. The global Ansible configuration file lives at <code style="font-family:var(--mono)">/etc/ansible/ansible.cfg</code>. Option A (<code style="font-family:var(--mono)">/tmp/</code>) is wiped on reboot — never store configuration there. Option B is correct for <em>user-specific</em> config but would not apply to all users. Option D (<code style="font-family:var(--mono)">/usr/bin/</code>) is for <em>executable programs</em>, not configuration files. Understanding the FHS is the difference between a clean, maintainable system and an "it works on my machine" disaster.
+      </div>
+    </div>
+
+    <div class="card" style="text-align:center;margin-top:2rem">
+      <p style="font-family:var(--mono);font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">SCORE THRESHOLD · Professional Standard</p>
+      <p style="font-size:0.9rem;color:var(--text);margin-bottom:0">3/3 — Ready for Week 2 &nbsp;|&nbsp; 2/3 — Review flagged concepts &nbsp;|&nbsp; 1/3 — Re-read Core Concepts &amp; Deep Dive sections</p>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- SECTION: PORTFOLIO                                 -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="section" id="section-portfolio">
+
+    <h2>Portfolio Piece <span class="tag">LINKEDIN / GITHUB</span></h2>
+
+    <p>The two-sentence statement below is calibrated for a professional audience. It is specific enough to be credible, outcome-focused enough to attract recruiters, and concise enough to work as a GitHub repository description or a LinkedIn "Featured" caption.</p>
+
+    <div class="portfolio-card">
+      <div class="portfolio-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub / LinkedIn — Portfolio Description
+      </div>
+      <div class="portfolio-text">
+        Completed Week 1 of a 12-week Network Automation Engineering specialization, establishing the foundational automation mindset by contrasting CLI-based device management with API-driven, model-driven infrastructure, and demonstrating the architectural advantages of REST APIs (HTTP GET/POST/PUT/DELETE) over traditional SSH sessions.
+        Implemented core Linux proficiency on an Ubuntu environment — navigating the Filesystem Hierarchy Standard, authoring and executing a Bash automation script that provisions a structured project directory, parses a mock network device inventory using <code style="font-family:var(--mono);background:rgba(0,229,176,0.1);padding:1px 4px;border-radius:3px">grep</code>, and performs a live REST API call using <code style="font-family:var(--mono);background:rgba(0,229,176,0.1);padding:1px 4px;border-radius:3px">curl</code> — all from the terminal.
+      </div>
+      <button class="copy-btn" onclick="copyPortfolio(this)">⎘ COPY TO CLIPBOARD</button>
+    </div>
+
+    <h3 style="margin-top:2rem">Suggested GitHub Repository Structure</h3>
+    <p>Commit your Week 1 work to a new public GitHub repository. Here is the recommended structure:</p>
+
+    <div class="file-tree">
+      <span class="ft-dir">netdevops-engineering-fundamentals/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># Your repo name</span><br>
+      ├── <span class="ft-file">README.md</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># Paste your portfolio statement here</span><br>
+      └── <span class="ft-dir">week01-linux-basics/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="ft-file">week1_lab.sh</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># Your completed lab script</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="ft-file">device_inventory.csv</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># The mock inventory you created</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="ft-file">notes.md</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ft-note"># Key takeaways in your own words</span>
+    </div>
+
+    <div class="info-box tip" style="margin-top:1.5rem">
+      <div class="icon">💡</div>
+      <p><strong>Week 2 Preview:</strong> Next week, you will use Python to read that <code style="font-family:var(--mono);background:rgba(0,229,176,0.08);padding:1px 5px;border-radius:3px">device_inventory.csv</code> file you created this week, loop through the IP addresses, and start building your first network automation script. The Linux foundation you built this week is the launchpad.</p>
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('section-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function toggleCheck(el) {
+    el.classList.toggle('done');
+  }
+
+  function answerQ(el, correct, qNum) {
+    const item = el.closest('.quiz-item');
+    item.querySelectorAll('.quiz-opt').forEach(o => {
+      o.style.pointerEvents = 'none';
+    });
+    el.classList.add(correct ? 'correct' : 'wrong');
+    if (!correct) {
+      item.querySelectorAll('.quiz-opt').forEach(o => {
+        if (o.getAttribute('onclick').includes('true')) {
+          o.classList.add('correct');
+        }
+      });
+    }
+    document.getElementById('exp-' + qNum).classList.add('visible');
+  }
+
+  function copyPortfolio(btn) {
+    const text = document.querySelector('.portfolio-text').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓ COPIED!';
+      setTimeout(() => btn.textContent = '⎘ COPY TO CLIPBOARD', 2500);
+    });
+  }
+</script>
+</body>
+</html>
