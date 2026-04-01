@@ -9,11 +9,11 @@
 ‘use strict’;
 
 /* ── DOM refs ── */
-const header     = document.getElementById(‘site-header’);
-const navToggle  = document.getElementById(‘navToggle’);
-const navLinks   = document.getElementById(‘navLinks’);
-const stickyCta  = document.getElementById(‘stickyCta’);
-const scrollTop  = document.getElementById(‘scrollTopBtn’);
+const header      = document.getElementById(‘site-header’);
+const navToggle   = document.getElementById(‘navToggle’);
+const navLinks    = document.getElementById(‘navLinks’);
+const stickyCta   = document.getElementById(‘stickyCta’);
+const scrollTop   = document.getElementById(‘scrollTopBtn’);
 const heroSection = document.getElementById(‘home’);
 const footerYear  = document.getElementById(‘footer-year’);
 const contactForm = document.getElementById(‘contactForm’);
@@ -46,29 +46,26 @@ SCROLL EVENTS (header shadow, sticky, scroll-top)
 function onScroll() {
 var y = window.pageYOffset;
 
-
-/* Header shadow */
+```
 if (header) {
   header.classList.toggle('scrolled', y > 20);
 }
 
-/* Scroll-to-top button */
 if (scrollTop) {
   scrollTop.classList.toggle('show', y > 400);
 }
 
-/* Sticky CTA — appears after hero is past */
 if (stickyCta && heroSection) {
   var heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
   stickyCta.classList.toggle('show', y > heroBottom);
 }
+```
 
 }
 
 window.addEventListener(‘scroll’, onScroll, { passive: true });
-onScroll(); // run once on load
+onScroll();
 
-/* Scroll-to-top click */
 if (scrollTop) {
 scrollTop.addEventListener(‘click’, function () {
 window.scrollTo({ top: 0, behavior: ‘smooth’ });
@@ -85,7 +82,7 @@ navToggle.classList.toggle(‘active’, isOpen);
 navToggle.setAttribute(‘aria-expanded’, isOpen ? ‘true’ : ‘false’);
 });
 
-/* Close on link click */
+```
 navLinks.querySelectorAll('a').forEach(function (link) {
   link.addEventListener('click', function () {
     navLinks.classList.remove('open');
@@ -94,14 +91,13 @@ navLinks.querySelectorAll('a').forEach(function (link) {
   });
 });
 
-/* Close on outside click */
 document.addEventListener('click', function (e) {
-  if (navLinks.classList.contains('open') &&
-      !header.contains(e.target)) {
+  if (navLinks.classList.contains('open') && !header.contains(e.target)) {
     navLinks.classList.remove('open');
     navToggle.classList.remove('active');
   }
 });
+```
 
 }
 
@@ -120,17 +116,16 @@ revealObserver.unobserve(entry.target);
 });
 }, { threshold: 0.1, rootMargin: ‘0px 0px -48px 0px’ });
 
-
+```
 revealEls.forEach(function (el) { revealObserver.observe(el); });
-
+```
 
 } else {
-/* Fallback for older browsers */
 revealEls.forEach(function (el) { el.classList.add(‘in-view’); });
 }
 
 /* ══════════════════════════════════════
-WORKFLOW / SAVINGS CALCULATOR
+SAVINGS CALCULATOR
 ══════════════════════════════════════ */
 var calcInputIds = [‘patientVolume’, ‘priorAuths’, ‘adminHours’, ‘hourlyRate’, ‘insuranceTypes’];
 
@@ -152,23 +147,23 @@ var adminHours     = getVal(‘adminHours’, 40);
 var hourlyRate     = getVal(‘hourlyRate’, 35);
 var insuranceTypes = getVal(‘insuranceTypes’, 3);
 
-/* Display slider values */
+```
 setTxt('patientDisplay', patients);
 setTxt('priorAuthsDisplay', priorAuths);
 setTxt('adminHoursDisplay', adminHours);
 
-/* Calculations */
-var timeSaving  = 0.5 + (insuranceTypes / 100);
-var hoursSaved  = Math.round(adminHours * timeSaving);
-var weekly      = hoursSaved * hourlyRate;
-var monthly     = Math.round(weekly * 4.33);
-var annual      = Math.round(weekly * 52);
-var fte         = (hoursSaved / 40).toFixed(1);
+var timeSaving = 0.5 + (insuranceTypes / 100);
+var hoursSaved = Math.round(adminHours * timeSaving);
+var weekly     = hoursSaved * hourlyRate;
+var monthly    = Math.round(weekly * 4.33);
+var annual     = Math.round(weekly * 52);
+var fte        = (hoursSaved / 40).toFixed(1);
 
 setTxt('hoursSaved', hoursSaved);
 setTxt('monthlySavings', monthly.toLocaleString());
 setTxt('annualSavings', annual.toLocaleString());
 setTxt('fteDisplay', fte);
+```
 
 }
 
@@ -180,25 +175,26 @@ el.addEventListener(‘change’, updateCalculator);
 }
 });
 
-updateCalculator(); /* init */
+updateCalculator();
 
 /* ══════════════════════════════════════
 CONTACT FORM — Success message
 ══════════════════════════════════════ */
 if (contactForm) {
-/* Check for success param on load */
 if (window.location.search.indexOf(‘success=true’) !== -1 ||
 window.location.hash.indexOf(‘success=true’) !== -1) {
 showFormSuccess();
 }
 
+```
 contactForm.addEventListener('submit', function () {
   var btn = contactForm.querySelector('button[type="submit"]');
   if (btn) {
-    btn.textContent = 'Sending…';
+    btn.textContent = 'Sending\u2026';
     btn.disabled = true;
   }
 });
+```
 
 }
 
@@ -210,14 +206,14 @@ successBanner.style.cssText =
 ‘background:#EFF6FF;border:1.5px solid #60A5FA;border-radius:12px;’ +
 ‘padding:1.5rem;text-align:center;margin-bottom:1.5rem;color:#1E40AF;font-size:.92rem;line-height:1.6;’;
 successBanner.innerHTML =
-‘<strong>✅ Message received!</strong><br/>I'll get back to you within 24 hours.’;
+‘<strong>\u2705 Message received!</strong><br/>I'll get back to you within 24 hours.’;
 wrapper.insertBefore(successBanner, wrapper.firstChild);
 }
 
 /* ══════════════════════════════════════
 ACTIVE NAV LINK on scroll
 ══════════════════════════════════════ */
-var sections = document.querySelectorAll(‘section[id]’);
+var sections   = document.querySelectorAll(‘section[id]’);
 var navAnchors = document.querySelectorAll(’.nav-links a[href^=”#”]’);
 
 function updateActiveNav() {
@@ -230,7 +226,7 @@ current = sec.id;
 });
 navAnchors.forEach(function (a) {
 var href = a.getAttribute(‘href’).replace(’#’, ‘’);
-a.style.color = (href === current) ? ‘var(blue 500)’ : ‘’;
+a.style.color = (href === current) ? ‘var(–blue-500)’ : ‘’;
 });
 }
 
