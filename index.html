@@ -13,7 +13,7 @@
 </head>
 <body>
 
-  <!-- ══ HEADER / NAV ══ -->
+  <!-- HEADER / NAV -->
 
   <header class="site-header" id="site-header">
     <div class="container nav-container">
@@ -36,30 +36,31 @@
     </div>
   </header>
 
-  <!-- ══ HERO ══ -->
+  <!-- HERO -->
 
   <section class="hero" id="home">
     <div class="hero-bg-grid" aria-hidden="true"></div>
     <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
     <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
     <div class="container hero-inner">
-      <div class="hero-content reveal-up">
-        <div class="hero-badge">
-          <span class="pulse-dot"></span>
-          Available for Remote Work
-        </div>
-        <h1 class="hero-headline">
-          Your <em>reliable</em> remote partner<br/>for healthcare admin &amp; support
-        </h1>
-        <p class="hero-sub">
-          I'm Charlyn — a Remote Operations &amp; Medical Administrative Specialist with 6+ years supporting healthcare, telecommunications, and insurance operations.
-        </p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Work With Me</a>
-          <a href="#services" class="btn btn-ghost">See My Services</a>
-        </div>
-      </div>
 
+```
+  <div class="hero-content reveal-up">
+    <div class="hero-badge">
+      <span class="pulse-dot"></span>
+      Available for Remote Work
+    </div>
+    <h1 class="hero-headline">
+      Your <em>reliable</em> remote partner<br/>for healthcare admin &amp; support
+    </h1>
+    <p class="hero-sub">
+      I'm Charlyn — a Remote Operations &amp; Medical Administrative Specialist with 6+ years supporting healthcare, telecommunications, and insurance operations.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Work With Me</a>
+      <a href="#services" class="btn btn-ghost">See My Services</a>
+    </div>
+  </div><!-- /hero-content -->
 
   <div class="hero-metrics reveal-up" style="--delay:.15s">
     <div class="metric-grid">
@@ -84,12 +85,14 @@
       <span class="avail-dot"></span>
       <p><strong>Open to new clients</strong> — Full-time or part-time remote roles welcome</p>
     </div>
-  </div>
-</div>
+  </div><!-- /hero-metrics -->
+
+</div><!-- /container hero-inner -->
+```
 
   </section>
 
-  <!-- ══ ABOUT ══ -->
+  <!-- ABOUT -->
 
   <section class="about section-pad" id="about">
     <div class="container about-grid">
@@ -112,24 +115,21 @@
           </div>
         </div>
       </aside>
-
-
-  <article class="about-body reveal-up">
-    <div class="section-eyebrow">About Me</div>
-    <h2 class="section-title">Organized, dependable, and <em>detail-obsessed</em></h2>
-    <div class="section-rule"></div>
-    <p>I started my career in healthcare operations at Accenture, where I spent over 3 years and 5 months administratively processing prior authorizations for Medicare Part D — navigating complex insurance policies, coordinating between providers and pharmacies, and ensuring patients received the coverage they needed without unnecessary delays.</p>
-    <p>After building a strong foundation in the BPO industry — handling high-volume voice, email, and chat support for major telecommunications clients at TTEC and Transcom — I transitioned into freelance medical VA work, supporting multi-site healthcare clients with scheduling, EMR management, and insurance coordination.</p>
-    <p>What sets me apart is my combination of healthcare knowledge, call center discipline, and a system-builder mindset. I'm used to fast-paced, high-accountability environments where accuracy isn't optional. I bring that same standard to every task — whether it's processing an authorization, updating a patient chart, or managing an overflowing inbox.</p>
-    <blockquote class="about-quote">
-      I'm based in the Philippines and available to work during US, AU, or UK business hours. I'm HIPAA-compliant, self-directed, and ready to become a dependable part of your team.
-    </blockquote>
-  </article>
-</div>
-
+      <article class="about-body reveal-up">
+        <div class="section-eyebrow">About Me</div>
+        <h2 class="section-title">Organized, dependable, and <em>detail-obsessed</em></h2>
+        <div class="section-rule"></div>
+        <p>I started my career in healthcare operations at Accenture, where I spent over 3 years and 5 months administratively processing prior authorizations for Medicare Part D — navigating complex insurance policies, coordinating between providers and pharmacies, and ensuring patients received the coverage they needed without unnecessary delays.</p>
+        <p>After building a strong foundation in the BPO industry — handling high-volume voice, email, and chat support for major telecommunications clients at TTEC and Transcom — I transitioned into freelance medical VA work, supporting multi-site healthcare clients with scheduling, EMR management, and insurance coordination.</p>
+        <p>What sets me apart is my combination of healthcare knowledge, call center discipline, and a system-builder mindset. I'm used to fast-paced, high-accountability environments where accuracy isn't optional. I bring that same standard to every task — whether it's processing an authorization, updating a patient chart, or managing an overflowing inbox.</p>
+        <blockquote class="about-quote">
+          I'm based in the Philippines and available to work during US, AU, or UK business hours. I'm HIPAA-compliant, self-directed, and ready to become a dependable part of your team.
+        </blockquote>
+      </article>
+    </div>
   </section>
 
-  <!-- ══ SERVICES ══ -->
+  <!-- SERVICES -->
 
   <section class="services section-pad" id="services">
     <div class="container">
@@ -179,7 +179,7 @@
     </div>
   </section>
 
-  <!-- ══ SKILLS ══ -->
+  <!-- SKILLS -->
 
   <section class="skills section-pad" id="skills">
     <div class="container">
@@ -237,7 +237,7 @@
     </div>
   </section>
 
-  <!-- ══ TOOLS ══ -->
+  <!-- TOOLS -->
 
   <section class="tools section-pad">
     <div class="container">
@@ -259,7 +259,7 @@
     </div>
   </section>
 
-  <!-- ══ EXPERTISE ══ -->
+  <!-- EXPERTISE -->
 
   <section class="expertise section-pad" id="expertise">
     <div class="container">
@@ -269,53 +269,49 @@
         <div class="section-rule"></div>
         <p class="section-sub">I combine deep healthcare operations knowledge with legitimate web development and automation skills — not a generalist VA or a developer trying to understand healthcare.</p>
       </div>
-
-  <div class="expertise-pillars">
-    <article class="pillar-card pillar-healthcare reveal-up" style="--delay:.05s">
-      <span class="pillar-icon">🏥</span>
-      <h3 class="pillar-title">Healthcare Operations</h3>
-      <p class="pillar-sub">Clinical &amp; Admin Support</p>
-      <ul class="pillar-list">
-        <li><span class="check">✓</span><span><strong>Prior Authorization Workflows:</strong> Medicare Part D, payer guidelines, compliance</span></li>
-        <li><span class="check">✓</span><span><strong>EMR/EHR Systems:</strong> Tebra, Practice Fusion, chart management, patient data integrity</span></li>
-        <li><span class="check">✓</span><span><strong>Insurance Operations:</strong> Eligibility verification, benefits summaries, claims coordination</span></li>
-        <li><span class="check">✓</span><span><strong>HIPAA Compliance:</strong> Data handling, security, patient privacy best practices</span></li>
-        <li><span class="check">✓</span><span><strong>Patient Coordination:</strong> Scheduling, follow-up, communication with empathy</span></li>
-        <li><span class="check">✓</span><span><strong>BPO Excellence:</strong> High-volume processing, accuracy standards, quality control</span></li>
-      </ul>
-    </article>
-
-    <article class="pillar-card pillar-tech reveal-up" style="--delay:.15s">
-      <span class="pillar-icon">💻</span>
-      <h3 class="pillar-title">Web Development &amp; Automation</h3>
-      <p class="pillar-sub">Hands-On Builder, Not Theoretical</p>
-      <ul class="pillar-list">
-        <li><span class="check">✓</span><span><strong>Frontend Development:</strong> HTML/CSS/JavaScript, responsive design, accessibility</span></li>
-        <li><span class="check">✓</span><span><strong>CMS &amp; Static Sites:</strong> Pages CMS, Decap CMS, Markdown-based content management</span></li>
-        <li><span class="check">✓</span><span><strong>Deployment &amp; Infrastructure:</strong> Cloudflare Pages, GitHub, version control, CI/CD</span></li>
-        <li><span class="check">✓</span><span><strong>Forms &amp; Data Capture:</strong> Formspree, custom form handling, email integration</span></li>
-        <li><span class="check">✓</span><span><strong>Workflow Automation:</strong> AI tools, scripting, productivity optimization</span></li>
-        <li><span class="check">✓</span><span><strong>Performance &amp; SEO:</strong> Site optimization, accessibility standards, user experience</span></li>
-      </ul>
-    </article>
-  </div>
-
-  <div class="expertise-intersection reveal-up">
-    <span class="intersection-emoji">🎯</span>
-    <h3>Your Competitive Edge</h3>
-    <p>When you hire me, you're not choosing between a VA who codes or a developer who understands healthcare. You're getting someone who deeply understands healthcare operations <em>and</em> can build systems to optimize them.</p>
-    <div class="intersection-badges">
-      <span class="ibadge">End-to-End Healthcare Solutions</span>
-      <span class="ibadge">Automation-First Mindset</span>
-      <span class="ibadge">Systems Thinking + Healthcare Compliance</span>
-      <span class="ibadge">Proven Execution</span>
+      <div class="expertise-pillars">
+        <article class="pillar-card pillar-healthcare reveal-up" style="--delay:.05s">
+          <span class="pillar-icon">🏥</span>
+          <h3 class="pillar-title">Healthcare Operations</h3>
+          <p class="pillar-sub">Clinical &amp; Admin Support</p>
+          <ul class="pillar-list">
+            <li><span class="check">✓</span><span><strong>Prior Authorization Workflows:</strong> Medicare Part D, payer guidelines, compliance</span></li>
+            <li><span class="check">✓</span><span><strong>EMR/EHR Systems:</strong> Tebra, Practice Fusion, chart management, patient data integrity</span></li>
+            <li><span class="check">✓</span><span><strong>Insurance Operations:</strong> Eligibility verification, benefits summaries, claims coordination</span></li>
+            <li><span class="check">✓</span><span><strong>HIPAA Compliance:</strong> Data handling, security, patient privacy best practices</span></li>
+            <li><span class="check">✓</span><span><strong>Patient Coordination:</strong> Scheduling, follow-up, communication with empathy</span></li>
+            <li><span class="check">✓</span><span><strong>BPO Excellence:</strong> High-volume processing, accuracy standards, quality control</span></li>
+          </ul>
+        </article>
+        <article class="pillar-card pillar-tech reveal-up" style="--delay:.15s">
+          <span class="pillar-icon">💻</span>
+          <h3 class="pillar-title">Web Development &amp; Automation</h3>
+          <p class="pillar-sub">Hands-On Builder, Not Theoretical</p>
+          <ul class="pillar-list">
+            <li><span class="check">✓</span><span><strong>Frontend Development:</strong> HTML/CSS/JavaScript, responsive design, accessibility</span></li>
+            <li><span class="check">✓</span><span><strong>CMS &amp; Static Sites:</strong> Pages CMS, Decap CMS, Markdown-based content management</span></li>
+            <li><span class="check">✓</span><span><strong>Deployment &amp; Infrastructure:</strong> Cloudflare Pages, GitHub, version control, CI/CD</span></li>
+            <li><span class="check">✓</span><span><strong>Forms &amp; Data Capture:</strong> Formspree, custom form handling, email integration</span></li>
+            <li><span class="check">✓</span><span><strong>Workflow Automation:</strong> AI tools, scripting, productivity optimization</span></li>
+            <li><span class="check">✓</span><span><strong>Performance &amp; SEO:</strong> Site optimization, accessibility standards, user experience</span></li>
+          </ul>
+        </article>
+      </div>
+      <div class="expertise-intersection reveal-up">
+        <span class="intersection-emoji">🎯</span>
+        <h3>Your Competitive Edge</h3>
+        <p>When you hire me, you're not choosing between a VA who codes or a developer who understands healthcare. You're getting someone who deeply understands healthcare operations <em>and</em> can build systems to optimize them.</p>
+        <div class="intersection-badges">
+          <span class="ibadge">End-to-End Healthcare Solutions</span>
+          <span class="ibadge">Automation-First Mindset</span>
+          <span class="ibadge">Systems Thinking + Healthcare Compliance</span>
+          <span class="ibadge">Proven Execution</span>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
   </section>
 
-  <!-- ══ PORTFOLIO ══ -->
+  <!-- PORTFOLIO -->
 
   <section class="portfolio section-pad" id="portfolio">
     <div class="container">
@@ -343,48 +339,45 @@
             <a href="https://amoph.org" target="_blank" rel="noopener noreferrer" class="portfolio-link">🌐 View Live</a>
           </div>
         </article>
-
-    <article class="portfolio-card reveal-up" style="--delay:.12s">
-      <div class="portfolio-card-header">
-        <h3 class="portfolio-title">AMOPH Community Blog</h3>
-        <span class="portfolio-url">blog.amoph.org</span>
+        <article class="portfolio-card reveal-up" style="--delay:.12s">
+          <div class="portfolio-card-header">
+            <h3 class="portfolio-title">AMOPH Community Blog</h3>
+            <span class="portfolio-url">blog.amoph.org</span>
+          </div>
+          <p class="portfolio-desc">Dedicated blogging platform for nonprofit community engagement. Custom-built using Eleventy (11ty) with color-coded branding, optimized for mobile viewing, and designed for ease-of-use by non-technical content creators.</p>
+          <div class="portfolio-tags">
+            <span class="ptag">Eleventy (11ty)</span>
+            <span class="ptag">Custom CSS</span>
+            <span class="ptag">Brand Design</span>
+            <span class="ptag">Content Strategy</span>
+            <span class="ptag">Mobile Optimized</span>
+          </div>
+          <div class="portfolio-links">
+            <a href="https://blog.amoph.org" target="_blank" rel="noopener noreferrer" class="portfolio-link">📝 View Blog</a>
+          </div>
+        </article>
+        <article class="portfolio-card reveal-up" style="--delay:.19s">
+          <div class="portfolio-card-header">
+            <h3 class="portfolio-title">Professional Portfolio</h3>
+            <span class="portfolio-url">This Website</span>
+          </div>
+          <p class="portfolio-desc">Custom-built portfolio showcasing healthcare &amp; IT expertise. Features smooth animations, mobile-responsive design, interactive elements, sticky CTA, and optimized for lead generation and search visibility.</p>
+          <div class="portfolio-tags">
+            <span class="ptag">HTML/CSS/JS</span>
+            <span class="ptag">Responsive</span>
+            <span class="ptag">UX Optimized</span>
+            <span class="ptag">Accessibility</span>
+            <span class="ptag">Performance</span>
+          </div>
+          <div class="portfolio-links">
+            <a href="#home" class="portfolio-link">🏠 View Site</a>
+          </div>
+        </article>
       </div>
-      <p class="portfolio-desc">Dedicated blogging platform for nonprofit community engagement. Custom-built using Eleventy (11ty) with color-coded branding, optimized for mobile viewing, and designed for ease-of-use by non-technical content creators.</p>
-      <div class="portfolio-tags">
-        <span class="ptag">Eleventy (11ty)</span>
-        <span class="ptag">Custom CSS</span>
-        <span class="ptag">Brand Design</span>
-        <span class="ptag">Content Strategy</span>
-        <span class="ptag">Mobile Optimized</span>
-      </div>
-      <div class="portfolio-links">
-        <a href="https://blog.amoph.org" target="_blank" rel="noopener noreferrer" class="portfolio-link">📝 View Blog</a>
-      </div>
-    </article>
-
-    <article class="portfolio-card reveal-up" style="--delay:.19s">
-      <div class="portfolio-card-header">
-        <h3 class="portfolio-title">Professional Portfolio</h3>
-        <span class="portfolio-url">This Website</span>
-      </div>
-      <p class="portfolio-desc">Custom-built portfolio showcasing healthcare &amp; IT expertise. Features smooth animations, mobile-responsive design, interactive elements, sticky CTA, and optimized for lead generation and search visibility.</p>
-      <div class="portfolio-tags">
-        <span class="ptag">HTML/CSS/JS</span>
-        <span class="ptag">Responsive</span>
-        <span class="ptag">UX Optimized</span>
-        <span class="ptag">Accessibility</span>
-        <span class="ptag">Performance</span>
-      </div>
-      <div class="portfolio-links">
-        <a href="#home" class="portfolio-link">🏠 View Site</a>
-      </div>
-    </article>
-  </div>
-</div>
-
+    </div>
   </section>
 
-  <!-- ══ EXPERIENCE ══ -->
+  <!-- EXPERIENCE -->
 
   <section class="experience section-pad" id="experience">
     <div class="container">
@@ -394,64 +387,59 @@
         <div class="section-rule"></div>
       </div>
       <div class="exp-timeline">
-
-    <article class="exp-card reveal-up" style="--delay:.05s">
-      <div class="exp-meta">
-        <div class="exp-timeline-dot"></div>
-        <h3 class="exp-company">Accenture</h3>
-        <p class="exp-role">Business Process Associate — Prior Authorizations</p>
-        <time class="exp-dates">Aug 2018 – Dec 2021 · Manila</time>
-        <span class="exp-badge">Healthcare BPO</span>
+        <article class="exp-card reveal-up" style="--delay:.05s">
+          <div class="exp-meta">
+            <div class="exp-timeline-dot"></div>
+            <h3 class="exp-company">Accenture</h3>
+            <p class="exp-role">Business Process Associate — Prior Authorizations</p>
+            <time class="exp-dates">Aug 2018 – Dec 2021 · Manila</time>
+            <span class="exp-badge">Healthcare BPO</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Processed high-volume Part D prior authorizations in compliance with Medicare and payer-specific guidelines.</li>
+            <li>Verified eligibility and prescription coverage; coordinated with providers, pharmacies, and members for timely approvals.</li>
+            <li>Prepared medical, dental, and vision benefit summaries per client elections and state mandates.</li>
+            <li>Managed health insurance accounts — creating and updating member information, resolving billing and claims inquiries.</li>
+            <li>Maintained strict HIPAA compliance while handling sensitive patient and insurance data across interconnected systems.</li>
+          </ul>
+        </article>
+        <article class="exp-card reveal-up" style="--delay:.1s">
+          <div class="exp-meta">
+            <div class="exp-timeline-dot"></div>
+            <h3 class="exp-company">Freelance</h3>
+            <p class="exp-role">Medical Virtual Assistant</p>
+            <time class="exp-dates">Mar 2025 – Jul 2025 · Remote</time>
+            <span class="exp-badge">Healthcare VA</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Coordinated patient appointments, procedures, and follow-ups across multiple clinic sites with zero scheduling gaps.</li>
+            <li>Processed insurance eligibility, benefits checks, and prior authorizations — consistently meeting same-day turnaround.</li>
+            <li>Managed fax and email intake queues for referrals, insurance documents, and patient requests with same-day processing.</li>
+            <li>Maintained accurate, up-to-date EMR/EHR records in Tebra and Practice Fusion, including clinical notes and pre-visit prep.</li>
+            <li>Resolved billing and claims concerns by coordinating between patients, payers, and administrative staff.</li>
+            <li>Delivered empathetic patient communication via phone, email, and messaging — maintaining full HIPAA compliance throughout.</li>
+          </ul>
+        </article>
+        <article class="exp-card reveal-up" style="--delay:.15s">
+          <div class="exp-meta">
+            <div class="exp-timeline-dot"></div>
+            <h3 class="exp-company">TTEC</h3>
+            <p class="exp-role">Technical Customer Support Rep</p>
+            <time class="exp-dates">Jun 2022 – Sep 2024 · Philippines</time>
+            <span class="exp-badge">BPO / Telecom</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Handled high-volume inbound calls for a major US telecommunications client — resolving billing, account, and technical issues.</li>
+            <li>Simplified complex technical issues into clear, step-by-step guidance, reducing repeat contacts.</li>
+            <li>Processed account adjustments and payments accurately while managing multiple tasks simultaneously.</li>
+            <li>Supported customer retention and upsell initiatives, contributing to team sales targets.</li>
+          </ul>
+        </article>
       </div>
-      <ul class="exp-bullets">
-        <li>Processed high-volume Part D prior authorizations in compliance with Medicare and payer-specific guidelines.</li>
-        <li>Verified eligibility and prescription coverage; coordinated with providers, pharmacies, and members for timely approvals.</li>
-        <li>Prepared medical, dental, and vision benefit summaries per client elections and state mandates.</li>
-        <li>Managed health insurance accounts — creating and updating member information, resolving billing and claims inquiries.</li>
-        <li>Maintained strict HIPAA compliance while handling sensitive patient and insurance data across interconnected systems.</li>
-      </ul>
-    </article>
-
-    <article class="exp-card reveal-up" style="--delay:.1s">
-      <div class="exp-meta">
-        <div class="exp-timeline-dot"></div>
-        <h3 class="exp-company">Freelance</h3>
-        <p class="exp-role">Medical Virtual Assistant</p>
-        <time class="exp-dates">Mar 2025 – Jul 2025 · Remote</time>
-        <span class="exp-badge">Healthcare VA</span>
-      </div>
-      <ul class="exp-bullets">
-        <li>Coordinated patient appointments, procedures, and follow-ups across multiple clinic sites with zero scheduling gaps.</li>
-        <li>Processed insurance eligibility, benefits checks, and prior authorizations — consistently meeting same-day turnaround.</li>
-        <li>Managed fax and email intake queues for referrals, insurance documents, and patient requests with same-day processing.</li>
-        <li>Maintained accurate, up-to-date EMR/EHR records in Tebra and Practice Fusion, including clinical notes and pre-visit prep.</li>
-        <li>Resolved billing and claims concerns by coordinating between patients, payers, and administrative staff.</li>
-        <li>Delivered empathetic patient communication via phone, email, and messaging — maintaining full HIPAA compliance throughout.</li>
-      </ul>
-    </article>
-
-    <article class="exp-card reveal-up" style="--delay:.15s">
-      <div class="exp-meta">
-        <div class="exp-timeline-dot"></div>
-        <h3 class="exp-company">TTEC</h3>
-        <p class="exp-role">Technical Customer Support Rep</p>
-        <time class="exp-dates">Jun 2022 – Sep 2024 · Philippines</time>
-        <span class="exp-badge">BPO / Telecom</span>
-      </div>
-      <ul class="exp-bullets">
-        <li>Handled high-volume inbound calls for a major US telecommunications client — resolving billing, account, and technical issues.</li>
-        <li>Simplified complex technical issues into clear, step-by-step guidance, reducing repeat contacts.</li>
-        <li>Processed account adjustments and payments accurately while managing multiple tasks simultaneously.</li>
-        <li>Supported customer retention and upsell initiatives, contributing to team sales targets.</li>
-      </ul>
-    </article>
-
-  </div>
-</div>
-
+    </div>
   </section>
 
-  <!-- ══ WORKFLOWS ══ -->
+  <!-- WORKFLOWS -->
 
   <section class="workflows section-pad" id="workflows">
     <div class="container">
@@ -462,62 +450,56 @@
         <p class="section-sub">These examples demonstrate my typical workflows — the same systems and processes I apply when working with actual clients.</p>
       </div>
       <div class="workflow-grid">
-
-    <article class="workflow-card reveal-up" style="--delay:.05s">
-      <div class="workflow-header">
-        <div class="workflow-num">WF-01</div>
-        <h3 class="workflow-title">Prior Authorization Request</h3>
+        <article class="workflow-card reveal-up" style="--delay:.05s">
+          <div class="workflow-header">
+            <div class="workflow-num">WF-01</div>
+            <h3 class="workflow-title">Prior Authorization Request</h3>
+          </div>
+          <ol class="workflow-steps">
+            <li><span class="step-n">1</span><span>Receive request via fax/email from provider office or pharmacy.</span></li>
+            <li><span class="step-n">2</span><span>Verify patient eligibility and prescription/procedure coverage in the EHR system.</span></li>
+            <li><span class="step-n">3</span><span>Review payer-specific guidelines and gather required clinical documentation.</span></li>
+            <li><span class="step-n">4</span><span>Submit auth request through payer portal or assigned system; log in EMR.</span></li>
+            <li><span class="step-n">5</span><span>Follow up with payer on pending or denied requests; notify provider of outcome.</span></li>
+            <li><span class="step-n">6</span><span>Update patient record with approval details, dates, and authorization number.</span></li>
+          </ol>
+        </article>
+        <article class="workflow-card reveal-up" style="--delay:.12s">
+          <div class="workflow-header">
+            <div class="workflow-num">WF-02</div>
+            <h3 class="workflow-title">Patient Scheduling &amp; Follow-Up</h3>
+          </div>
+          <ol class="workflow-steps">
+            <li><span class="step-n">1</span><span>Receive appointment request via phone, email, or online form.</span></li>
+            <li><span class="step-n">2</span><span>Confirm patient's insurance, provider preference, and urgency level.</span></li>
+            <li><span class="step-n">3</span><span>Check provider availability in the scheduling system and book the appointment.</span></li>
+            <li><span class="step-n">4</span><span>Send confirmation with date, time, location, and preparation instructions.</span></li>
+            <li><span class="step-n">5</span><span>Trigger reminder 48 hours prior via phone or automated messaging platform.</span></li>
+            <li><span class="step-n">6</span><span>Document all interactions and update status in the EMR system accordingly.</span></li>
+          </ol>
+        </article>
+        <article class="workflow-card reveal-up" style="--delay:.19s">
+          <div class="workflow-header">
+            <div class="workflow-num">WF-03</div>
+            <h3 class="workflow-title">Inbox &amp; Task Management</h3>
+          </div>
+          <ol class="workflow-steps">
+            <li><span class="step-n">1</span><span>Sort incoming emails and faxes into categories: Urgent, Action Required, FYI, Archive.</span></li>
+            <li><span class="step-n">2</span><span>Flag and escalate time-sensitive items (auth deadlines, patient callbacks) immediately.</span></li>
+            <li><span class="step-n">3</span><span>Process routine requests (eligibility checks, record updates) in batches for efficiency.</span></li>
+            <li><span class="step-n">4</span><span>Log all completed tasks in the shared task tracker with status and timestamps.</span></li>
+            <li><span class="step-n">5</span><span>Send end-of-day summary to supervisor: tasks completed, pending items, blockers.</span></li>
+            <li><span class="step-n">6</span><span>Maintain zero-inbox standard — all items resolved or escalated before close of day.</span></li>
+          </ol>
+        </article>
       </div>
-      <ol class="workflow-steps">
-        <li><span class="step-n">1</span><span>Receive request via fax/email from provider office or pharmacy.</span></li>
-        <li><span class="step-n">2</span><span>Verify patient eligibility and prescription/procedure coverage in the EHR system.</span></li>
-        <li><span class="step-n">3</span><span>Review payer-specific guidelines and gather required clinical documentation.</span></li>
-        <li><span class="step-n">4</span><span>Submit auth request through payer portal or assigned system; log in EMR.</span></li>
-        <li><span class="step-n">5</span><span>Follow up with payer on pending or denied requests; notify provider of outcome.</span></li>
-        <li><span class="step-n">6</span><span>Update patient record with approval details, dates, and authorization number.</span></li>
-      </ol>
-    </article>
-
-    <article class="workflow-card reveal-up" style="--delay:.12s">
-      <div class="workflow-header">
-        <div class="workflow-num">WF-02</div>
-        <h3 class="workflow-title">Patient Scheduling &amp; Follow-Up</h3>
+      <div class="reveal-up" style="text-align:center;margin-top:2.5rem">
+        <a href="sections/workflows.html" class="btn btn-outline">View All 10 Workflows &rarr;</a>
       </div>
-      <ol class="workflow-steps">
-        <li><span class="step-n">1</span><span>Receive appointment request via phone, email, or online form.</span></li>
-        <li><span class="step-n">2</span><span>Confirm patient's insurance, provider preference, and urgency level.</span></li>
-        <li><span class="step-n">3</span><span>Check provider availability in the scheduling system and book the appointment.</span></li>
-        <li><span class="step-n">4</span><span>Send confirmation with date, time, location, and preparation instructions.</span></li>
-        <li><span class="step-n">5</span><span>Trigger reminder 48 hours prior via phone or automated messaging platform.</span></li>
-        <li><span class="step-n">6</span><span>Document all interactions and update status in the EMR system accordingly.</span></li>
-      </ol>
-    </article>
-
-    <article class="workflow-card reveal-up" style="--delay:.19s">
-      <div class="workflow-header">
-        <div class="workflow-num">WF-03</div>
-        <h3 class="workflow-title">Inbox &amp; Task Management</h3>
-      </div>
-      <ol class="workflow-steps">
-        <li><span class="step-n">1</span><span>Sort incoming emails and faxes into categories: Urgent, Action Required, FYI, Archive.</span></li>
-        <li><span class="step-n">2</span><span>Flag and escalate time-sensitive items (auth deadlines, patient callbacks) immediately.</span></li>
-        <li><span class="step-n">3</span><span>Process routine requests (eligibility checks, record updates) in batches for efficiency.</span></li>
-        <li><span class="step-n">4</span><span>Log all completed tasks in the shared task tracker with status and timestamps.</span></li>
-        <li><span class="step-n">5</span><span>Send end-of-day summary to supervisor: tasks completed, pending items, blockers.</span></li>
-        <li><span class="step-n">6</span><span>Maintain zero-inbox standard — all items resolved or escalated before close of day.</span></li>
-      </ol>
-    </article>
-
-  </div>
-  <div class="reveal-up" style="text-align:center;margin-top:2.5rem">
-    <a href="sections/workflows.html" class="btn btn-outline">View All 10 Workflows →</a>
-  </div>
-</div>
-
-
+    </div>
   </section>
 
-  <!-- ══ WHY ══ -->
+  <!-- WHY -->
 
   <section class="why section-pad">
     <div class="container">
@@ -561,7 +543,7 @@
     </div>
   </section>
 
-  <!-- ══ SAVINGS CALCULATOR ══ -->
+  <!-- SAVINGS CALCULATOR -->
 
   <section class="optimizer section-pad" id="optimizer">
     <div class="container">
@@ -571,80 +553,74 @@
         <div class="section-rule"></div>
         <p class="section-sub">Adjust the inputs below to see exactly how much time and money you could save by delegating admin work to a remote healthcare specialist.</p>
       </div>
-
-  <div class="optimizer-widget reveal-up">
-    <div class="optimizer-inputs">
-      <h3 class="optimizer-subtitle">Your current workflow</h3>
-      <div class="optimizer-fields">
-        <div class="opt-field">
-          <label for="patientVolume">Patient volume (per week)</label>
-          <input type="range" min="20" max="500" value="150" id="patientVolume" />
-          <span class="opt-val"><span id="patientDisplay">150</span> patients</span>
-        </div>
-        <div class="opt-field">
-          <label for="insuranceTypes">Insurance types managed</label>
-          <select id="insuranceTypes">
-            <option value="3">3–5 payers</option>
-            <option value="6">6–10 payers</option>
-            <option value="11">11+ payers</option>
-          </select>
-        </div>
-        <div class="opt-field">
-          <label for="priorAuths">Prior auth requests (weekly)</label>
-          <input type="range" min="5" max="100" value="40" id="priorAuths" />
-          <span class="opt-val"><span id="priorAuthsDisplay">40</span> requests/week</span>
-        </div>
-        <div class="opt-field">
-          <label for="adminHours">Manual admin hours (weekly)</label>
-          <input type="range" min="5" max="100" value="40" id="adminHours" />
-          <span class="opt-val"><span id="adminHoursDisplay">40</span> hours/week</span>
-        </div>
-        <div class="opt-field opt-field-full">
-          <label for="hourlyRate">Average staff hourly rate</label>
-          <div class="rate-input-wrap">
-            <span class="rate-symbol">$</span>
-            <input type="number" min="20" max="100" value="35" id="hourlyRate" />
-            <span class="rate-label">/hour</span>
+      <div class="optimizer-widget reveal-up">
+        <div class="optimizer-inputs">
+          <h3 class="optimizer-subtitle">Your current workflow</h3>
+          <div class="optimizer-fields">
+            <div class="opt-field">
+              <label for="patientVolume">Patient volume (per week)</label>
+              <input type="range" min="20" max="500" value="150" id="patientVolume" />
+              <span class="opt-val"><span id="patientDisplay">150</span> patients</span>
+            </div>
+            <div class="opt-field">
+              <label for="insuranceTypes">Insurance types managed</label>
+              <select id="insuranceTypes">
+                <option value="3">3–5 payers</option>
+                <option value="6">6–10 payers</option>
+                <option value="11">11+ payers</option>
+              </select>
+            </div>
+            <div class="opt-field">
+              <label for="priorAuths">Prior auth requests (weekly)</label>
+              <input type="range" min="5" max="100" value="40" id="priorAuths" />
+              <span class="opt-val"><span id="priorAuthsDisplay">40</span> requests/week</span>
+            </div>
+            <div class="opt-field">
+              <label for="adminHours">Manual admin hours (weekly)</label>
+              <input type="range" min="5" max="100" value="40" id="adminHours" />
+              <span class="opt-val"><span id="adminHoursDisplay">40</span> hours/week</span>
+            </div>
+            <div class="opt-field opt-field-full">
+              <label for="hourlyRate">Average staff hourly rate</label>
+              <div class="rate-input-wrap">
+                <span class="rate-symbol">$</span>
+                <input type="number" min="20" max="100" value="35" id="hourlyRate" />
+                <span class="rate-label">/hour</span>
+              </div>
+            </div>
           </div>
         </div>
+        <div class="optimizer-results">
+          <div class="result-card">
+            <p class="result-label">Hours freed / week</p>
+            <p class="result-num"><span id="hoursSaved">20</span>h</p>
+          </div>
+          <div class="result-card">
+            <p class="result-label">Monthly savings</p>
+            <p class="result-num">$<span id="monthlySavings">3,500</span></p>
+          </div>
+          <div class="result-card">
+            <p class="result-label">Annual savings</p>
+            <p class="result-num">$<span id="annualSavings">42,000</span></p>
+          </div>
+        </div>
+        <div class="optimizer-note">
+          <p class="opt-note-title">What this means</p>
+          <ul>
+            <li>You could <strong>eliminate manual admin bottlenecks</strong></li>
+            <li>Free up <strong><span id="fteDisplay">0.5</span> FTE</strong> for clinical work</li>
+            <li><strong>Faster prior auth turnaround</strong> = better patient outcomes</li>
+            <li>More time for your team to focus on <strong>revenue-generating activities</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="reveal-up" style="text-align:center;margin-top:2.5rem">
+        <a href="#contact" class="btn btn-primary">Let's optimize your workflow</a>
       </div>
     </div>
-
-    <div class="optimizer-results">
-      <div class="result-card">
-        <p class="result-label">Hours freed / week</p>
-        <p class="result-num"><span id="hoursSaved">20</span>h</p>
-      </div>
-      <div class="result-card">
-        <p class="result-label">Monthly savings</p>
-        <p class="result-num">$<span id="monthlySavings">3,500</span></p>
-      </div>
-      <div class="result-card">
-        <p class="result-label">Annual savings</p>
-        <p class="result-num">$<span id="annualSavings">42,000</span></p>
-      </div>
-    </div>
-
-    <div class="optimizer-note">
-      <p class="opt-note-title">What this means</p>
-      <ul>
-        <li>You could <strong>eliminate manual admin bottlenecks</strong></li>
-        <li>Free up <strong><span id="fteDisplay">0.5</span> FTE</strong> for clinical work</li>
-        <li><strong>Faster prior auth turnaround</strong> = better patient outcomes</li>
-        <li>More time for your team to focus on <strong>revenue-generating activities</strong></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="reveal-up" style="text-align:center;margin-top:2.5rem">
-    <a href="#contact" class="btn btn-primary">Let's optimize your workflow</a>
-  </div>
-</div>
-
-
   </section>
 
-  <!-- ══ CONTACT ══ -->
+  <!-- CONTACT -->
 
   <section class="contact section-pad" id="contact">
     <div class="container">
@@ -654,116 +630,100 @@
         <div class="section-rule"></div>
         <p class="contact-sub">I'm currently open to remote roles — full-time, part-time, or project-based. Fill out the form below and I'll get back to you within 24 hours.</p>
       </div>
-
-  <div class="contact-form-wrap reveal-up">
-    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="contactForm">
-      <input type="hidden" name="access_key" value="b1b11d70-c330-4cb2-b45f-1ff51e4dd233" />
-      <input type="hidden" name="subject" value="New Inquiry from Portfolio" />
-      <input type="hidden" name="from_name" value="Charlyn Mae Teodoro Portfolio" />
-      <input type="hidden" name="redirect" value="https://charlynmaeteodoro.pages.dev/#contact?success=true" />
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="name">Full Name *</label>
-          <input type="text" id="name" name="name" required placeholder="Your name" />
+      <div class="contact-form-wrap reveal-up">
+        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="contactForm">
+          <input type="hidden" name="access_key" value="b1b11d70-c330-4cb2-b45f-1ff51e4dd233" />
+          <input type="hidden" name="subject" value="New Inquiry from Portfolio" />
+          <input type="hidden" name="from_name" value="Charlyn Mae Teodoro Portfolio" />
+          <input type="hidden" name="redirect" value="https://charlynmaeteodoro.pages.dev/#contact?success=true" />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Your name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Work Email *</label>
+              <input type="email" id="email" name="email" required placeholder="you@company.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="organization">Organization / Clinic Name</label>
+            <input type="text" id="organization" name="organization" placeholder="Optional" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="businessType">Business Type *</label>
+              <select id="businessType" name="businessType" required>
+                <option value="">Select one...</option>
+                <option value="clinic">Medical Clinic / Practice</option>
+                <option value="bpo">BPO / Call Center</option>
+                <option value="hospital">Hospital / Health System</option>
+                <option value="healthcare-org">Healthcare Organization</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="needsHelp">What do you need help with? *</label>
+              <select id="needsHelp" name="needsHelp" required>
+                <option value="">Select one...</option>
+                <option value="prior-auth">Prior Authorization Processing</option>
+                <option value="admin-support">General Admin Support</option>
+                <option value="patient-coordination">Patient Scheduling &amp; Coordination</option>
+                <option value="web-development">Web Development / Website Help</option>
+                <option value="automation">Workflow Automation</option>
+                <option value="multiple">Multiple Services</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="challenge">What's your biggest challenge right now? *</label>
+            <textarea id="challenge" name="challenge" rows="4" required placeholder="E.g., Prior auth backlog, too much manual admin work, need help scaling..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="timeline">How soon do you need help?</label>
+              <select id="timeline" name="timeline">
+                <option value="">Select one...</option>
+                <option value="urgent">ASAP (within 1–2 weeks)</option>
+                <option value="soon">Soon (within 1 month)</option>
+                <option value="exploring">Just exploring options</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Anything else you'd like me to know?</label>
+            <textarea id="message" name="message" rows="3" placeholder="Optional: Additional context, questions, etc."></textarea>
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" id="contact-consent" name="consent" required />
+            <label for="contact-consent">I'm open to a consultation call to discuss my needs</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Send My Inquiry</button>
+          <p class="form-footer-note">I'll review your submission and reach out within 24 hours.<br/>Based in Iloilo, Philippines · Available US, AU &amp; UK time zones</p>
+        </form>
+        <div class="contact-alt">
+          <p class="contact-alt-label">Prefer to reach out directly?</p>
+          <div class="contact-direct-links">
+            <a href="mailto:charlynmaeteodoro@email.com" class="direct-link">📧 Email</a>
+            <a href="tel:+639283485028" class="direct-link">📞 Phone</a>
+            <a href="https://www.linkedin.com/in/charlynmaeteodoro/" target="_blank" rel="noopener noreferrer" class="direct-link">🔗 LinkedIn</a>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="email">Work Email *</label>
-          <input type="email" id="email" name="email" required placeholder="you@company.com" />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="organization">Organization / Clinic Name</label>
-        <input type="text" id="organization" name="organization" placeholder="Optional" />
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="businessType">Business Type *</label>
-          <select id="businessType" name="businessType" required>
-            <option value="">Select one...</option>
-            <option value="clinic">Medical Clinic / Practice</option>
-            <option value="bpo">BPO / Call Center</option>
-            <option value="hospital">Hospital / Health System</option>
-            <option value="healthcare-org">Healthcare Organization</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="needsHelp">What do you need help with? *</label>
-          <select id="needsHelp" name="needsHelp" required>
-            <option value="">Select one...</option>
-            <option value="prior-auth">Prior Authorization Processing</option>
-            <option value="admin-support">General Admin Support</option>
-            <option value="patient-coordination">Patient Scheduling &amp; Coordination</option>
-            <option value="web-development">Web Development / Website Help</option>
-            <option value="automation">Workflow Automation</option>
-            <option value="multiple">Multiple Services</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="challenge">What's your biggest challenge right now? *</label>
-        <textarea id="challenge" name="challenge" rows="4" required placeholder="E.g., Prior auth backlog, too much manual admin work, need help scaling..."></textarea>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="timeline">How soon do you need help?</label>
-          <select id="timeline" name="timeline">
-            <option value="">Select one...</option>
-            <option value="urgent">ASAP (within 1–2 weeks)</option>
-            <option value="soon">Soon (within 1 month)</option>
-            <option value="exploring">Just exploring options</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="message">Anything else you'd like me to know?</label>
-        <textarea id="message" name="message" rows="3" placeholder="Optional: Additional context, questions, etc."></textarea>
-      </div>
-
-      <div class="form-group form-check">
-        <input type="checkbox" id="contact-consent" name="consent" required />
-        <label for="contact-consent">I'm open to a consultation call to discuss my needs</label>
-      </div>
-
-      <button type="submit" class="btn btn-primary btn-block">Send My Inquiry</button>
-      <p class="form-footer-note">I'll review your submission and reach out within 24 hours.<br/>Based in Iloilo, Philippines · Available US, AU &amp; UK time zones</p>
-    </form>
-
-    <div class="contact-alt">
-      <p class="contact-alt-label">Prefer to reach out directly?</p>
-      <div class="contact-direct-links">
-        <a href="mailto:charlynmaeteodoro@email.com" class="direct-link">📧 Email</a>
-        <a href="tel:+639283485028" class="direct-link">📞 Phone</a>
-        <a href="https://www.linkedin.com/in/charlynmaeteodoro/" target="_blank" rel="noopener noreferrer" class="direct-link">🔗 LinkedIn</a>
       </div>
     </div>
-  </div>
-</div>
-
   </section>
 
-  <!-- ══ FOOTER ══ -->
+  <!-- FOOTER -->
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p class="footer-copy">© <span id="footer-year"></span> Charlyn Mae Teodoro · All rights reserved.</p>
-      <a href="#home" class="footer-top">Back to Top ↑</a>
+      <p class="footer-copy">&copy; <span id="footer-year"></span> Charlyn Mae Teodoro &middot; All rights reserved.</p>
+      <a href="#home" class="footer-top">Back to Top &uarr;</a>
     </div>
   </footer>
 
-  <!-- Sticky CTA -->
-
 <a href="#contact" class="sticky-cta" id="stickyCta">Work With Me</a>
-
-  <!-- Scroll to top -->
-
 <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
 
   <script src="assets/js/script.js"></script>
