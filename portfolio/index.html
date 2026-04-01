@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Medical VA Workflows — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --teal:       #0D7377;
+    --teal-lt:    #14A7AD;
+    --teal-pale:  #E8F6F7;
+    --navy:       #0A2342;
+    --navy-mid:   #1B3A5C;
+    --slate:      #4A6580;
+    --sky:        #2196C4;
+    --green:      #1A7F5A;
+    --green-lt:   #D4EDDA;
+    --amber:      #C97A1A;
+    --amber-lt:   #FFF3DC;
+    --white:      #FFFFFF;
+    --off:        #F4F7F9;
+    --border:     #D9E5EE;
+    --text:       #1C2B3A;
+    --muted:      #6B82A0;
+    --tag-bg:     #E1F0F5;
+    --radius:     12px;
+    --radius-sm:  8px;
+    --shadow:     0 4px 24px rgba(10,35,66,.07);
+    --shadow-lg:  0 12px 48px rgba(10,35,66,.12);
+  }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+font-family: ‘DM Sans’, sans-serif;
+background: var(–off);
+color: var(–text);
+line-height: 1.6;
+}
+
+/* ── HERO ── */
+.hero {
+background: linear-gradient(135deg, var(–navy) 0%, var(–navy-mid) 55%, #0D5F70 100%);
+padding: 80px 32px 96px;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+.hero::before {
+content: ‘’;
+position: absolute; inset: 0;
+background: url(“data:image/svg+xml,%3Csvg width=‘60’ height=‘60’ viewBox=‘0 0 60 60’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cg fill=‘none’ fill-rule=‘evenodd’%3E%3Cg fill=’%23ffffff’ fill-opacity=‘0.03’%3E%3Cpath d=‘M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z’/%3E%3C/g%3E%3C/g%3E%3C/svg%3E”);
+}
+.hero-badge {
+display: inline-flex; align-items: center; gap: 8px;
+background: rgba(255,255,255,.1);
+border: 1px solid rgba(255,255,255,.2);
+border-radius: 999px;
+padding: 6px 16px;
+font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
+color: var(–teal-lt);
+margin-bottom: 24px;
+}
+.hero h1 {
+font-family: ‘DM Serif Display’, serif;
+font-size: clamp(2rem, 5vw, 3.2rem);
+color: #fff;
+line-height: 1.15;
+max-width: 760px; margin: 0 auto 16px;
+}
+.hero h1 em { color: var(–teal-lt); font-style: italic; }
+.hero p {
+color: rgba(255,255,255,.65);
+font-size: 1rem; max-width: 580px; margin: 0 auto 40px;
+}
+.hero-stats {
+display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat-num { font-family: ‘DM Serif Display’, serif; font-size: 2rem; color: var(–teal-lt); }
+.stat-lbl { font-size: .75rem; color: rgba(255,255,255,.5); letter-spacing: .05em; text-transform: uppercase; }
+
+/* ── MAIN DIAGRAM SECTION ── */
+.diagram-section {
+background: var(–white);
+border-bottom: 1px solid var(–border);
+padding: 64px 32px;
+text-align: center;
+}
+.section-label {
+font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+color: var(–teal); margin-bottom: 8px;
+}
+.section-title {
+font-family: ‘DM Serif Display’, serif;
+font-size: clamp(1.5rem, 3vw, 2.2rem);
+color: var(–navy); margin-bottom: 12px;
+}
+.section-sub { color: var(–muted); font-size: .95rem; max-width: 560px; margin: 0 auto 48px; }
+
+/* ── SVG FLOW DIAGRAM ── */
+.diagram-wrap {
+max-width: 960px; margin: 0 auto;
+background: var(–off);
+border: 1px solid var(–border);
+border-radius: 16px;
+padding: 40px 24px;
+overflow-x: auto;
+}
+.diagram-wrap svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+
+/* ── WORKFLOW GRID ── */
+.workflows-section { padding: 72px 32px; max-width: 1240px; margin: 0 auto; }
+
+.category-header {
+display: flex; align-items: center; gap: 12px;
+margin-bottom: 32px; margin-top: 64px;
+}
+.category-header:first-child { margin-top: 0; }
+.cat-pill {
+background: var(–navy);
+color: #fff;
+font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+padding: 4px 14px; border-radius: 999px;
+}
+.cat-line { flex: 1; height: 1px; background: var(–border); }
+
+.workflow-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+gap: 24px;
+}
+
+/* ── WORKFLOW CARD ── */
+.wf-card {
+background: var(–white);
+border: 1px solid var(–border);
+border-radius: var(–radius);
+box-shadow: var(–shadow);
+overflow: hidden;
+transition: transform .2s, box-shadow .2s;
+}
+.wf-card:hover { transform: translateY(-4px); box-shadow: var(–shadow-lg); }
+
+.wf-header {
+padding: 20px 24px 16px;
+display: flex; align-items: flex-start; gap: 14px;
+border-bottom: 1px solid var(–border);
+}
+.wf-icon {
+width: 44px; height: 44px; border-radius: 10px;
+display: flex; align-items: center; justify-content: center;
+flex-shrink: 0; font-size: 20px;
+}
+.wf-icon.teal  { background: var(–teal-pale); }
+.wf-icon.navy  { background: #E3EBF5; }
+.wf-icon.green { background: var(–green-lt); }
+.wf-icon.amber { background: var(–amber-lt); }
+
+.wf-title-wrap {}
+.wf-num {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: .68rem; color: var(–muted); letter-spacing: .04em;
+margin-bottom: 2px;
+}
+.wf-title { font-size: 1rem; font-weight: 600; color: var(–navy); line-height: 1.3; }
+
+.wf-body { padding: 20px 24px; }
+
+.wf-steps { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.wf-step {
+display: flex; gap: 12px; align-items: flex-start;
+}
+.step-dot {
+width: 22px; height: 22px; border-radius: 50%;
+background: var(–teal-pale);
+display: flex; align-items: center; justify-content: center;
+flex-shrink: 0;
+font-family: ‘JetBrains Mono’, monospace;
+font-size: .62rem; font-weight: 500; color: var(–teal);
+margin-top: 1px;
+}
+.step-text { font-size: .855rem; color: var(–text); line-height: 1.5; }
+.step-text strong { color: var(–teal); font-weight: 600; }
+
+.wf-outcome {
+margin-top: 18px;
+padding: 12px 14px;
+background: linear-gradient(135deg, #EBF8F8, #E8F0F8);
+border-left: 3px solid var(–teal);
+border-radius: 0 var(–radius-sm) var(–radius-sm) 0;
+font-size: .8rem; color: var(–navy-mid); line-height: 1.5;
+}
+.wf-outcome strong { color: var(–teal); }
+
+.wf-tags {
+display: flex; flex-wrap: wrap; gap: 6px;
+padding: 14px 24px 20px;
+border-top: 1px solid var(–border);
+}
+.tag {
+background: var(–tag-bg);
+color: var(–slate);
+font-size: .7rem; font-weight: 500; letter-spacing: .03em;
+padding: 3px 10px; border-radius: 999px;
+}
+
+/* ── FOOTER ── */
+footer {
+text-align: center;
+padding: 40px 32px;
+border-top: 1px solid var(–border);
+color: var(–muted); font-size: .8rem;
+}
+
+@media (max-width: 640px) {
+.workflow-grid { grid-template-columns: 1fr; }
+.hero-stats { gap: 28px; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+
+<header class="hero">
+  <div class="hero-badge">
+    <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#14A7AD"/></svg>
+    Clinical Operations Portfolio
+  </div>
+  <h1>Medical Virtual Assistant<br/><em>Workflow Systems</em></h1>
+  <p>HIPAA-compliant, EMR-integrated workflows designed to reduce administrative burden, prevent claim denials, and improve patient throughput.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">10</div><div class="stat-lbl">Workflows</div></div>
+    <div class="stat"><div class="stat-num">6–8</div><div class="stat-lbl">Steps Each</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-lbl">Operational Tiers</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">HIPAA-Aligned</div></div>
+  </div>
+</header>
+
+<!-- ══════════ MASTER FLOW DIAGRAM ══════════ -->
+
+<section class="diagram-section">
+  <div class="section-label">System Overview</div>
+  <div class="section-title">End-to-End Clinic Operations Map</div>
+  <div class="section-sub">How clinical and administrative workflows interconnect to support seamless patient care and practice efficiency.</div>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 900 540" width="900" height="540" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, sans-serif">
+
+```
+  <!-- Background panels -->
+  <rect x="20" y="20" width="420" height="500" rx="14" fill="#EBF6F7" stroke="#B2DDE0" stroke-width="1.2"/>
+  <rect x="460" y="20" width="420" height="500" rx="14" fill="#EEF2F8" stroke="#C2D3E5" stroke-width="1.2"/>
+
+  <!-- Panel labels -->
+  <text x="40" y="46" font-size="9" font-weight="600" letter-spacing="1" fill="#0D7377" text-transform="uppercase">CLINICAL WORKFLOWS</text>
+  <line x1="40" y1="52" x2="424" y2="52" stroke="#B2DDE0" stroke-width="1"/>
+  <text x="480" y="46" font-size="9" font-weight="600" letter-spacing="1" fill="#1B3A5C">ADMINISTRATIVE &amp; OPERATIONS</text>
+  <line x1="480" y1="52" x2="864" y2="52" stroke="#C2D3E5" stroke-width="1"/>
+
+  <!-- ── CLINICAL NODES ── -->
+  <!-- Node helper: x=40, y=68, w=380 -->
+
+  <!-- 1. Patient Scheduling -->
+  <g>
+    <rect x="40" y="64" width="380" height="62" rx="10" fill="white" stroke="#B2DDE0" stroke-width="1.2"/>
+    <rect x="40" y="64" width="6" height="62" rx="3" fill="#0D7377"/>
+    <text x="58" y="85" font-size="9" fill="#6B82A0" font-weight="500">01</text>
+    <text x="58" y="102" font-size="13" fill="#0A2342" font-weight="600">Patient Scheduling &amp; Follow-Up</text>
+    <text x="58" y="118" font-size="10" fill="#4A6580">Intake → EMR Booking → Reminder → No-show Protocol</text>
+    <!-- icon: calendar -->
+    <rect x="376" y="78" width="30" height="30" rx="6" fill="#E8F6F7"/>
+    <text x="391" y="99" font-size="16" text-anchor="middle" fill="#0D7377">📅</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="230" y1="126" x2="230" y2="144" stroke="#B2DDE0" stroke-width="1.5" marker-end="url(#arr-teal)"/>
+
+  <!-- 2. Prior Auth -->
+  <g>
+    <rect x="40" y="144" width="380" height="62" rx="10" fill="white" stroke="#B2DDE0" stroke-width="1.2"/>
+    <rect x="40" y="144" width="6" height="62" rx="3" fill="#14A7AD"/>
+    <text x="58" y="165" font-size="9" fill="#6B82A0" font-weight="500">02</text>
+    <text x="58" y="182" font-size="13" fill="#0A2342" font-weight="600">Prior Authorization</text>
+    <text x="58" y="198" font-size="10" fill="#4A6580">Clinical criteria review → Payer portal submission → Tracking</text>
+    <rect x="376" y="158" width="30" height="30" rx="6" fill="#E8F6F7"/>
+    <text x="391" y="179" font-size="16" text-anchor="middle" fill="#14A7AD">📋</text>
+  </g>
+
+  <line x1="230" y1="206" x2="230" y2="224" stroke="#B2DDE0" stroke-width="1.5" marker-end="url(#arr-teal)"/>
+
+  <!-- 3. Insurance Verification -->
+  <g>
+    <rect x="40" y="224" width="380" height="62" rx="10" fill="white" stroke="#B2DDE0" stroke-width="1.2"/>
+    <rect x="40" y="224" width="6" height="62" rx="3" fill="#2196C4"/>
+    <text x="58" y="245" font-size="9" fill="#6B82A0" font-weight="500">03</text>
+    <text x="58" y="262" font-size="13" fill="#0A2342" font-weight="600">Insurance Eligibility Verification</text>
+    <text x="58" y="278" font-size="10" fill="#4A6580">Real-time eligibility check → Benefits summary → Co-pay notation</text>
+    <rect x="376" y="238" width="30" height="30" rx="6" fill="#E8F6F7"/>
+    <text x="391" y="259" font-size="16" text-anchor="middle" fill="#2196C4">🛡️</text>
+  </g>
+
+  <line x1="230" y1="286" x2="230" y2="304" stroke="#B2DDE0" stroke-width="1.5" marker-end="url(#arr-teal)"/>
+
+  <!-- 4. Rx Refill -->
+  <g>
+    <rect x="40" y="304" width="380" height="62" rx="10" fill="white" stroke="#B2DDE0" stroke-width="1.2"/>
+    <rect x="40" y="304" width="6" height="62" rx="3" fill="#1A7F5A"/>
+    <text x="58" y="325" font-size="9" fill="#6B82A0" font-weight="500">04</text>
+    <text x="58" y="342" font-size="13" fill="#0A2342" font-weight="600">Prescription Refill Management</text>
+    <text x="58" y="358" font-size="10" fill="#4A6580">Pharmacy request → Chart review → Provider routing → eRx</text>
+    <rect x="376" y="318" width="30" height="30" rx="6" fill="#E8F6F7"/>
+    <text x="391" y="339" font-size="16" text-anchor="middle" fill="#1A7F5A">💊</text>
+  </g>
+
+  <line x1="230" y1="366" x2="230" y2="384" stroke="#B2DDE0" stroke-width="1.5" marker-end="url(#arr-teal)"/>
+
+  <!-- 5. Inbox/Task -->
+  <g>
+    <rect x="40" y="384" width="175" height="62" rx="10" fill="white" stroke="#B2DDE0" stroke-width="1.2"/>
+    <rect x="40" y="384" width="6" height="62" rx="3" fill="#C97A1A"/>
+    <text x="58" y="405" font-size="9" fill="#6B82A0" font-weight="500">05</text>
+    <text x="58" y="422" font-size="12" fill="#0A2342" font-weight="600">Inbox &amp; Task Mgmt</text>
+    <text x="58" y="437" font-size="9" fill="#4A6580">Triage → Assign → Escalate</text>
+  </g>
+
+  <!-- 6. Lab Results -->
+  <g>
+    <rect x="245" y="384" width="175" height="62" rx="10" fill="white" stroke="#B2DDE0" stroke-width="1.2"/>
+    <rect x="245" y="384" width="6" height="62" rx="3" fill="#7B5EA7"/>
+    <text x="263" y="405" font-size="9" fill="#6B82A0" font-weight="500">06</text>
+    <text x="263" y="422" font-size="12" fill="#0A2342" font-weight="600">Lab Results Handling</text>
+    <text x="263" y="437" font-size="9" fill="#4A6580">Receive → Flag → Notify</text>
+  </g>
+
+  <!-- ── ADMIN NODES ── -->
+
+  <!-- 7. Call Handling -->
+  <g>
+    <rect x="480" y="64" width="380" height="62" rx="10" fill="white" stroke="#C2D3E5" stroke-width="1.2"/>
+    <rect x="480" y="64" width="6" height="62" rx="3" fill="#0A2342"/>
+    <text x="498" y="85" font-size="9" fill="#6B82A0" font-weight="500">07</text>
+    <text x="498" y="102" font-size="13" fill="#0A2342" font-weight="600">Business Call Handling</text>
+    <text x="498" y="118" font-size="10" fill="#4A6580">Screen → Log → Route → Escalate → Document</text>
+    <rect x="816" y="78" width="30" height="30" rx="6" fill="#E3EBF5"/>
+    <text x="831" y="99" font-size="16" text-anchor="middle" fill="#0A2342">📞</text>
+  </g>
+
+  <line x1="670" y1="126" x2="670" y2="144" stroke="#C2D3E5" stroke-width="1.5" marker-end="url(#arr-navy)"/>
+
+  <!-- 8. Email -->
+  <g>
+    <rect x="480" y="144" width="380" height="62" rx="10" fill="white" stroke="#C2D3E5" stroke-width="1.2"/>
+    <rect x="480" y="144" width="6" height="62" rx="3" fill="#1B3A5C"/>
+    <text x="498" y="165" font-size="9" fill="#6B82A0" font-weight="500">08</text>
+    <text x="498" y="182" font-size="13" fill="#0A2342" font-weight="600">Business Email &amp; Inbox Management</text>
+    <text x="498" y="198" font-size="10" fill="#4A6580">Categorize → Draft → Respond → Track → Archive</text>
+    <rect x="816" y="158" width="30" height="30" rx="6" fill="#E3EBF5"/>
+    <text x="831" y="179" font-size="16" text-anchor="middle" fill="#1B3A5C">✉️</text>
+  </g>
+
+  <line x1="670" y1="206" x2="670" y2="224" stroke="#C2D3E5" stroke-width="1.5" marker-end="url(#arr-navy)"/>
+
+  <!-- 9. Marketing -->
+  <g>
+    <rect x="480" y="224" width="380" height="62" rx="10" fill="white" stroke="#C2D3E5" stroke-width="1.2"/>
+    <rect x="480" y="224" width="6" height="62" rx="3" fill="#2196C4"/>
+    <text x="498" y="245" font-size="9" fill="#6B82A0" font-weight="500">09</text>
+    <text x="498" y="262" font-size="13" fill="#0A2342" font-weight="600">Basic Marketing &amp; Outreach Support</text>
+    <text x="498" y="278" font-size="10" fill="#4A6580">Content calendar → Draft → Approval → Schedule → Report</text>
+    <rect x="816" y="238" width="30" height="30" rx="6" fill="#E3EBF5"/>
+    <text x="831" y="259" font-size="16" text-anchor="middle" fill="#2196C4">📣</text>
+  </g>
+
+  <line x1="670" y1="286" x2="670" y2="304" stroke="#C2D3E5" stroke-width="1.5" marker-end="url(#arr-navy)"/>
+
+  <!-- 10. Vendor -->
+  <g>
+    <rect x="480" y="304" width="380" height="62" rx="10" fill="white" stroke="#C2D3E5" stroke-width="1.2"/>
+    <rect x="480" y="304" width="6" height="62" rx="3" fill="#1A7F5A"/>
+    <text x="498" y="325" font-size="9" fill="#6B82A0" font-weight="500">10</text>
+    <text x="498" y="342" font-size="13" fill="#0A2342" font-weight="600">Vendor &amp; Partner Coordination</text>
+    <text x="498" y="358" font-size="10" fill="#4A6580">Requests → Quotes → PO review → Delivery → Invoice log</text>
+    <rect x="816" y="318" width="30" height="30" rx="6" fill="#E3EBF5"/>
+    <text x="831" y="339" font-size="16" text-anchor="middle" fill="#1A7F5A">🤝</text>
+  </g>
+
+  <!-- Outcome Bar -->
+  <rect x="40" y="470" width="820" height="34" rx="8" fill="#0A2342"/>
+  <text x="450" y="491" font-size="10.5" font-weight="600" fill="#14A7AD" text-anchor="middle" letter-spacing=".5">
+    ✓ Prevent Claim Denials   ✓ Reduce Admin Delays   ✓ Improve Patient Flow   ✓ HIPAA-Compliant Documentation
+  </text>
+
+  <!-- Arrows defs -->
+  <defs>
+    <marker id="arr-teal" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#B2DDE0"/>
+    </marker>
+    <marker id="arr-navy" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#C2D3E5"/>
+    </marker>
+  </defs>
+</svg>
+```
+
+  </div>
+</section>
+
+<!-- ══════════ WORKFLOW CARDS ══════════ -->
+
+<main class="workflows-section">
+
+  <!-- CLINICAL -->
+
+  <div class="category-header">
+    <span class="cat-pill">Clinical</span>
+    <span class="cat-line"></span>
+  </div>
+
+  <div class="workflow-grid">
+
+```
+<!-- 1. Patient Scheduling -->
+<div class="wf-card">
+  <div class="wf-header">
+    <div class="wf-icon teal">📅</div>
+    <div class="wf-title-wrap">
+      <div class="wf-num">WF-01</div>
+      <div class="wf-title">Patient Scheduling &amp; Follow-Up</div>
+    </div>
+  </div>
+  <div class="wf-body">
+    <ol class="wf-steps">
+      <li class="wf-step"><span class="step-dot">1</span><span class="step-text"><strong>Intake screening:</strong> Collect chief complaint, insurance ID, and referring provider during initial contact; document in EMR before scheduling.</span></li>
+      <li class="wf-step"><span class="step-dot">2</span><span class="step-text"><strong>Eligibility pre-check:</strong> Run real-time eligibility verification via payer portal or clearinghouse to confirm active coverage and applicable co-pay before booking.</span></li>
+      <li class="wf-step"><span class="step-dot">3</span><span class="step-text"><strong>Appointment entry:</strong> Book appointment in EMR scheduler with correct visit type, provider, and care team; attach referral or order documents as required.</span></li>
+      <li class="wf-step"><span class="step-dot">4</span><span class="step-text"><strong>Automated reminders:</strong> Trigger 72-hr and 24-hr patient reminders via SMS/email; log outreach in EMR communication tab to maintain audit trail.</span></li>
+      <li class="wf-step"><span class="step-dot">5</span><span class="step-text"><strong>No-show protocol:</strong> For unconfirmed or missed appointments, execute same-day outreach and document reschedule attempts per clinic policy.</span></li>
+      <li class="wf-step"><span class="step-dot">6</span><span class="step-text"><strong>Wait-list management:</strong> Maintain cancellation wait-list in EMR; fill open slots within 2 hours to maximize provider utilization.</span></li>
+      <li class="wf-step"><span class="step-dot">7</span><span class="step-text"><strong>Post-visit follow-up:</strong> Schedule follow-up appointments per provider discharge instructions and flag outstanding referrals or orders in EMR task queue.</span></li>
+    </ol>
+    <div class="wf-outcome"><strong>Outcome:</strong> Reduces no-show rate, maximizes provider schedule density, and ensures continuity of care documentation from first contact to follow-up.</div>
+  </div>
+  <div class="wf-tags">
+    <span class="tag">EMR Scheduling</span><span class="tag">Eligibility Pre-check</span><span class="tag">HIPAA</span><span class="tag">No-show Protocol</span>
+  </div>
+</div>
+
+<!-- 2. Prior Auth -->
+<div class="wf-card">
+  <div class="wf-header">
+    <div class="wf-icon teal">📋</div>
+    <div class="wf-title-wrap">
+      <div class="wf-num">WF-02</div>
+      <div class="wf-title">Prior Authorization</div>
+    </div>
+  </div>
+  <div class="wf-body">
+    <ol class="wf-steps">
+      <li class="wf-step"><span class="step-dot">1</span><span class="step-text"><strong>Order review:</strong> Identify procedures or medications requiring prior authorization by cross-referencing the provider's order with the payer's pre-auth requirement list.</span></li>
+      <li class="wf-step"><span class="step-dot">2</span><span class="step-text"><strong>Clinical documentation pull:</strong> Retrieve supporting clinical notes, diagnosis codes (ICD-10), procedure codes (CPT/HCPCS), and relevant labs or imaging from EMR.</span></li>
+      <li class="wf-step"><span class="step-dot">3</span><span class="step-text"><strong>Medical necessity criteria:</strong> Verify that documentation satisfies the payer's medical necessity guidelines (e.g., InterQual, MCG); flag gaps and request addendum from provider if needed.</span></li>
+      <li class="wf-step"><span class="step-dot">4</span><span class="step-text"><strong>Payer portal submission:</strong> Submit PA request via payer portal or fax with complete clinical package; record reference number and expected turnaround in EMR authorization tracker.</span></li>
+      <li class="wf-step"><span class="step-dot">5</span><span class="step-text"><strong>Status follow-up:</strong> Check authorization status at 48-hr intervals; escalate pending requests exceeding payer SLA to the provider or authorization specialist.</span></li>
+      <li class="wf-step"><span class="step-dot">6</span><span class="step-text"><strong>Approval/denial documentation:</strong> Log approval number, valid dates, and approved units in EMR; attach denial letters and initiate appeal process within payer's appeal window.</span></li>
+      <li class="wf-step"><span class="step-dot">7</span><span class="step-text"><strong>Provider &amp; patient notification:</strong> Communicate approval status to clinical team; notify patient of any cost-share implications or scheduling next steps.</span></li>
+    </ol>
+    <div class="wf-outcome"><strong>Outcome:</strong> Prevents claim denials due to missing authorizations, reduces treatment delays, and maintains a complete authorization audit trail for billing compliance.</div>
+  </div>
+  <div class="wf-tags">
+    <span class="tag">Payer Portal</span><span class="tag">ICD-10 / CPT</span><span class="tag">Medical Necessity</span><span class="tag">Appeal Process</span>
+  </div>
+</div>
+
+<!-- 3. Insurance Verification -->
+<div class="wf-card">
+  <div class="wf-header">
+    <div class="wf-icon teal">🛡️</div>
+    <div class="wf-title-wrap">
+      <div class="wf-num">WF-03</div>
+      <div class="wf-title">Insurance Eligibility Verification</div>
+    </div>
+  </div>
+  <div class="wf-body">
+    <ol class="wf-steps">
+      <li class="wf-step"><span class="step-dot">1</span><span class="step-text"><strong>Daily verification queue:</strong> Generate a list of appointments scheduled within the next 3–5 business days and add all patients to the eligibility verification queue in the EMR or clearinghouse portal.</span></li>
+      <li class="wf-step"><span class="step-dot">2</span><span class="step-text"><strong>Real-time eligibility check:</strong> Run 270/271 eligibility transactions via clearinghouse (Availity, Change Healthcare) or directly through the payer portal; capture active coverage, plan type, and effective dates.</span></li>
+      <li class="wf-step"><span class="step-dot">3</span><span class="step-text"><strong>Benefits breakdown:</strong> Document deductible, out-of-pocket maximum, co-pay, co-insurance, and in-network/out-of-network status for the relevant specialty and visit type.</span></li>
+      <li class="wf-step"><span class="step-dot">4</span><span class="step-text"><strong>Secondary coverage check:</strong> Confirm coordination of benefits (COB) for patients with dual coverage; document primary and secondary payer order in EMR.</span></li>
+      <li class="wf-step"><span class="step-dot">5</span><span class="step-text"><strong>Discrepancy resolution:</strong> Flag terminated or mismatched coverage to the front desk and patient; collect updated insurance information and re-verify before the appointment date.</span></li>
+      <li class="wf-step"><span class="step-dot">6</span><span class="step-text"><strong>EMR update:</strong> Post verified benefits to the patient's insurance tab in the EMR; include effective date, group/member ID, and verification reference number.</span></li>
+      <li class="wf-step"><span class="step-dot">7</span><span class="step-text"><strong>Pre-visit financial communication:</strong> Notify patients of estimated co-pay or outstanding balance prior to visit to reduce day-of collection issues.</span></li>
+    </ol>
+    <div class="wf-outcome"><strong>Outcome:</strong> Eliminates eligibility-related claim rejections, improves point-of-service collections, and reduces accounts receivable aging from coverage errors.</div>
+  </div>
+  <div class="wf-tags">
+    <span class="tag">270/271 EDI</span><span class="tag">Availity / Payer Portal</span><span class="tag">COB</span><span class="tag">AR Management</span>
+  </div>
+</div>
+
+<!-- 4. Rx Refill -->
+<div class="wf-card">
+  <div class="wf-header">
+    <div class="wf-icon green">💊</div>
+    <div class="wf-title-wrap">
+      <div class="wf-num">WF-04</div>
+      <div class="wf-title">Prescription Refill Management</div>
+    </div>
+  </div>
+  <div class="wf-body">
+    <ol class="wf-steps">
+      <li class="wf-step"><span class="step-dot">1</span><span class="step-text"><strong>Refill request intake:</strong> Receive electronic refill requests from pharmacy (SureScripts), patient portal, or phone; log all requests in the EMR refill task queue with timestamp and source.</span></li>
+      <li class="wf-step"><span class="step-dot">2</span><span class="step-text"><strong>Chart review:</strong> Verify last office visit date, active problem list, current medication list, and any labs required before renewal (e.g., INR for warfarin, TSH for thyroid medications).</span></li>
+      <li class="wf-step"><span class="step-dot">3</span><span class="step-text"><strong>Eligibility &amp; formulary check:</strong> Confirm medication is covered under patient's current plan formulary; identify generic alternatives or preferred tier options to reduce patient cost.</span></li>
+      <li class="wf-step"><span class="step-dot">4</span><span class="step-text"><strong>PA flagging:</strong> Identify medications requiring prior authorization before refill; initiate PA workflow concurrently to prevent treatment gaps.</span></li>
+      <li class="wf-step"><span class="step-dot">5</span><span class="step-text"><strong>Provider routing:</strong> Route refill request to the appropriate provider via EMR inbox with a pre-populated summary (last visit, labs, indication) to expedite review and e-prescribing.</span></li>
+      <li class="wf-step"><span class="step-dot">6</span><span class="step-text"><strong>eRx transmission:</strong> Upon provider approval, confirm electronic prescription (eRx) was transmitted to the patient's preferred pharmacy; document approval and transmission in EMR.</span></li>
+      <li class="wf-step"><span class="step-dot">7</span><span class="step-text"><strong>Patient notification:</strong> Notify the patient of refill status (approved, pending, or denied with alternative) and estimated pharmacy fill time.</span></li>
+    </ol>
+    <div class="wf-outcome"><strong>Outcome:</strong> Eliminates medication gaps, reduces provider inbox burden, ensures formulary compliance, and supports patient medication adherence.</div>
+  </div>
+  <div class="wf-tags">
+    <span class="tag">SureScripts eRx</span><span class="tag">Formulary Check</span><span class="tag">Prior Auth</span><span class="tag">Medication Reconciliation</span>
+  </div>
+</div>
+
+<!-- 5. Inbox & Task -->
+<div class="wf-card">
+  <div class="wf-header">
+    <div class="wf-icon amber">📥</div>
+    <div class="wf-title-wrap">
+      <div class="wf-num">WF-05</div>
+      <div class="wf-title">Inbox &amp; Task Management</div>
+    </div>
+  </div>
+  <div class="wf-body">
+    <ol class="wf-steps">
+      <li class="wf-step"><span class="step-dot">1</span><span class="step-text"><strong>Daily inbox review:</strong> Process provider and staff EMR inboxes at scheduled intervals (morning, midday, end-of-day); clear actionable items within defined SLA windows.</span></li>
+      <li class="wf-step"><span class="step-dot">2</span><span class="step-text"><strong>Task triage:</strong> Categorize tasks by urgency (urgent, routine, informational) and type (clinical, administrative, billing, scheduling) using EMR task management tools.</span></li>
+      <li class="wf-step"><span class="step-dot">3</span><span class="step-text"><strong>Delegation &amp; routing:</strong> Assign non-clinical tasks to appropriate team members; route clinical tasks to the covering provider with relevant patient context attached.</span></li>
+      <li class="wf-step"><span class="step-dot">4</span><span class="step-text"><strong>Patient portal messages:</strong> Respond to patient messages within 24–48 hours per clinic policy; escalate clinical questions to provider; document all responses in the patient's communication log.</span></li>
+      <li class="wf-step"><span class="step-dot">5</span><span class="step-text"><strong>Document processing:</strong> Index incoming faxes (referrals, records, lab results) to the correct patient chart; attach to the relevant encounter and flag provider for review.</span></li>
+      <li class="wf-step"><span class="step-dot">6</span><span class="step-text"><strong>Escalation protocol:</strong> Immediately escalate urgent clinical communications (critical labs, abnormal imaging, patient distress messages) to the on-call provider with no delay.</span></li>
+      <li class="wf-step"><span class="step-dot">7</span><span class="step-text"><strong>End-of-day reconciliation:</strong> Confirm all open tasks have an owner and due date; carry forward unresolved items and brief the next available team member to ensure continuity.</span></li>
+    </ol>
+    <div class="wf-outcome"><strong>Outcome:</strong> Reduces provider administrative burden, ensures zero task drop-off, and supports regulatory compliance by maintaining a full communication audit trail.</div>
+  </div>
+  <div class="wf-tags">
+    <span class="tag">EMR Inbox</span><span class="tag">Task Delegation</span><span class="tag">Patient Portal</span><span class="tag">Document Indexing</span>
+  </div>
+</div>
+
+<!-- 6. Lab Results -->
+<div class="wf-card">
+  <div class="wf-header">
+    <div class="wf-icon navy" style="background:#EDE9F5;">🧪</div>
+    <div class="wf-title-wrap">
+      <div class="wf-num">WF-06</div>
+      <div class="wf-title">Lab Results Handling</div>
+    </div>
+  </div>
+  <div class="wf-body">
+    <ol class="wf-steps">
+      <li class="wf-step"><span class="step-dot">1</span><span class="step-text"><strong>Result receipt:</strong> Receive lab results via HL7 interface, fax, or lab portal; confirm automatic posting to the correct patient's EMR chart by matching MRN, DOB, and order number.</span></li>
+      <li class="wf-step"><span class="step-dot">2</span><span class="step-text"><strong>Critical value flagging:</strong> Identify critical or panic values per lab reference ranges; immediately notify the ordering or covering provider via phone with read-back confirmation and document in EMR.</span></li>
+      <li class="wf-step"><span class="step-dot">3</span><span class="step-text"><strong>Provider routing:</strong> Route all results to the ordering provider's EMR inbox with a summary notation; flag results requiring action (abnormal ranges, trending changes) with a priority label.</span></li>
+      <li class="wf-step"><span class="step-dot">4</span><span class="step-text"><strong>Pending result follow-up:</strong> Track outstanding lab orders; follow up with the lab on results exceeding expected turnaround time to prevent delayed diagnosis.</span></li>
+      <li class="wf-step"><span class="step-dot">5</span><span class="step-text"><strong>Patient notification:</strong> Communicate results to the patient per provider's instructions (normal via portal; abnormal via phone call) within the clinic's defined timeframe policy.</span></li>
+      <li class="wf-step"><span class="step-dot">6</span><span class="step-text"><strong>Follow-up scheduling:</strong> Schedule follow-up visit or additional testing as directed by the provider's result review; link order to the original lab result in the EMR encounter.</span></li>
+      <li class="wf-step"><span class="step-dot">7</span><span class="step-text"><strong>Documentation close-out:</strong> Confirm all results have been reviewed and acknowledged by the provider in the EMR; close result tasks and log patient notification in the communication record.</span></li>
+    </ol>
+    <div class="wf-outcome"><strong>Outcome:</strong> Eliminates missed or delayed results, supports timely clinical decision-making, and reduces liability from unreported critical lab values.</div>
+  </div>
+  <div class="wf-tags">
+    <span class="tag">HL7 Interface</span><span class="tag">Critical Value Protocol</span><span class="tag">EMR Result Routing</span><span class="tag">Turnaround Tracking</span>
+  </div>
+</div>
+```
+
+  </div><!-- /clinical grid -->
+
+  <!-- ADMIN -->
+
+  <div class="category-header">
+    <span class="cat-pill">Administrative &amp; Operations</span>
+    <span class="cat-line"></span>
+  </div>
+
+  <div class="workflow-grid">
+
+```
+<!-- 7. Call Handling -->
+<div class="wf-card">
+  <div class="wf-header">
+    <div class="wf-icon navy">📞</div>
+    <div class="wf-title-wrap">
+      <div class="wf-num">WF-07</div>
+      <div class="wf-title">Business Call Handling</div>
+    </div>
+  </div>
+  <div class="wf-body">
+    <ol class="wf-steps">
+      <li class="wf-step"><span class="step-dot">1</span><span class="step-text"><strong>Professional greeting &amp; screening:</strong> Answer calls using clinic-standard greeting; identify caller type (payer, vendor, referral source, or business partner) and purpose before proceeding.</span></li>
+      <li class="wf-step"><span class="step-dot">2</span><span class="step-text"><strong>Call classification:</strong> Categorize inbound calls as urgent, routine, or informational; apply appropriate SLA (urgent within 1 hour, routine within 1 business day).</span></li>
+      <li class="wf-step"><span class="step-dot">3</span><span class="step-text"><strong>Information verification:</strong> For payer or referral calls, verify caller identity (NPI, TIN, or provider credentials) before disclosing any practice or provider-specific information.</span></li>
+      <li class="wf-step"><span class="step-dot">4</span><span class="step-text"><strong>Real-time documentation:</strong> Log call summary, caller contact information, issue details, and requested action in the practice management system or CRM immediately during the call.</span></li>
+      <li class="wf-step"><span class="step-dot">5</span><span class="step-text"><strong>Routing &amp; warm transfer:</strong> Route calls requiring clinical staff or provider involvement with a full context summary; avoid cold transfers that require callers to repeat information.</span></li>
+      <li class="wf-step"><span class="step-dot">6</span><span class="step-text"><strong>Message relay:</strong> Deliver accurate voicemail or call-back messages to the appropriate team member within defined relay timeframes; confirm receipt.</span></li>
+      <li class="wf-step"><span class="step-dot">7</span><span class="step-text"><strong>Follow-up &amp; close:</strong> If action was promised, initiate follow-up within the committed timeframe; update call log with resolution status and close the task in the practice management system.</span></li>
+    </ol>
+    <div class="wf-outcome"><strong>Outcome:</strong> Ensures every business contact is handled professionally, routed efficiently, and documented thoroughly — protecting the practice from miscommunication and missed escalations.</div>
+  </div>
+  <div class="wf-tags">
+    <span class="tag">Call Triage</span><span class="tag">CRM Logging</span><span class="tag">Payer Communication</span><span class="tag">SLA Compliance</span>
+  </div>
+</div>
+
+<!-- 8. Email -->
+<div class="wf-card">
+  <div class="wf-header">
+    <div class="wf-icon navy">✉️</div>
+    <div class="wf-title-wrap">
+      <div class="wf-num">WF-08</div>
+      <div class="wf-title">Business Email &amp; Inbox Management</div>
+    </div>
+  </div>
+  <div class="wf-body">
+    <ol class="wf-steps">
+      <li class="wf-step"><span class="step-dot">1</span><span class="step-text"><strong>Inbox sweep (3× daily):</strong> Review shared and provider-specific business inboxes at defined intervals; apply folder structure (Action Required, Awaiting Reply, Reference, Archive) to maintain zero-clutter policy.</span></li>
+      <li class="wf-step"><span class="step-dot">2</span><span class="step-text"><strong>Triage &amp; prioritization:</strong> Flag time-sensitive emails (payer correspondence, authorization notices, contract documents) for same-day response; defer non-urgent items with a follow-up reminder set.</span></li>
+      <li class="wf-step"><span class="step-dot">3</span><span class="step-text"><strong>Response drafting:</strong> Compose accurate, professional email responses using clinic-approved templates; ensure all outgoing emails adhere to HIPAA minimum necessary standards before sending.</span></li>
+      <li class="wf-step"><span class="step-dot">4</span><span class="step-text"><strong>Provider review queue:</strong> Route emails requiring provider approval or signature to a dedicated review folder; summarize context in the subject line to reduce provider reading time.</span></li>
+      <li class="wf-step"><span class="step-dot">5</span><span class="step-text"><strong>Attachment handling:</strong> Save and label incoming documents (EOBs, contracts, referral letters) to shared drive using standardized naming convention; link document to relevant EMR or practice record.</span></li>
+      <li class="wf-step"><span class="step-dot">6</span><span class="step-text"><strong>Thread tracking:</strong> Maintain running tracking log for multi-party email threads (payer negotiations, vendor agreements); flag threads idle over 48 hours for follow-up.</span></li>
+      <li class="wf-step"><span class="step-dot">7</span><span class="step-text"><strong>Archive &amp; compliance:</strong> Archive resolved threads per practice email retention policy; ensure PHI is never transmitted via unsecured email; use encrypted portal for any patient-related business correspondence.</span></li>
+    </ol>
+    <div class="wf-outcome"><strong>Outcome:</strong> Maintains organized, responsive, and HIPAA-compliant communication channels that support provider efficiency and reduce risk from missed or misrouted correspondence.</div>
+  </div>
+  <div class="wf-tags">
+    <span class="tag">Inbox Zero Protocol</span><span class="tag">HIPAA Email Policy</span><span class="tag">EOB Processing</span><span class="tag">Encrypted Communication</span>
+  </div>
+</div>
+
+<!-- 9. Marketing -->
+<div class="wf-card">
+  <div class="wf-header">
+    <div class="wf-icon teal">📣</div>
+    <div class="wf-title-wrap">
+      <div class="wf-num">WF-09</div>
+      <div class="wf-title">Basic Marketing &amp; Outreach Support</div>
+    </div>
+  </div>
+  <div class="wf-body">
+    <ol class="wf-steps">
+      <li class="wf-step"><span class="step-dot">1</span><span class="step-text"><strong>Content calendar setup:</strong> Build and maintain a monthly content calendar aligned with clinic priorities (new services, seasonal health campaigns, provider spotlights); present to practice manager for approval.</span></li>
+      <li class="wf-step"><span class="step-dot">2</span><span class="step-text"><strong>Draft creation:</strong> Write HIPAA-compliant social media posts, email newsletters, and patient education content; ensure no PHI or identifiable patient data appears in any public-facing material.</span></li>
+      <li class="wf-step"><span class="step-dot">3</span><span class="step-text"><strong>Provider &amp; compliance review:</strong> Route all outbound content through the clinic's designated approver (physician champion or compliance officer) before publication.</span></li>
+      <li class="wf-step"><span class="step-dot">4</span><span class="step-text"><strong>Scheduling &amp; publishing:</strong> Schedule approved posts using the clinic's social media management tool; coordinate timing with clinic hours, campaigns, and community health events.</span></li>
+      <li class="wf-step"><span class="step-dot">5</span><span class="step-text"><strong>Patient recall outreach:</strong> Execute targeted outreach for overdue preventive care (annual physicals, mammograms, colonoscopies) using EMR population health tools; document outreach in patient record.</span></li>
+      <li class="wf-step"><span class="step-dot">6</span><span class="step-text"><strong>Review management:</strong> Monitor Google and Healthgrades reviews; route negative feedback to practice manager per clinic escalation policy; draft provider-approved responses to positive reviews.</span></li>
+      <li class="wf-step"><span class="step-dot">7</span><span class="step-text"><strong>Performance reporting:</strong> Compile monthly engagement report (reach, appointment conversions from campaigns, new patient inquiries) and present summary to practice leadership.</span></li>
+    </ol>
+    <div class="wf-outcome"><strong>Outcome:</strong> Supports patient acquisition and retention, strengthens clinic online reputation, and drives preventive care utilization — all within HIPAA marketing compliance guidelines.</div>
+  </div>
+  <div class="wf-tags">
+    <span class="tag">HIPAA-Compliant Content</span><span class="tag">Patient Recall</span><span class="tag">Reputation Management</span><span class="tag">Population Health</span>
+  </div>
+</div>
+
+<!-- 10. Vendor -->
+<div class="wf-card">
+  <div class="wf-header">
+    <div class="wf-icon green">🤝</div>
+    <div class="wf-title-wrap">
+      <div class="wf-num">WF-10</div>
+      <div class="wf-title">Vendor &amp; Partner Coordination</div>
+    </div>
+  </div>
+  <div class="wf-body">
+    <ol class="wf-steps">
+      <li class="wf-step"><span class="step-dot">1</span><span class="step-text"><strong>Request intake:</strong> Receive supply, service, or equipment requests from clinical and administrative staff; log in the vendor management tracker with requestor, priority level, and budget category.</span></li>
+      <li class="wf-step"><span class="step-dot">2</span><span class="step-text"><strong>Vendor outreach:</strong> Contact approved vendor(s) for quotes or service scheduling; maintain a prequalified vendor list approved by the practice administrator to streamline procurement.</span></li>
+      <li class="wf-step"><span class="step-dot">3</span><span class="step-text"><strong>Quote comparison &amp; approval routing:</strong> Compile and compare quotes for purchases above defined threshold; present cost-benefit summary to the practice administrator for purchase order (PO) authorization.</span></li>
+      <li class="wf-step"><span class="step-dot">4</span><span class="step-text"><strong>BAA verification:</strong> Confirm Business Associate Agreement (BAA) is executed and current for any vendor with potential access to PHI (IT vendors, EHR support, shredding services, billing companies).</span></li>
+      <li class="wf-step"><span class="step-dot">5</span><span class="step-text"><strong>Order &amp; delivery tracking:</strong> Issue POs or confirm service appointments; track delivery or completion against confirmed timelines; escalate delays that impact clinic operations.</span></li>
+      <li class="wf-step"><span class="step-dot">6</span><span class="step-text"><strong>Invoice processing:</strong> Receive and match invoices against POs and delivery confirmations (3-way match); route discrepancies to the practice administrator before approving for payment.</span></li>
+      <li class="wf-step"><span class="step-dot">7</span><span class="step-text"><strong>Vendor performance log:</strong> Maintain a running vendor performance record (on-time delivery, quality issues, contract renewals); flag underperforming vendors for administrator review at quarterly intervals.</span></li>
+    </ol>
+    <div class="wf-outcome"><strong>Outcome:</strong> Ensures uninterrupted clinic supply chain, maintains HIPAA vendor compliance through BAA oversight, and supports cost control through structured procurement and invoice reconciliation.</div>
+  </div>
+  <div class="wf-tags">
+    <span class="tag">BAA Compliance</span><span class="tag">Purchase Order</span><span class="tag">3-Way Match</span><span class="tag">Vendor Management</span>
+  </div>
+</div>
+```
+
+  </div><!-- /admin grid -->
+
+</main>
+
+<footer>
+  <p>Medical Virtual Assistant Portfolio · Workflow Documentation · HIPAA-Compliant Operations · US Clinic Standards</p>
+</footer>
+
+</body>
+</html>
