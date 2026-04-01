@@ -46,7 +46,7 @@ SCROLL EVENTS (header shadow, sticky, scroll-top)
 function onScroll() {
 var y = window.pageYOffset;
 
-```
+
 /* Header shadow */
 if (header) {
   header.classList.toggle('scrolled', y > 20);
@@ -62,7 +62,6 @@ if (stickyCta && heroSection) {
   var heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
   stickyCta.classList.toggle('show', y > heroBottom);
 }
-```
 
 }
 
@@ -86,7 +85,6 @@ navToggle.classList.toggle(‘active’, isOpen);
 navToggle.setAttribute(‘aria-expanded’, isOpen ? ‘true’ : ‘false’);
 });
 
-```
 /* Close on link click */
 navLinks.querySelectorAll('a').forEach(function (link) {
   link.addEventListener('click', function () {
@@ -104,7 +102,6 @@ document.addEventListener('click', function (e) {
     navToggle.classList.remove('active');
   }
 });
-```
 
 }
 
@@ -123,9 +120,9 @@ revealObserver.unobserve(entry.target);
 });
 }, { threshold: 0.1, rootMargin: ‘0px 0px -48px 0px’ });
 
-```
+
 revealEls.forEach(function (el) { revealObserver.observe(el); });
-```
+
 
 } else {
 /* Fallback for older browsers */
@@ -155,7 +152,6 @@ var adminHours     = getVal(‘adminHours’, 40);
 var hourlyRate     = getVal(‘hourlyRate’, 35);
 var insuranceTypes = getVal(‘insuranceTypes’, 3);
 
-```
 /* Display slider values */
 setTxt('patientDisplay', patients);
 setTxt('priorAuthsDisplay', priorAuths);
@@ -173,7 +169,6 @@ setTxt('hoursSaved', hoursSaved);
 setTxt('monthlySavings', monthly.toLocaleString());
 setTxt('annualSavings', annual.toLocaleString());
 setTxt('fteDisplay', fte);
-```
 
 }
 
@@ -197,7 +192,6 @@ window.location.hash.indexOf(‘success=true’) !== -1) {
 showFormSuccess();
 }
 
-```
 contactForm.addEventListener('submit', function () {
   var btn = contactForm.querySelector('button[type="submit"]');
   if (btn) {
@@ -205,7 +199,6 @@ contactForm.addEventListener('submit', function () {
     btn.disabled = true;
   }
 });
-```
 
 }
 
