@@ -230,7 +230,7 @@ current = sec.id;
 });
 navAnchors.forEach(function (a) {
 var href = a.getAttribute(‘href’).replace(’#’, ‘’);
-a.style.color = (href === current) ? ‘var(–blue-500)’ : ‘’;
+a.style.color = (href === current) ? ‘var(blue 500)’ : ‘’;
 });
 }
 
